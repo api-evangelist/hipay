@@ -1,0 +1,86 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "Organization",
+  "name": "HiPay",
+  "description": "HiPay is a European omnichannel payment platform headquartered in Levallois-Perret, France, offering REST APIs for online payments, in-store terminal management, fraud prevention, 3DS authentication, tokenization, marketplace payments, and payment reporting. Founded in 2011, HiPay is listed on Euronext Growth Paris and processes over €7.5 billion in transactions annually across five European countries.",
+  "url": "https://hipay.com/en/",
+  "sameAs": [
+    "https://github.com/hipay",
+    "https://developer.hipay.com"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https://support.hipay.com",
+    "email": "pi-ecommerce@hipay.com"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "HiPay API Products",
+    "itemListElement": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "HiPay Payment Gateway API",
+        "applicationCategory": "Payment Processing",
+        "url": "https://developer.hipay.com/api-explorer/api-gateway",
+        "description": "Allows merchants to get paid and manage orders and transactions. Supports querying orders, retrieving transactions by multiple identifiers, and discovering available payment products and routing options."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "HiPay Enterprise Gateway API",
+        "applicationCategory": "Payment Processing",
+        "url": "https://developer.hipay.com/api-explorer/api-online-payments",
+        "description": "Enables payment processing and transaction management, supporting both credit/debit card payments and alternative payment methods."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "HiPay Enterprise HostedPage API",
+        "applicationCategory": "Payment Processing",
+        "url": "https://developer.hipay.com/api-explorer/hpayment-api",
+        "description": "Allows merchants to create secure, PCI-compliant hosted payment pages that customers can be redirected to or displayed in an iFrame."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "HiPay Enterprise Finance API",
+        "applicationCategory": "Financial Reporting",
+        "url": "https://developer.hipay.com",
+        "description": "Consolidates sales and settlements for merchant accounts, providing access to settlement details including amounts transferred to bank accounts, sales, refunds, fees, and chargebacks."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "HiPay Enterprise Tokenization API",
+        "applicationCategory": "Security",
+        "url": "https://developer.hipay.com",
+        "description": "Enables merchants to securely tokenize payment card data in HiPay's Secure Vault, eliminating the need to store sensitive cardholder information locally."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "HiPay Apple Pay Web API",
+        "applicationCategory": "Payment Processing",
+        "url": "https://developer.hipay.com",
+        "description": "Enables merchants to request valid Apple Pay payment sessions from Apple servers, supporting Apple Pay integration in web applications."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "HiPay POS API",
+        "applicationCategory": "Point of Sale",
+        "url": "https://developer.hipay.com",
+        "description": "Enables in-store payments by waking point-of-sale terminal devices with payment details and creating corresponding transactions in HiPay Console."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "HiPay Omnichannel Gateway API",
+        "applicationCategory": "Payment Processing",
+        "url": "https://developer.hipay.com",
+        "description": "Allows merchants to process in-store and omnichannel payments, manage orders and transactions without customer redirection, and perform maintenance operations."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "HiPay Marketplace API",
+        "applicationCategory": "Marketplace Payments",
+        "url": "https://developer.hipay.com",
+        "description": "Facilitates connections between marketplace platforms and HiPay for split payment management, KYC/KYB onboarding, UBO declarations, banking information, fund transfers, and withdrawals."
+      }
+    ]
+  }
+}

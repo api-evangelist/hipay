@@ -1,0 +1,147 @@
+swagger: '2.0'
+info:
+  contact:
+    email: pi-ecommerce@hipay.com
+  description: |2-
+    The Apple Pay API allows you to request a valid session from the Apple Pay server.
+
+    Please note: this documentation describes the Apple Pay API parameters and response fields and allows you to test the platform in real time.
+
+    ## Gateway API base URLs
+    | Environment | Base URL |
+    | --- | --- |
+    | Stage | [https://stage-api.hipay.com/](https://stage-api.hipay.com/) |
+    | Production | [https://api.hipay.com/](https://api.hipay.com/) |
+
+    ## Authentication
+    All requests to the HiPay Hpayment API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
+
+    `Authorization: Basic base64('API login>:<API password>')`
+  title: Apple PAY API
+  version: 1.0.0
+host: stage-api.hipay.com
+paths:
+  /v1/applepay/paymentSession:
+    post:
+      consumes:
+        - application/json
+      parameters:
+        - description: Request object
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/ApplePayWeb_Request'
+      responses:
+        '202':
+          description: Accepted - The request has succeeded
+          schema:
+            $ref: '#/definitions/ApplePayWeb_Response'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApplePayWeb_Error'
+        '401':
+          description: Unauthorized - The request requires user authentication or, if the request included authorization credentials, authorization has been refused for those credentials.
+          schema:
+            $ref: '#/definitions/ApplePayWeb_Error'
+      operationId: createPaymentSession
+      tags:
+        - Sessions
+      summary: Returns an opaque Apple Pay session object.
+definitions:
+  ApplePayWeb_Response:
+    type: object
+    description: Apple Pay session object.
+    properties:
+      epochTimestamp:
+        type: string
+      expiresAt:
+        type: string
+      merchantSessionIdentifier:
+        type: string
+      nonce:
+        type: string
+      merchantIdentifier:
+        type: string
+      domainName:
+        type: string
+      displayName:
+        type: string
+      signature:
+        type: string
+  ApplePayWeb_Request:
+    required:
+      - initiativeContext
+      - validationUrl
+    properties:
+      displayName:
+        description: A string of 64 or fewer UTF-8 characters containing the canonical name for your store, suitable for display. Do not localize the name. Use only characters from the supported character sets in the fonts listed in Table 1.
+        type: string
+        maxLength: 64
+        example: Hipay Shop
+        format: words
+      initiativeContext:
+        description: A value you provide based on the initiative.
+        type: string
+        example: hipayshop.com
+        format: hostname
+      validationUrl:
+        description: validation URLs provided by Apple
+        type: string
+        format: uri
+        enum:
+          - https://apple-pay-gateway.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-nc-pod1.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-nc-pod2.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-nc-pod3.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-nc-pod4.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-nc-pod5.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-pr-pod1.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-pr-pod2.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-pr-pod3.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-pr-pod4.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-pr-pod5.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-nc-pod1-dr.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-nc-pod2-dr.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-nc-pod3-dr.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-nc-pod4-dr.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-nc-pod5-dr.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-pr-pod1-dr.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-pr-pod2-dr.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-pr-pod3-dr.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-pr-pod4-dr.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-pr-pod5-dr.apple.com/paymentservices/startSession
+          - https://cn-apple-pay-gateway-sh-pod1.apple.com/paymentservices/startSession
+          - https://cn-apple-pay-gateway-sh-pod1-dr.apple.com/paymentservices/startSession
+          - https://cn-apple-pay-gateway-sh-pod2.apple.com/paymentservices/startSession
+          - https://cn-apple-pay-gateway-sh-pod2-dr.apple.com/paymentservices/startSession
+          - https://cn-apple-pay-gateway-sh-pod3.apple.com/paymentservices/startSession
+          - https://cn-apple-pay-gateway-sh-pod3-dr.apple.com/paymentservices/startSession
+          - https://cn-apple-pay-gateway-tj-pod1.apple.com/paymentservices/startSession
+          - https://cn-apple-pay-gateway-tj-pod1-dr.apple.com/paymentservices/startSession
+          - https://cn-apple-pay-gateway-tj-pod2.apple.com/paymentservices/startSession
+          - https://cn-apple-pay-gateway-tj-pod2-dr.apple.com/paymentservices/startSession
+          - https://cn-apple-pay-gateway-tj-pod3.apple.com/paymentservices/startSession
+          - https://cn-apple-pay-gateway-tj-pod3-dr.apple.com/paymentservices/startSession
+          - https://apple-pay-gateway-cert.apple.com/paymentservices/startSession
+          - https://cn-apple-pay-gateway-cert.apple.com/paymentservices/startSession
+  ApplePayWeb_Error:
+    type: object
+    properties:
+      error:
+        type: object
+        properties:
+          status:
+            type: string
+          code:
+            type: string
+          message:
+            type: string
+          description:
+            type: string
+          details:
+            type: object
+            properties:
+              path:
+                type: string
