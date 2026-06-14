@@ -1,0 +1,40 @@
+name: HiPay API Plans
+description: HiPay does not publish standardized self-service pricing tiers. Access to the HiPay Enterprise and Professional APIs is granted after commercial onboarding with the HiPay sales team. Pricing is negotiated based on transaction volume, payment methods, and geographic coverage. The information below reflects publicly known details.
+url: https://hipay.com/en/pricing
+plans:
+  - name: Enterprise
+    description: Full-featured omnichannel payment plan for established merchants. Includes online payments via hosted page, hosted fields, and direct API integration, plus in-store POS terminal management, fraud prevention, and advanced reporting. Pricing is volume-based and negotiated directly with HiPay.
+    contact: https://hipay.com/en/
+    sandbox: true
+    features:
+      - Online payment processing (cards and alternative payment methods)
+      - Hosted payment page
+      - Hosted fields (tokenization)
+      - In-store POS terminal integration
+      - Fraud prevention and screening
+      - 3-D Secure authentication
+      - Multi-currency support
+      - Settlement and reconciliation reporting
+      - Server-to-server webhook notifications
+      - CMS plugins (Shopify, Magento 2, PrestaShop)
+      - Mobile SDK (iOS and Android)
+      - Dedicated account management
+    pricing:
+      model: negotiated
+      notes: Transaction fees are volume-based and negotiated during commercial onboarding. No published per-transaction rate. Contact sales for a quote.
+  - name: Marketplace
+    description: Marketplace split-payment plan for platforms using HiPay Professional. Includes user account creation with KYC/KYB onboarding, UBO declarations, bank account management, fund transfers between accounts, withdrawal processing, and transaction reporting.
+    contact: https://hipay.com/en/
+    sandbox: true
+    features:
+      - Marketplace account creation (3-step KYC/KYB)
+      - Ultimate Beneficial Owner (UBO) declarations
+      - Bank account registration and retrieval
+      - Fund transfers between HiPay accounts
+      - Withdrawal to bank accounts
+      - Account balance queries
+      - Marketplace transaction reporting
+      - Invoice management
+    pricing:
+      model: negotiated
+      notes: Marketplace pricing is volume-based and negotiated during commercial onboarding. No published rate. Contact HiPay sales for details.

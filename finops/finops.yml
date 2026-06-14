@@ -1,0 +1,45 @@
+name: HiPay API FinOps
+description: Financial operations considerations for integrating with the HiPay payment platform. HiPay pricing is negotiated and volume-based; no self-service rate card is published. Cost drivers include transaction volume, payment methods enabled, geographic markets served, and value-added services such as fraud prevention.
+url: https://hipay.com/en/
+cost_model:
+  type: negotiated
+  billing_basis: per-transaction
+  notes: HiPay uses a negotiated, volume-based commercial model. Merchants must contact the HiPay sales team for a personalized quote. There is no publicly available per-transaction rate or monthly subscription price.
+cost_drivers:
+  - name: Transaction Volume
+    description: The primary cost driver. Higher transaction volumes generally unlock lower per-transaction rates. Volume thresholds are negotiated during onboarding.
+  - name: Payment Methods
+    description: Enabling alternative payment methods (APMs) beyond cards may carry different fee structures. Each payment method (e.g., SEPA, Bancontact, iDEAL, Giropay) may have its own per-transaction cost negotiated with HiPay.
+  - name: Currency Conversion (FX)
+    description: Cross-currency transactions incur FX markup fees. Specific FX markup rates are not disclosed but are typical of European PSPs (estimated 0.5–1.5% markup on interbank rate).
+  - name: Fraud Prevention Services
+    description: Advanced fraud screening and prevention services are available as add-ons. These may be included in the base plan or priced separately depending on the commercial agreement.
+  - name: 3-D Secure Authentication
+    description: 3DS authentication is required under PSD2/Strong Customer Authentication (SCA) regulations in Europe. Costs associated with 3DS processing are typically included in the transaction fee.
+  - name: Chargeback and Dispute Fees
+    description: Chargebacks incur fees per dispute, with amounts defined in the merchant services agreement. Effective use of HiPay's fraud prevention tools can reduce chargeback rates and associated costs.
+  - name: Settlement Reporting
+    description: Access to the Finance API for settlement reporting is included in the merchant agreement. Exports in CSV, XLS, and TXT formats are available at no additional cost.
+  - name: POS Terminal Integration
+    description: In-store POS terminal management via the HiPay POS API may involve hardware costs (terminal leasing or purchase) in addition to per-transaction software fees.
+  - name: Marketplace Split Payments
+    description: Marketplace operators using the HiPay Marketplace API may incur additional fees for KYC/KYB onboarding, fund transfers, and withdrawals. These are negotiated as part of the marketplace agreement.
+optimization_tips:
+  - description: Negotiate volume-based tiers early. Accurately forecast transaction volumes during onboarding to secure optimal per-transaction rates from the start.
+  - description: Monitor settlement reports via the Finance API to track fees, chargebacks, and refunds in real time and identify cost anomalies.
+  - description: Use tokenization to enable one-click and recurring payments, reducing friction and improving conversion rates, which improves effective cost per successful transaction.
+  - description: Implement HiPay's fraud screening to reduce chargebacks. Each prevented chargeback saves the chargeback fee plus the transaction amount.
+  - description: Leverage the stage environment (free) for all development and testing to avoid incurring fees on non-production transactions.
+  - description: Consolidate payment methods. Activating only the payment methods relevant to your target markets avoids unnecessary per-method fees.
+regulatory_context:
+  - PSD2 Strong Customer Authentication (SCA) compliance is required for European card payments
+  - GDPR applies to all personal and payment data processed through HiPay in the EU
+  - HiPay is authorized as a Payment Institution by the ACPR (Autorité de Contrôle Prudentiel et de Résolution) in France
+  - PCI DSS compliance is maintained by HiPay; merchants using hosted pages or tokenization can reduce their own PCI DSS scope
+contacts:
+  - type: Sales
+    url: https://hipay.com/en/
+    notes: Contact HiPay sales for pricing quotes and commercial onboarding
+  - type: Support
+    url: https://support.hipay.com
+    notes: Technical and account support for existing merchants

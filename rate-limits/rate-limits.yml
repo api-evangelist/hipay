@@ -1,0 +1,25 @@
+name: HiPay API Rate Limits
+description: HiPay does not publish explicit API rate limits in their public documentation. Rate limits are enforced at the infrastructure level and vary by account type and contractual agreement. The following reflects known operational guidance from HiPay's documentation and support resources.
+url: https://developer.hipay.com
+limits:
+  - name: General API Rate Limit
+    description: HiPay enforces rate limits per API credential set. Specific numeric limits are not publicly disclosed and are determined during commercial onboarding based on expected transaction volume. Merchants experiencing rate limit errors should contact HiPay support.
+    scope: per-credential
+    disclosed: false
+    contact: https://support.hipay.com
+  - name: Test/Stage Environment
+    description: The HiPay stage environment (stage-api-gateway.hipay.com, stage-secure-gateway.hipay-tpp.com, stage-api.hipay.com) is available for integration testing. Volume in the stage environment is limited to prevent abuse and is not representative of production limits.
+    scope: per-credential
+    environments:
+      - stage
+    disclosed: false
+    notes: Stage environment credentials are separate from production credentials and must be requested from HiPay support.
+  - name: Payment Gateway Concurrency
+    description: Concurrent transaction processing limits apply per merchant account and are established in the commercial contract. High-volume merchants may request increased concurrency limits through their account manager.
+    scope: per-merchant-account
+    disclosed: false
+  - name: Tokenization API
+    description: The Secure Vault tokenization API (secure2-vault.hipay-tpp.com) is subject to standard rate limits. Multi-use tokens created via the API can be stored indefinitely for recurring payments, subject to account-level limits.
+    scope: per-credential
+    disclosed: false
+notes: For current rate limit information, contact HiPay support at support.hipay.com or your dedicated account manager. Limits are specified in the merchant services agreement.
