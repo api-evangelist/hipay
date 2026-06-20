@@ -1,6 +1,6 @@
 name: HiPay
 description: HiPay is a European omnichannel payment platform headquartered in Levallois-Perret, France, offering REST APIs for online payments, in-store terminal management, fraud prevention, 3DS authentication, tokenization, marketplace payments, and payment reporting. Founded in 2011, HiPay is listed on Euronext Growth Paris and processes over €7.5 billion in transactions annually across five European countries.
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/hipay/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -17,7 +17,7 @@ tags:
 apis:
   - name: HiPay Payment Gateway API
     description: The HiPay Payment Gateway API (v3) allows merchants to get paid and manage orders and transactions. Supports querying orders, retrieving transactions by multiple identifiers, and discovering available payment products and routing options.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.hipay.com/api-explorer/api-gateway
     baseURL: https://api-gateway.hipay.com
     tags:
@@ -35,7 +35,7 @@ apis:
         email: pi-ecommerce@hipay.com
   - name: HiPay Enterprise Gateway API
     description: The HiPay Enterprise Gateway API (v1) enables payment processing and transaction management, supporting both credit/debit card payments and alternative payment methods. Provides order creation, transaction retrieval, and maintenance operations including capture, refund, and cancel.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.hipay.com/api-explorer/api-online-payments
     baseURL: https://secure-gateway.hipay-tpp.com/rest
     tags:
@@ -54,7 +54,7 @@ apis:
         email: pi-ecommerce@hipay.com
   - name: HiPay Enterprise HostedPage API
     description: The HiPay Enterprise HostedPage API allows merchants to create secure, PCI-compliant hosted payment pages that customers can be redirected to or displayed in an iFrame. Supports multiple payment methods and customizable themes.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.hipay.com/api-explorer/hpayment-api
     baseURL: https://api.hipay.com
     tags:
@@ -72,7 +72,7 @@ apis:
         email: pi-ecommerce@hipay.com
   - name: HiPay Enterprise Finance API
     description: The HiPay Enterprise Finance API consolidates sales and settlements for merchant accounts. Provides access to settlement details including amounts transferred to bank accounts, sales, refunds, fees, and chargebacks, with export in CSV, XLS, or TXT formats.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.hipay.com
     baseURL: https://api.hipay-tpp.com/v1
     tags:
@@ -91,7 +91,7 @@ apis:
         email: pi-ecommerce@hipay.com
   - name: HiPay Enterprise Tokenization API
     description: The HiPay Enterprise Tokenization API enables merchants to securely tokenize payment card data in HiPay's Secure Vault, eliminating the need to store sensitive cardholder information locally. Includes a BIN lookup tool and supports create, retrieve, update, and delete operations on tokens.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.hipay.com
     baseURL: https://secure2-vault.hipay-tpp.com/rest/v2/token
     tags:
@@ -110,7 +110,7 @@ apis:
         email: pi-ecommerce@hipay.com
   - name: HiPay Apple Pay Web API
     description: The HiPay Apple Pay Web API enables merchants to request valid Apple Pay payment sessions from Apple servers, supporting Apple Pay integration in web applications for both online and in-store payment flows.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.hipay.com
     baseURL: https://api.hipay.com
     tags:
@@ -128,7 +128,7 @@ apis:
         email: pi-ecommerce@hipay.com
   - name: HiPay POS API
     description: The HiPay POS API enables in-store payments by waking point-of-sale terminal devices with payment details and creating corresponding transactions in HiPay Console. Supports omnichannel retail with seamless online-to-in-store payment flows.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.hipay.com
     baseURL: https://cloudrun-api-n3l7nqotca-ew.a.run.app
     tags:
@@ -147,7 +147,7 @@ apis:
         email: pi-ecommerce@hipay.com
   - name: HiPay Omnichannel Gateway API
     description: The HiPay Omnichannel Gateway API allows merchants to process in-store and omnichannel payments, manage orders and transactions without customer redirection, and perform maintenance operations such as refunds and cancellations on existing transactions.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.hipay.com
     baseURL: https://secure-gateway.hipay-tpp.com/rest
     tags:
@@ -166,7 +166,7 @@ apis:
         email: pi-ecommerce@hipay.com
   - name: HiPay Marketplace API
     description: The HiPay Marketplace API facilitates connections between marketplace platforms and HiPay for split payment management. Supports user account creation (KYC/KYB onboarding), UBO declarations, banking information management, fund transfers, withdrawals, and transaction reporting for marketplace operators.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.hipay.com
     baseURL: https://professional.hipay.com/api
     tags:
