@@ -191,7 +191,7 @@ common:
     url: https://developer.hipay.com
   - type: OpenAPI Repository
     url: https://github.com/hipay/openapi-hipay
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/hipay
   - type: Support
     url: https://support.hipay.com
