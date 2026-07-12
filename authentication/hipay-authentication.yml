@@ -1,0 +1,35 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/api-gateway.yml, openapi/gateway.yaml, openapi/hpayment.yaml, openapi/marketplace.yaml,
+  openapi/omnichannel.yaml, openapi/pos-api.yaml, openapi/settlement.yaml, openapi/tokenization.yaml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: BasicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/api-gateway.yml
+  - openapi/gateway.yaml
+  - openapi/hpayment.yaml
+  - openapi/marketplace.yaml
+  - openapi/omnichannel.yaml
+  - openapi/pos-api.yaml
+  - openapi/settlement.yaml
+  - openapi/tokenization.yaml
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-API-KEY
+  sources:
+  - openapi/api-gateway.yml
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: X-Api-Key
+  sources:
+  - openapi/gateway.yaml
