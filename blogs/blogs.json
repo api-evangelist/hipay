@@ -2,11 +2,11 @@
   "repo": "hipay",
   "feeds": [
     {
-      "source": "https://blog.hipay.com",
+      "source": "https://blog.hipay.com/fr/rss.xml",
       "feed_url": "https://blog.hipay.com/fr/rss.xml",
       "title": "",
       "saved": 0,
-      "method": "discovered"
+      "method": "feed"
     },
     {
       "source": "https://support.hipay.com",
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-06-27T12:03:07Z",
-  "post_count": 9
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 16
 }
