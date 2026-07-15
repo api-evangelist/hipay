@@ -185,6 +185,8 @@ apis:
         url: https://support.hipay.com
         email: pi-ecommerce@hipay.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/hipay-agentic-access.yml
   - type: DomainSecurity
     url: security/hipay-domain-security.yml
   - type: Authentication
