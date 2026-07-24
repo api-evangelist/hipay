@@ -1,0 +1,215 @@
+openapi: 3.0.0
+info:
+  title: Hipay Payment Gateway balance transfer API
+  description: '## Version 1.6.1 - June 11, 2025
+
+
+    The Gateway API allows you to get paid and manage orders and transactions.
+
+
+    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
+
+
+    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
+
+    # Web service information
+
+    ## Gateway API base URLs
+
+    | Environment | Base URL |
+
+    | --- | --- |
+
+    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
+
+    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
+
+    ## Authentication
+
+    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
+
+    `Authorization: Basic base64(''API login>:<API password>'')`
+
+    '
+  version: 1.6.1
+servers:
+- url: https://stage-api-gateway.hipay.com
+  description: Stage
+- url: https://api-gateway.hipay.com
+  description: Production
+tags:
+- name: transfer
+  description: Transfer funds between HiPay accounts
+paths:
+  /transfer.{_format}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: '
+
+        ### Information
+
+        Allows you to transfer funds from a HiPay account to another HiPay account. HiPay suggests performing fund allocation and withdrawal all at once.
+
+
+        All the funds are held in escrow before being deposited on the technical account. The Transfer API is then used to allocate funds from the technical account to the merchants'' accounts. The Transfer API allows transfer requests to be made on the agent’s behalf or on the behalf of a third party.
+
+
+        The technical account is therefore a monitoring tool that provides a clear view of fund allocation (fund remittance, refunds, chargebacks).
+
+
+        For more information, please read the [HiPay Marketplace Fund allocation section](/marketplace/api-integration/cash-out#fund-allocation)'
+      operationId: post_transfer
+      x-disableTryItOut: true
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      - description: Account ID of the recipient account.
+        format: int32
+        in: formData
+        name: recipient_account_id
+        type: integer
+        default: '592734'
+      - description: Login of the recipient account (email).
+        in: formData
+        name: recipient_account_login
+        type: string
+        default: developer@hipay.com
+      - description: Amount of the transfer in the account currency.
+        format: float
+        in: formData
+        name: amount
+        type: number
+        default: '19.90'
+      - description: Label of the transfer known by you and the recipient user.
+        in: formData
+        name: public_label
+        type: string
+        default: Custom public label
+      - description: Label of the transfer only known by you.
+        in: formData
+        name: private_label
+        type: string
+        default: Custom private label
+      - description: Unique ID of the transfer sent by the merchant. HiPay will process only 1 transfer with this ID.
+        in: formData
+        name: merchant_unique_id
+        type: string
+        default: ORDER_1973645854
+      - description: Periodicity type of the transfer.
+        enum:
+        - direct
+        - deferred
+        - periodic
+        default: direct
+        in: formData
+        name: periodicity_type
+        type: string
+      - description: 'Periodicity (required for a periodic transfer).
+
+          If you select a date which does not exist every month (29, 30 or 31), the transfer will take place on the last day of the month.
+
+          If you select a date before today''s date, the first transfer will take place next month.'
+        format: int32
+        in: formData
+        name: periodicity
+        type: integer
+        default: '15'
+      - description: Execution date of the transfer (required for a deferred transfer).
+        format: date
+        in: formData
+        name: date
+        type: string
+        default: '2020-11-20'
+      - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-id
+        type: integer
+      - description: Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-login
+        type: string
+      produces: []
+      responses:
+        '200':
+          description: Error response
+          schema:
+            properties:
+              code:
+                description: Status code of the answer. 4 => Action not allowed 26 => Transfer in progress
+                format: int32
+                type: integer
+                default: 4
+              message:
+                description: Description of the answer.
+                type: string
+                default: Action not allowed
+        '201':
+          description: Success response
+          schema:
+            properties:
+              code:
+                description: Status code of the answer.
+                format: int32
+                type: integer
+              message:
+                description: Description of the answer.
+                type: string
+              transaction_id:
+                description: HiPay’s transaction ID.
+                type: string
+              amount:
+                description: Transferred amount.
+                format: float
+                type: number
+              currency:
+                description: Currency of the transfer.
+                type: string
+              recipient_username:
+                description: Login of the recipient account (email).
+                type: string
+              public_label:
+                description: Label of the transfer known by you and the recipient user.
+                type: string
+              private_label:
+                description: Label of the transfer only known by you.
+                type: string
+              merchant_unique_id:
+                description: Unique ID of the transfer sent by the merchant.
+                type: string
+              periodicity_type:
+                description: Periodicity type of the transfer.
+                type: string
+              periodicity:
+                description: Periodicity of the transfer.
+                type: string
+              date:
+                description: Execution date of the transfer.
+                type: string
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      summary: Transfer funds between HiPay accounts
+      tags:
+      - transfer
+      security:
+      - basicAuth: []
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+externalDocs:
+  description: Find out more about HiPay
+  url: https://developer.hipay.com/

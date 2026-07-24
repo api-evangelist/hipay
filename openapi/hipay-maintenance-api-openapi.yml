@@ -1,0 +1,423 @@
+openapi: 3.0.0
+info:
+  title: Hipay Payment Gateway balance maintenance API
+  description: '## Version 1.6.1 - June 11, 2025
+
+
+    The Gateway API allows you to get paid and manage orders and transactions.
+
+
+    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
+
+
+    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
+
+    # Web service information
+
+    ## Gateway API base URLs
+
+    | Environment | Base URL |
+
+    | --- | --- |
+
+    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
+
+    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
+
+    ## Authentication
+
+    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
+
+    `Authorization: Basic base64(''API login>:<API password>'')`
+
+    '
+  version: 1.6.1
+servers:
+- url: https://stage-api-gateway.hipay.com
+  description: Stage
+- url: https://api-gateway.hipay.com
+  description: Production
+tags:
+- name: maintenance
+  description: Perform operations (capture, refund) on transactions
+paths:
+  /v1/maintenance/transaction/{transaction_reference}:
+    post:
+      tags:
+      - maintenance
+      summary: Performs a maintenance operation on a given transaction
+      description: Performs a maintenance operation on a given transaction.
+      operationId: performMaintenanceOperation
+      parameters:
+      - name: transaction_reference
+        in: path
+        description: The unique identifier of the transaction.
+        required: true
+        schema:
+          type: string
+        example: '800000420435'
+        x-sort: 1
+      requestBody:
+        description: Maintenance information
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Maintenance'
+      responses:
+        '200':
+          description: The maintenance operation was executed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operation'
+        '400':
+          description: The request was rejected due to a validation error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: An authentication error occurred/invalid credentials.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Access to this resource is fordidden.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Transaction was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - basicAuth: []
+components:
+  schemas:
+    Operation:
+      title: Operation
+      description: Operation model
+      properties:
+        operation:
+          description: The operation to perform on the transaction.
+          type: string
+          enum:
+          - capture
+          - refund
+          - cancel
+          - acceptChallenge
+          - denyChallenge
+          example: capture
+          x-sort: 1
+        mid:
+          description: ''
+          type: string
+          example: 00001326589
+          x-sort: 5
+        authorizationCode:
+          description: ''
+          type: string
+          example: author
+          x-sort: 10
+        transactionReference:
+          description: ''
+          type: string
+          example: '800000968431'
+          x-sort: 15
+        status:
+          description: ''
+          type: string
+          example: '118'
+          x-sort: 35
+        message:
+          description: ''
+          type: string
+          example: Captured
+          x-sort: 40
+        dateCreated:
+          description: ''
+          type: string
+          example: 2019-02-07T10:07:09+0000
+          x-sort: 20
+        dateUpdated:
+          description: ''
+          type: string
+          example: 2019-02-07T10:07:09+0000
+          x-sort: 25
+        dateAuthorized:
+          description: ''
+          type: string
+          example: 2019-02-07T10:07:09+0000
+          x-sort: 30
+        authorizedAmount:
+          description: ''
+          type: string
+          example: '125.85'
+          x-sort: 45
+        capturedAmount:
+          description: ''
+          type: string
+          example: '125.85'
+          x-sort: 50
+        refundedAmount:
+          description: ''
+          type: string
+          example: '0.00'
+          x-sort: 55
+        decimals:
+          description: ''
+          type: string
+          example: '2'
+          x-sort: 60
+        currency:
+          description: ''
+          type: string
+          example: EUR
+          x-sort: 65
+      type: object
+    Maintenance:
+      title: Maintenance
+      description: Maintenance model
+      required:
+      - operation
+      properties:
+        operation:
+          description: "The operation to perform on the transaction.\n\n    The payment gateway supports the following types of maintenance transactions.\n\n    | Operation Type | Description |\n    | -------------- | ----------- |\n    | `capture` | A request instructing the payment gateway to capture a previously-authorized transaction, i.e. transfer the funds from the customer’s bank account to the merchant’s bank account. This transaction is always preceded by an authorization. |\n    | `refund` | A request instructing the payment gateway to refund a previously captured transaction. A captured transaction can be partly or fully refunded. |\n    | `cancel` | A request instructing the payment gateway to cancel a previously authorized transaction. Only authorized transactions can be cancelled, captured transactions must be refunded. |\n    | `acceptChallenge` | A request instructing the payment gateway to accept a previously challenged transaction. |\n    | `denyChallenge` | A request instructing the payment gateway to deny a previously challenged transaction. |\n    | `finalize` | A request instructing the payment gateway to finalize an asynchronous operation. |"
+          type: string
+          enum:
+          - capture
+          - refund
+          - cancel
+          - acceptChallenge
+          - denyChallenge
+          - finalize
+          example: capture
+          x-sort: 1
+        currency:
+          description: Base currency for this order. This three-character currency code complies with ISO 4217.
+          type: string
+          enum:
+          - FRF
+          - SKK
+          - EEK
+          - TMT
+          - AED
+          - AFN
+          - ALL
+          - AMD
+          - ANG
+          - AOA
+          - ARS
+          - AUD
+          - AWG
+          - AZN
+          - BAM
+          - BBD
+          - BDT
+          - BGN
+          - BHD
+          - BIF
+          - BMD
+          - BND
+          - BOB
+          - BRL
+          - BSD
+          - BTN
+          - BWP
+          - BYR
+          - BZD
+          - CAD
+          - CDF
+          - CHF
+          - CLP
+          - CNY
+          - COP
+          - CRC
+          - CUC
+          - CUP
+          - CVE
+          - CZK
+          - DJF
+          - DKK
+          - DOP
+          - DZD
+          - EGP
+          - ERN
+          - ETB
+          - EUR
+          - FJD
+          - FKP
+          - GBP
+          - GEL
+          - GHS
+          - GIP
+          - GMD
+          - GNF
+          - GTQ
+          - GYD
+          - HKD
+          - HNL
+          - HRK
+          - HTG
+          - HUF
+          - IDR
+          - ILS
+          - INR
+          - IQD
+          - IRR
+          - ISK
+          - JMD
+          - JOD
+          - JPY
+          - KES
+          - KGS
+          - KHR
+          - KMF
+          - KPW
+          - KRW
+          - KWD
+          - KYD
+          - KZT
+          - LAK
+          - LBP
+          - LKR
+          - LRD
+          - LSL
+          - LTL
+          - LVL
+          - LYD
+          - MAD
+          - MDL
+          - MGA
+          - MKD
+          - MMK
+          - MNT
+          - MOP
+          - MRO
+          - MUR
+          - MVR
+          - MWK
+          - MXN
+          - MYR
+          - MZN
+          - NAD
+          - NGN
+          - NIO
+          - NOK
+          - NPR
+          - NZD
+          - OMR
+          - PAB
+          - PEN
+          - PGK
+          - PHP
+          - PKR
+          - PLN
+          - PYG
+          - QAR
+          - RON
+          - RSD
+          - RUB
+          - RWF
+          - SAR
+          - SBD
+          - SCR
+          - SDG
+          - SEK
+          - SGD
+          - SHP
+          - SLL
+          - SOS
+          - SRD
+          - STD
+          - SVC
+          - SYP
+          - SZL
+          - THB
+          - TJS
+          - TND
+          - TOP
+          - TRY
+          - TTD
+          - TWD
+          - TZS
+          - UAH
+          - UGX
+          - USD
+          - UYU
+          - UZS
+          - VEF
+          - VND
+          - VUV
+          - TMM
+          - WST
+          - XAF
+          - XCD
+          - XOF
+          - XPF
+          - YER
+          - ZAR
+          - ZMK
+          - ZWL
+          example: EUR
+          additionalProperties:
+            default: EUR
+          x-sort: 5
+        amount:
+          description: Amount is required for partial maintenances. Do not specify amount for full captures or refunds.
+          type: string
+          example: '3.5'
+          x-sort: 10
+        operation_id:
+          description: Operation merchant ID. This value will be returned to merchant with the notifications related to this operation.
+          type: string
+          example: 204OJ23LKJ234
+          x-sort: 15
+        basket:
+          description: "Shopping cart details. **You must send only items that must be captured or refunded.**\n\n    Please refer to [HiPay Enterprise - Payment Gateway - Shopping cart managment](https://support.hipay.com/hc/fr/articles/115001660469-Payment-Gateway-Shopping-cart-management) technical documentation."
+          type: string
+          x-sort: 20
+        sub_transaction_reference:
+          description: Number of the subtransaction to be refunded.
+          type: string
+          example: '134470136955'
+          x-sort: 25
+        source:
+          description: "To identify the origin of the transaction. Here are the authorized values for source property:\n\n    `AUTO`, `SAPI`, `CONS`, `PAGE`, `TPE`, `RTRY`, `MANU`, `PREF`, `REVI`, `CMS`, `SSDK`, `CSDK`"
+          type: string
+          example: '{"integration_version":"1.9.0","brand":"DEVPORTAL","source":"CSDK","brand_version":"12.2.0"}'
+          x-sort: 30
+      type: object
+    Error:
+      title: Error
+      description: Error model
+      properties:
+        code:
+          description: Code
+          type: integer
+          x-sort: 1
+        message:
+          description: Message
+          type: string
+          x-sort: 5
+        description:
+          description: Description
+          type: string
+          x-sort: 10
+      type: object
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+externalDocs:
+  description: Find out more about HiPay
+  url: https://developer.hipay.com/

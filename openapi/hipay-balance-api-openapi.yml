@@ -1,0 +1,137 @@
+openapi: 3.0.0
+info:
+  title: Hipay Payment Gateway balance API
+  description: '## Version 1.6.1 - June 11, 2025
+
+
+    The Gateway API allows you to get paid and manage orders and transactions.
+
+
+    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
+
+
+    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
+
+    # Web service information
+
+    ## Gateway API base URLs
+
+    | Environment | Base URL |
+
+    | --- | --- |
+
+    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
+
+    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
+
+    ## Authentication
+
+    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
+
+    `Authorization: Basic base64(''API login>:<API password>'')`
+
+    '
+  version: 1.6.1
+servers:
+- url: https://stage-api-gateway.hipay.com
+  description: Stage
+- url: https://api-gateway.hipay.com
+  description: Production
+tags:
+- name: balance
+  description: Manage the balance of a HiPay account
+paths:
+  /user-account/balance.{_format}:
+    get:
+      consumes:
+      - multipart/form-data
+      description: '
+
+        ### Information
+
+        Get the balance of a specific HiPay account.'
+      operationId: get_user-account_balance
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      - description: Date for the balance.
+        format: date
+        in: query
+        name: date
+        type: string
+        default: '2018-02-01'
+      - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-id
+        type: integer
+      - description: Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-login
+        type: string
+      produces: []
+      responses:
+        '200':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                description: Status code of the answer.
+                format: int32
+                type: integer
+              date:
+                description: Date for the balance (yyyy-mm-dd).
+                format: date-time
+                type: string
+              message:
+                description: Description of the answer.
+                type: string
+              balances:
+                description: List of account and sub-account balances.
+                type: array
+                items:
+                  type: object
+                  description: List of account and sub-account balances.
+                  properties:
+                    user_account_id:
+                      description: Account ID.
+                      format: int32
+                      type: integer
+                    user_account_type:
+                      description: "### Account type\n\n   - `1`: Main account\n   - `2`: secondary account\n   - `3`: original account"
+                      type: string
+                    balance:
+                      description: Account balance.
+                      type: string
+                    currency:
+                      description: Account currency.
+                      type: string
+                    money_available_for_withdrawal:
+                      description: Amount available for withdrawal.
+                      type: string
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      summary: Get the balance of a HiPay account
+      tags:
+      - balance
+      security:
+      - basicAuth: []
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+externalDocs:
+  description: Find out more about HiPay
+  url: https://developer.hipay.com/

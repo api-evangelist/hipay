@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  title: Hipay Payment Gateway balance captcha-generation API
+  description: '## Version 1.6.1 - June 11, 2025
+
+
+    The Gateway API allows you to get paid and manage orders and transactions.
+
+
+    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
+
+
+    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
+
+    # Web service information
+
+    ## Gateway API base URLs
+
+    | Environment | Base URL |
+
+    | --- | --- |
+
+    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
+
+    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
+
+    ## Authentication
+
+    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
+
+    `Authorization: Basic base64(''API login>:<API password>'')`
+
+    '
+  version: 1.6.1
+servers:
+- url: https://stage-api-gateway.hipay.com
+  description: Stage
+- url: https://api-gateway.hipay.com
+  description: Production
+tags:
+- name: captcha-generation
+  description: Generate captcha
+paths:
+  /tools/captcha.{_format}:
+    get:
+      produces: []
+      consumes:
+      - multipart/form-data
+      operationId: get_Captcha-generation
+      summary: Generate a captcha
+      description: '
+
+        ### Information
+
+
+        Generate a captcha.'
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      responses:
+        '201':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                description: Status code of the answer.
+                format: int32
+                type: integer
+              message:
+                description: Description of the answer.
+                type: string
+              captcha_id:
+                description: Captcha ID.
+                format: int32
+                type: integer
+              captcha_img:
+                description: Captcha image.
+                type: string
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      tags:
+      - captcha-generation
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+externalDocs:
+  description: Find out more about HiPay
+  url: https://developer.hipay.com/

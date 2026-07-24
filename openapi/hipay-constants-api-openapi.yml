@@ -1,0 +1,474 @@
+openapi: 3.0.0
+info:
+  title: Hipay Payment Gateway balance constants API
+  description: '## Version 1.6.1 - June 11, 2025
+
+
+    The Gateway API allows you to get paid and manage orders and transactions.
+
+
+    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
+
+
+    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
+
+    # Web service information
+
+    ## Gateway API base URLs
+
+    | Environment | Base URL |
+
+    | --- | --- |
+
+    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
+
+    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
+
+    ## Authentication
+
+    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
+
+    `Authorization: Basic base64(''API login>:<API password>'')`
+
+    '
+  version: 1.6.1
+servers:
+- url: https://stage-api-gateway.hipay.com
+  description: Stage
+- url: https://api-gateway.hipay.com
+  description: Production
+tags:
+- name: constants
+  description: Manage your account with our API tools
+paths:
+  /tools/bank-info-fields/{country}/{locale}.{_format}:
+    get:
+      produces: []
+      consumes:
+      - multipart/form-data
+      summary: Get bank details required for a HiPay account depending on its country
+      description: '
+
+        ### Information
+
+
+        Get bank details required for a HiPay account depending on its country.'
+      parameters:
+      - in: path
+        name: country
+        required: true
+        type: string
+        default: FR
+        description: 'Enter country code [using ISO_3166-1 convention.](https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements)
+
+          Examples of values: `FR`, `AL`, `AU`, `PT`, `US`...'
+      - in: path
+        name: locale
+        required: true
+        type: string
+        default: fr_FR
+        description: 'Enter locale code [using this convention.](https://www.softaculous.com/docs/Scripts_Language_Codes)
+
+          Examples of values: `fr_FR`, `de_DE`, `es_ES`, `uk_UA`...'
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      responses:
+        '200':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                description: Status code of the answer.
+                format: int32
+                type: integer
+              message:
+                description: Description of the answer.
+                type: string
+              country:
+                description: Country to get bank info fields.
+                type: string
+              fields:
+                description: Required bank fields.
+                items:
+                  description: Required bank fields.
+                  properties:
+                    code:
+                      description: string
+                      type: string
+                    label:
+                      description: string
+                      type: string
+                type: array
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      tags:
+      - constants
+  /tools/business-lines/{locale}.{_format}:
+    get:
+      produces: []
+      consumes:
+      - multipart/form-data
+      summary: Return business lines
+      description: '
+
+        ### Information
+
+
+        Return business lines.'
+      parameters:
+      - in: path
+        name: locale
+        required: true
+        type: string
+        default: fr_FR
+        description: 'Enter locale code [using this convention.](https://www.softaculous.com/docs/Scripts_Language_Codes)
+
+          Examples of values: `fr_FR`, `de_DE`, `es_ES`, `uk_UA`...'
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      responses:
+        '200':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                type: integer
+                format: int32
+                description: Status code of the answer.
+              message:
+                type: string
+                description: Description of the answer.
+              business_lines:
+                type: array
+                items:
+                  description: array of objects (BusinessLineEntity)
+                  properties:
+                    id:
+                      type: integer
+                      format: int32
+                      description: integer
+                    label:
+                      type: string
+                      description: string
+                description: array of objects (BusinessLineEntity)
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      tags:
+      - constants
+  /tools/locale/codes.{_format}:
+    get:
+      produces: []
+      consumes:
+      - multipart/form-data
+      summary: Return locales codes and names
+      description: '
+
+        ### Information
+
+
+        Return locales codes and names.'
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      responses:
+        '200':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                type: integer
+                format: int32
+                description: Status code of the answer.
+              message:
+                type: string
+                description: Description of the answer.
+              locales:
+                type: array
+                items:
+                  description: Required bank fields.
+                  properties:
+                    code:
+                      description: string
+                      type: string
+                    label:
+                      description: string
+                      type: string
+                description: array of objects (CodeLabelResponse)
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      tags:
+      - constants
+  /tools/locale/countries/{locale}.{_format}:
+    get:
+      produces: []
+      consumes:
+      - multipart/form-data
+      summary: Return locales codes and names
+      description: '
+
+        ### Information
+
+
+        Return countries codes and labels by locale.'
+      parameters:
+      - in: path
+        name: locale
+        required: true
+        type: string
+        default: fr_FR
+        description: 'Enter locale code [using this convention.](https://www.softaculous.com/docs/Scripts_Language_Codes)
+
+          Examples of values: `fr_FR`, `de_DE`, `es_ES`, `uk_UA`...'
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      responses:
+        '200':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                type: integer
+                format: int32
+                description: Status code of the answer.
+              message:
+                type: string
+                description: Description of the answer.
+              countries:
+                type: array
+                items:
+                  description: Required bank fields.
+                  properties:
+                    code:
+                      description: string
+                      type: string
+                    label:
+                      description: string
+                      type: string
+                description: array of objects (CodeLabelResponse)
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      tags:
+      - constants
+  /tools/locale/currencies/{locale}.{_format}:
+    get:
+      produces: []
+      consumes:
+      - multipart/form-data
+      summary: Return currencies codes and labels by locale
+      description: '
+
+        ### Information
+
+
+        Return currencies codes and labels by locale.'
+      parameters:
+      - in: path
+        name: locale
+        required: true
+        type: string
+        default: fr_FR
+        description: 'Enter locale code [using this convention.](https://www.softaculous.com/docs/Scripts_Language_Codes)
+
+          Examples of values: `fr_FR`, `de_DE`, `es_ES`, `uk_UA`...'
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      responses:
+        '200':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                type: integer
+                format: int32
+                description: Status code of the answer.
+              message:
+                type: string
+                description: Description of the answer.
+              currencies:
+                type: array
+                items:
+                  description: Required bank fields.
+                  properties:
+                    code:
+                      description: string
+                      type: string
+                    label:
+                      description: string
+                      type: string
+                description: array of objects (CodeLabelResponse)
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      tags:
+      - constants
+  /tools/locale/timezones.{_format}:
+    get:
+      produces: []
+      consumes:
+      - multipart/form-data
+      summary: Return timezones
+      description: '
+
+        ### Information
+
+
+        Return timezones.'
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      responses:
+        '200':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                type: integer
+                format: int32
+                description: Status code of the answer.
+              message:
+                type: string
+                description: Description of the answer.
+              timezones:
+                type: array
+                items:
+                  description: Required bank fields.
+                  properties:
+                    code:
+                      description: string
+                      type: string
+                    label:
+                      description: string
+                      type: string
+                description: array of objects (CodeLabelResponse)
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      tags:
+      - constants
+  /tools/website-topics/{business_line_id}/{locale}.{_format}:
+    get:
+      produces: []
+      consumes:
+      - multipart/form-data
+      summary: Return website topics
+      description: '
+
+        ### Information
+
+
+        Return website topics.'
+      parameters:
+      - in: path
+        name: locale
+        required: true
+        type: string
+        default: fr_FR
+        description: 'Enter locale code [using this convention.](https://www.softaculous.com/docs/Scripts_Language_Codes)
+
+          Examples of values: `fr_FR`, `de_DE`, `es_ES`, `uk_UA`...'
+      - in: path
+        name: business_line_id
+        required: true
+        type: string
+        default: '2'
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      responses:
+        '200':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                type: integer
+                format: int32
+                description: Status code of the answer.
+              message:
+                type: string
+                description: Description of the answer.
+              business_line_id:
+                type: integer
+                format: int32
+                description: integer
+              website_topics:
+                type: array
+                items:
+                  description: array of objects (TopicEntity)
+                  properties:
+                    id:
+                      type: integer
+                      format: int32
+                      description: integer
+                    label:
+                      type: string
+                      description: string
+                description: array of objects (TopicEntity)
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      tags:
+      - constants
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+externalDocs:
+  description: Find out more about HiPay
+  url: https://developer.hipay.com/

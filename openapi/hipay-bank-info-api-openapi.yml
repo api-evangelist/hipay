@@ -1,0 +1,297 @@
+openapi: 3.0.0
+info:
+  title: Hipay Payment Gateway balance bank-info API
+  description: '## Version 1.6.1 - June 11, 2025
+
+
+    The Gateway API allows you to get paid and manage orders and transactions.
+
+
+    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
+
+
+    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
+
+    # Web service information
+
+    ## Gateway API base URLs
+
+    | Environment | Base URL |
+
+    | --- | --- |
+
+    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
+
+    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
+
+    ## Authentication
+
+    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
+
+    `Authorization: Basic base64(''API login>:<API password>'')`
+
+    '
+  version: 1.6.1
+servers:
+- url: https://stage-api-gateway.hipay.com
+  description: Stage
+- url: https://api-gateway.hipay.com
+  description: Production
+tags:
+- name: bank-info
+  description: Manage bank informations of a HiPay account
+paths:
+  /user-account/bank-info.{_format}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: "\n### Information\nRegister new bank-details on an HiPay account.\n\nMust be called with the bank identity document and bank info together\n\n\n__In test environment__\n\n\nYou can choose if the document will be accepted or not by changing the 3 first characters of the uploaded file name.\n  - Filename starts with `01_`: document will be refused because unrecognized\n\n  - Filename starts with `02_`: document will be refused because falsified\n\n  - Filename starts with `03_`: document will be refused because unreadable\n\n  - Filename starts with `06_`: document will be refused because inconsistent\n\n  - Filename starts with `07_`: document will be refused because expired\n\n  - Any other name : document will be automatically accepted"
+      operationId: post_user-account_bank-info
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      - in: formData
+        description: Bank details file to upload (`jpg`, `gif`, `png`, `pdf`). Must match bank details to be validated.
+        name: file
+        required: true
+        type: file
+        format: byte
+      - description: Country of the bank.
+        in: formData
+        required: true
+        name: bank_country
+        type: string
+        default: FR
+      - description: Name of the bank (50 characters max.).
+        in: formData
+        name: bank_name
+        type: string
+        default: BNP
+      - description: Address of the bank.
+        in: formData
+        name: bank_address
+        type: string
+        default: 1 Avenue des Champs-Élysées
+      - description: Zip code of the bank.
+        in: formData
+        name: bank_zip_code
+        type: string
+        default: '75001'
+      - description: City of the bank (50 characters max.).
+        in: formData
+        name: bank_city
+        type: string
+        default: Paris
+      - description: IBAN.
+        in: formData
+        name: iban
+        type: string
+        default: FR1420041010050500013M02606
+      - description: SWIFT / BIC.
+        in: formData
+        name: swift
+        type: string
+        default: PSSTFRPPXXX
+      - description: ABA number.
+        in: formData
+        name: aba_num
+        type: string
+      - description: BSB number.
+        in: formData
+        name: bsb_num
+        type: string
+      - description: Bank number.
+        in: formData
+        name: bank_num
+        type: string
+      - description: Account number.
+        in: formData
+        name: acct_num
+        type: string
+      - description: Transit number.
+        in: formData
+        name: transit_num
+        type: string
+      - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-id
+        type: integer
+      - description: Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-login
+        type: string
+      produces: []
+      responses:
+        '201':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                description: Status code of the answer. 0 => Successful response 2 => Missing parameter 3 => Invalid parameter 7 => Not found 13 => An error occurred, please try again 400 => Bad request
+                format: int32
+                type: integer
+              message:
+                description: Description of the answer.
+                type: string
+              status_code:
+                description: Bank details status code (1=>No bank information, 2=>Validation in progress, 3=>Validated).
+                format: int32
+                type: integer
+              status:
+                description: Bank details status.
+                type: string
+              bank_country:
+                description: Country of the bank.
+                type: string
+              bank_name:
+                description: Name of the bank.
+                type: string
+              bank_address:
+                description: Address of the bank.
+                type: string
+              bank_zip_code:
+                description: Zip code of the bank.
+                type: string
+              bank_city:
+                description: City of the bank.
+                type: string
+              iban:
+                description: 'IBAN eg: GR9608100010000001234567890.'
+                type: string
+              swift:
+                description: 'SWIFT/BIC eg: AGRIFRPP836.'
+                type: string
+              aba_num:
+                description: ABA number.
+                type: string
+              bsb_num:
+                description: BSB number.
+                type: string
+              bank_num:
+                description: Bank number.
+                type: string
+              acct_num:
+                description: Account number.
+                type: string
+              transit_num:
+                description: Transit number.
+                type: string
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      summary: Register new bank details on a HiPay account
+      tags:
+      - bank-info
+      security:
+      - basicAuth: []
+  /user-account/bank-info/{locale}.{_format}:
+    get:
+      consumes:
+      - multipart/form-data
+      description: '
+
+        ### Information
+
+        Get bank details of a HiPay account.'
+      operationId: get_user-account_bank-info_locale
+      parameters:
+      - in: path
+        name: locale
+        required: true
+        type: string
+        description: '
+
+          Enter locale code [using this convention.](https://www.softaculous.com/docs/Scripts_Language_Codes) Examples of values: `fr_FR`, `de_DE`, `es_ES`, `uk_UA`...'
+        default: fr_FR
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      produces: []
+      responses:
+        '200':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                description: /merchant-group/Status code of the answer. 0 => Successful response 2 => Missing parameter 3 => Invalid parameter 7 => Not found 13 => An error occurred, please try again 400 => Bad request
+                format: int32
+                type: integer
+              message:
+                description: Description of the answer.
+                type: string
+              status_code:
+                description: Bank details status code (1=>No bank information, 2=>Validation in progress, 3=>Validated).
+                format: int32
+                type: integer
+              status:
+                description: Bank details status.
+                type: string
+              bank_country:
+                description: Country of the bank.
+                type: string
+              bank_name:
+                description: Name of the bank.
+                type: string
+              bank_address:
+                description: Address of the bank.
+                type: string
+              bank_zip_code:
+                description: Zip code of the bank.
+                type: string
+              bank_city:
+                description: City of the bank.
+                type: string
+              iban:
+                description: 'IBAN eg: GR9608100010000001234567890.'
+                type: string
+              swift:
+                description: 'SWIFT/BIC eg: AGRIFRPP836.'
+                type: string
+              aba_num:
+                description: ABA number.
+                type: string
+              bsb_num:
+                description: BSB number.
+                type: string
+              bank_num:
+                description: Bank number.
+                type: string
+              acct_num:
+                description: Account number.
+                type: string
+              transit_num:
+                description: Transit number.
+                type: string
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      summary: Get bank details registered on a HiPay account
+      tags:
+      - bank-info
+      security:
+      - basicAuth: []
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+externalDocs:
+  description: Find out more about HiPay
+  url: https://developer.hipay.com/

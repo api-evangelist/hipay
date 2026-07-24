@@ -1,0 +1,186 @@
+openapi: 3.0.0
+info:
+  title: Hipay Payment Gateway balance withdrawal API
+  description: '## Version 1.6.1 - June 11, 2025
+
+
+    The Gateway API allows you to get paid and manage orders and transactions.
+
+
+    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
+
+
+    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
+
+    # Web service information
+
+    ## Gateway API base URLs
+
+    | Environment | Base URL |
+
+    | --- | --- |
+
+    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
+
+    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
+
+    ## Authentication
+
+    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
+
+    `Authorization: Basic base64(''API login>:<API password>'')`
+
+    '
+  version: 1.6.1
+servers:
+- url: https://stage-api-gateway.hipay.com
+  description: Stage
+- url: https://api-gateway.hipay.com
+  description: Production
+tags:
+- name: withdrawal
+  description: Request a withdrawal from a HiPay account
+paths:
+  /withdrawal.{_format}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: "\n### Information\nAllows you to request a withdrawal from a HiPay account and transfer the funds to the bank account linked to the account.\nOnce funds are allocated, there are two withdrawal possibilities.\n\n  - Whenever a transaction is made – please note that this option is not recommended by HiPay.\n\n  - Whenever a withdrawal request is made – for example, every ten days, depending on the agent.\n\nWhen agents want to do a withdrawal, they need to check the merchant’s account balance with the getBalance API.\n\n  - In case of a zero balance, funds can be allocated with the Transfer API.\n\n  - If the balance equals the amount of the allocated funds, a fund withdrawal request can be made with the Withdrawal API. (The Withdrawal API allows for withdrawal requests to transfer money to the merchant’s bank account and also to the partner’s bank account.)\n\n  - There must be a zero balance in the end.\n\nFor more information, please read the [HiPay Marketplace Withdrawal requests section](/marketplace/api-integration/cash-out#withdrawal-requests)"
+      operationId: post_withdrawal
+      x-disableTryItOut: true
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      - description: Amount of the withdrawal in the account currency.
+        format: float
+        in: formData
+        name: amount
+        type: number
+        default: '19.90'
+      - description: Label of the withdrawal in the account currency.
+        in: formData
+        name: label
+        type: string
+        default: Custom label here
+      - description: Unique ID of the withdrawal sent by the merchant. HiPay will process only 1 withdrawal with this ID.
+        in: formData
+        name: merchant_unique_id
+        type: string
+        default: ORDER_1973645854
+      - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-id
+        type: integer
+      - description: Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-login
+        type: string
+      produces: []
+      responses:
+        '200':
+          description: Error response
+          schema:
+            properties:
+              code:
+                description: Status code of the answer. 13 => Withdrawal not created 26 => Withdrawal in progress
+                format: int32
+                type: integer
+                default: 13
+              message:
+                description: Description of the answer.
+                type: string
+                default: Withdrawal not created
+        '201':
+          description: Success response
+          schema:
+            properties:
+              code:
+                description: Status code of the answer. 0 => Withdrawal successfully created
+                format: int32
+                type: integer
+              message:
+                description: Description of the answer.
+                type: string
+              transaction_public_id:
+                description: Unique transaction ID.
+                type: string
+              label:
+                description: Label of the withdrawal.
+                type: string
+              amount:
+                description: Amount of the withdrawal in the account currency.
+                format: double
+                type: number
+              currency:
+                description: Currency of the withdrawal.
+                type: string
+              issuer_account:
+                description: Issuer's account ID.
+                type: string
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+        40xx - Error code detail:
+          description: 'See standard HTTP status code reason for 400x - Error code detail :
+
+
+            | HTTP status code | Error code detail |
+
+            | --- | --- |
+
+            | `4002` | The userSpace is not activated. |
+
+            | `4003` | The userSpace is being switched to pro or professionals info are not valid. |
+
+            | `4004` | The user Space is not identified. |
+
+            | `4005` | Bank info are not valid. |
+
+            | `4006` | The userSpace state not normal. |
+
+            | `4007` | The account is not activated. |
+
+            | `4008` | The account is disabled. |
+
+            | `4009` | The account is deleted. |
+
+            | `4010` | The account is not main. |
+
+            | `4012` | Bank country is blacklisted. |
+
+            | `4013` | Withdrawal maximal limit reached. |
+
+            | `4014` | Balance after the withdrawal will be inferior to minimal amount. |
+
+            | `4015` | The declaration of your ultimate beneficial owners for your HiPay account has not been completed or has not been duly completed. |
+
+            '
+          schema:
+            properties:
+              error_code_detail:
+                format: int32
+                type: integer
+      summary: Request a withdrawal from a HiPay account
+      tags:
+      - withdrawal
+      security:
+      - basicAuth: []
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+externalDocs:
+  description: Find out more about HiPay
+  url: https://developer.hipay.com/

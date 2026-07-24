@@ -1,0 +1,248 @@
+openapi: 3.0.0
+info:
+  title: Hipay Payment Gateway balance merchant-group API
+  description: '## Version 1.6.1 - June 11, 2025
+
+
+    The Gateway API allows you to get paid and manage orders and transactions.
+
+
+    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
+
+
+    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
+
+    # Web service information
+
+    ## Gateway API base URLs
+
+    | Environment | Base URL |
+
+    | --- | --- |
+
+    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
+
+    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
+
+    ## Authentication
+
+    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
+
+    `Authorization: Basic base64(''API login>:<API password>'')`
+
+    '
+  version: 1.6.1
+servers:
+- url: https://stage-api-gateway.hipay.com
+  description: Stage
+- url: https://api-gateway.hipay.com
+  description: Production
+tags:
+- name: merchant-group
+  description: Manage merchant groups
+paths:
+  /merchant-group/{merchant_group_code}.{_format}:
+    get:
+      produces: []
+      consumes:
+      - multipart/form-data
+      summary: List merchant group member
+      description: '
+
+        ### Information
+
+
+        List merchant group member.'
+      parameters:
+      - in: path
+        name: merchant_group_code
+        required: true
+        type: string
+        default: devportaltest
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      - in: query
+        description: The date from which the member accounts were created
+        name: past_date
+        type: string
+        format: date
+        default: '2018-01-01'
+      - in: query
+        description: Account type
+        name: account_type[]
+        type: string
+        default: merchant
+        enum:
+        - merchant
+        - associator
+        - admin
+      - in: query
+        description: Number of results to display on each page. Default is 20
+        name: nb_result_per_page
+        type: integer
+        format: int32
+        default: 20
+      - in: query
+        description: Page number. First page has number 1. Default is 1
+        name: page
+        type: integer
+        format: int32
+        default: 1
+      - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-id
+        type: integer
+      - description: Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-login
+        type: string
+      responses:
+        '201':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                type: integer
+                format: int32
+                description: Status code of the answer.
+              message:
+                type: string
+                description: Description of the answer.
+              merchant_group_name:
+                type: string
+                description: Merchant group name
+              account_type:
+                type: array
+                items:
+                  type: string
+                description: List of account type
+              total_merchant:
+                type: integer
+                format: int32
+                description: Total merchant
+              past_date:
+                type: string
+                description: The date from which the member accounts were created
+              nb_result_per_page:
+                type: integer
+                format: int32
+                description: Number of result per page
+              page:
+                type: integer
+                format: int32
+                description: Page number
+              merchants_list:
+                type: array
+                items:
+                  type: string
+                description: List of members
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      tags:
+      - merchant-group
+      security:
+      - basicAuth: []
+  /merchant-group/{merchant_group_code}/count.{_format}:
+    get:
+      produces: []
+      consumes:
+      - multipart/form-data
+      summary: Count merchant group member
+      description: '
+
+        ### Information
+
+
+        Count merchant group member.'
+      parameters:
+      - in: path
+        name: merchant_group_code
+        required: true
+        type: string
+        default: devportaltest
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      - in: query
+        description: The date from which the member accounts were created
+        name: past_date
+        type: string
+        format: date
+        default: '2018-01-01'
+      - in: query
+        description: Account type
+        name: account_type[]
+        type: string
+        default: merchant
+        enum:
+        - merchant
+        - associator
+        - admin
+      - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-id
+        type: integer
+      - description: Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-login
+        type: string
+      responses:
+        '201':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                type: integer
+                format: int32
+                description: Status code of the answer.
+              message:
+                type: string
+                description: Description of the answer.
+              merchant_group_name:
+                type: string
+                description: Merchant group name
+              account_type:
+                type: array
+                items:
+                  type: string
+                description: List of account type
+              total_merchant:
+                type: integer
+                format: int32
+                description: Total merchant
+              past_date:
+                type: string
+                description: The date from which the member accounts were created
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      tags:
+      - merchant-group
+      security:
+      - basicAuth: []
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+externalDocs:
+  description: Find out more about HiPay
+  url: https://developer.hipay.com/

@@ -1,0 +1,131 @@
+openapi: 3.0.0
+info:
+  title: Hipay Payment Gateway balance invoice API
+  description: '## Version 1.6.1 - June 11, 2025
+
+
+    The Gateway API allows you to get paid and manage orders and transactions.
+
+
+    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
+
+
+    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
+
+    # Web service information
+
+    ## Gateway API base URLs
+
+    | Environment | Base URL |
+
+    | --- | --- |
+
+    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
+
+    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
+
+    ## Authentication
+
+    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
+
+    `Authorization: Basic base64(''API login>:<API password>'')`
+
+    '
+  version: 1.6.1
+servers:
+- url: https://stage-api-gateway.hipay.com
+  description: Stage
+- url: https://api-gateway.hipay.com
+  description: Production
+tags:
+- name: invoice
+  description: Manage marketplace invoices
+paths:
+  /marketplace/invoice.{_format}:
+    get:
+      produces: []
+      consumes:
+      - multipart/form-data
+      summary: List marketplace invoices
+      description: '
+
+        ### Information
+
+        List marketplace invoices.'
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      - in: query
+        description: Invoice reference
+        name: reference
+        type: string
+      - in: query
+        required: true
+        description: Invoices year
+        name: year
+        type: integer
+        format: int32
+        default: 2018
+      responses:
+        '200':
+          description: Success response.
+        '400':
+          description: Validation failed.
+      tags:
+      - invoice
+      security:
+      - basicAuth: []
+  /marketplace/invoice/{reference}.{_format}:
+    get:
+      produces: []
+      consumes:
+      - multipart/form-data
+      summary: Download an invoice
+      description: '
+
+        ### Information
+
+        Download an invoice.'
+      parameters:
+      - in: path
+        name: reference
+        required: true
+        type: integer
+        default: '1'
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      responses:
+        '200':
+          description: PDF document successfully returned
+        '403':
+          description: Access forbidden.
+        '404':
+          description: Invoice not found.
+      tags:
+      - invoice
+      security:
+      - basicAuth: []
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+externalDocs:
+  description: Find out more about HiPay
+  url: https://developer.hipay.com/

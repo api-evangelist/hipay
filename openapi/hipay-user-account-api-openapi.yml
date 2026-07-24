@@ -1,0 +1,1036 @@
+openapi: 3.0.0
+info:
+  title: Hipay Payment Gateway balance user-account API
+  description: '## Version 1.6.1 - June 11, 2025
+
+
+    The Gateway API allows you to get paid and manage orders and transactions.
+
+
+    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
+
+
+    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
+
+    # Web service information
+
+    ## Gateway API base URLs
+
+    | Environment | Base URL |
+
+    | --- | --- |
+
+    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
+
+    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
+
+    ## Authentication
+
+    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
+
+    `Authorization: Basic base64(''API login>:<API password>'')`
+
+    '
+  version: 1.6.1
+servers:
+- url: https://stage-api-gateway.hipay.com
+  description: Stage
+- url: https://api-gateway.hipay.com
+  description: Production
+tags:
+- name: user-account
+  description: Manage your HiPay account
+paths:
+  /user-account.{_format}:
+    get:
+      consumes:
+      - multipart/form-data
+      description: '
+
+        ### Information
+
+        Get information about a specific HiPay account.'
+      operationId: get_user-account
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-id
+        type: integer
+      - description: Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-login
+        type: string
+      produces: []
+      responses:
+        '200':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                description: Status code of the answer.
+                format: int32
+                type: integer
+              message:
+                description: Description of the answer.
+                type: string
+              entity:
+                description: Account entity code.
+                type: string
+              user_account_id:
+                description: Account ID.
+                format: int32
+                type: integer
+              user_space_id:
+                description: User space ID.
+                format: int32
+                type: integer
+              currency:
+                description: Account currency.
+                type: string
+              activated:
+                description: True if the account is activated. activated = 0 => Means that the account can't access to the hipay backoffice. In fact, the password hasn't be registered or confirmed. activated = 1 => Means that the account can access to the hipay backoffice. Password registered.
+                format: int32
+                type: integer
+              ubo_statement_status_code:
+                description: 'UBO statement status code : -1: No UBO statement 0: New 1: Waiting 2: To check 3: Validated 4: Rejected 5: Updated.'
+                type: string
+              identified:
+                description: True if the account is identified.
+                format: int32
+                type: integer
+              bank_info_validated:
+                description: True if bank information is validated.
+                format: int32
+                type: integer
+              callback_url:
+                description: Account callback URL.
+                type: string
+              callback_salt:
+                description: Account callback salt.
+                type: string
+              websites:
+                description: If websites are declared on the account, list of websites.
+                items:
+                  description: If websites are declared on the account, list of websites.
+                  properties:
+                    website_id:
+                      description: ID of the website.
+                      format: int32
+                      type: integer
+                    website_name:
+                      description: Name of the website.
+                      type: string
+                    website_url:
+                      description: URL of the website.
+                      type: string
+                    website_email:
+                      description: Contact email address of the website.
+                      type: string
+                    business_line:
+                      description: Business line ID of the website.
+                      type: string
+                    website_topic:
+                      description: Topic ID of the website.
+                      type: string
+                type: array
+              sub_accounts:
+                description: If sub-accounts are declared on the account, list of sub-accounts.
+                items:
+                  description: If sub-accounts are declared on the account, list of sub-accounts.
+                  properties:
+                    user_account_id:
+                      description: Account ID.
+                      format: int32
+                      type: integer
+                    currency:
+                      description: Currency of the account.
+                      type: string
+                    callback_url:
+                      description: Account callback URL.
+                      type: string
+                    callback_salt:
+                      description: Account callback salt.
+                      type: string
+                    websites:
+                      description: Array of objects (GetAccountInfosWebsite).
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          website_id:
+                            description: ID of the website.
+                            format: int32
+                            type: integer
+                          website_name:
+                            description: Name of the website.
+                            type: string
+                          website_url:
+                            description: URL of the website.
+                            type: string
+                          website_email:
+                            description: Contact email address of the website.
+                            type: string
+                          business_line:
+                            description: Business line ID of the website.
+                            type: string
+                          website_topic:
+                            description: Topic ID of the website.
+                            type: string
+                type: array
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      summary: Get general information about a HiPay account
+      tags:
+      - user-account
+      security:
+      - basicAuth: []
+    patch:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: '
+
+        ### Information
+
+        Update a HiPay account.'
+      operationId: patch_User-account
+      x-disableTryItOut: true
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      - description: Account email.
+        in: formData
+        name: email
+        type: string
+      - description: Alias of created account.
+        in: formData
+        name: alias
+        type: string
+      - description: VAT company number.
+        in: formData
+        name: vat_number
+        type: string
+      - description: Street address.
+        name: address[address]
+        in: formData
+        type: string
+        default: 2 Avenue de Paris
+      - description: Zip code.
+        name: address[zipcode]
+        in: formData
+        type: string
+        default: '75001'
+      - description: City.
+        name: address[city]
+        in: formData
+        type: string
+        default: Paris
+      - description: 'Enter country code [using ISO_3166-1 convention.](https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements)
+
+          Examples of values: `FR`, `AL`, `AU`, `PT`, `US`...'
+        name: address[country]
+        in: formData
+        type: string
+        default: FR
+      - description: Phone number.
+        name: address[phone_number]
+        in: formData
+        type: string
+        default: 0123456789
+      - description: Mobile phone number.
+        name: address[mobile_phone_number]
+        in: formData
+        type: string
+        default: 0612345789
+      - description: Fax number.
+        name: address[fax_number]
+        in: formData
+        type: string
+        default: 0198765432
+      - description: '`0` or `1` if user agrees.
+
+          '
+        enum:
+        - 0
+        - 1
+        in: formData
+        name: hipay_information
+        type: integer
+        default: 0
+      - description: '`0` or `1` if user agrees.
+
+          '
+        enum:
+        - 0
+        - 1
+        in: formData
+        name: commercial_information
+        type: integer
+        default: 0
+      - description: URL where the notifications concerning this account will be sent.
+        in: formData
+        name: callback_url
+        type: string
+      - description: salt used in notification signature.
+        in: formData
+        name: callback_salt
+        type: string
+      - description: City of birth.
+        in: formData
+        name: city_of_birth
+        type: string
+      - description: The country of birth code. This two-letter country code complies with ISO 3166-1
+        in: formData
+        name: country_of_birth
+        type: string
+      - description: '`0` or `1` if user agrees to validate HiPay terms (default : `0`).'
+        enum:
+        - 0
+        - 1
+        in: formData
+        name: cgu_validation
+        type: integer
+        default: 0
+      - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-id
+        type: integer
+      - description: Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-login
+        type: string
+      produces: []
+      responses:
+        '200':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                description: Status code of the answer.
+                format: int32
+                type: integer
+              message:
+                description: Description of the answer.
+                type: string
+              account_id:
+                description: ID of updated HiPay account.
+                format: int32
+                type: integer
+              alias:
+                description: Alias of updated HiPay account.
+                type: string
+              email:
+                description: Email of created HiPay account.
+                type: string
+              callback_url:
+                description: URL where the notifications concerning this account will be sent.
+                type: string
+              callback_salt:
+                description: Salt used in notification signature.
+                type: string
+              entity_code:
+                description: The code of the entity to which the account is to be linked.
+                type: string
+              address:
+                description: Address
+                type: string
+              zipcode:
+                description: Zipcode
+                type: string
+              city:
+                description: City
+                type: string
+              country:
+                description: Country
+                type: string
+              homephone:
+                description: HomePhone
+                type: string
+              mobilephone:
+                description: MobilePhone
+                type: string
+              merchant_group_code:
+                description: MerchantGroupCode
+                type: string
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      summary: Update a Hipay account
+      tags:
+      - user-account
+      security:
+      - basicAuth: []
+    post:
+      consumes:
+      - multipart/form-data
+      description: '
+
+        ### Information
+
+        Create a HiPay account
+
+        ### Account creation step 2/3
+
+        The agent creates a HiPay account for merchants using this API. Next step: "Identification API".'
+      operationId: post_user-account
+      x-disableTryItOut: true
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      - description: New account email address.
+        in: formData
+        name: email
+        type: string
+        default: developer+user-api@hipay.com
+      - description: For Marketplace implementation, please leave this field with default value to "credentials".
+        enum:
+        - CREDENTIALS
+        - CAPTCHA
+        in: formData
+        default: CREDENTIALS
+        name: controle_type
+        type: string
+      - in: formData
+        description: Captcha ID. Required for CAPTCHA control.
+        name: captcha[id]
+        type: integer
+        format: int32
+      - in: formData
+        description: Captcha code. Required for CAPTCHA control.
+        name: captcha[phrase]
+        type: string
+      - description: Your API web service login.
+        in: formData
+        name: credential[wslogin]
+        type: string
+        default: 8434b91c5766a3446cb65360d9c7c3e6
+      - description: Your API web service password.
+        in: formData
+        name: credential[wspassword]
+        type: string
+        default: b592ed0e625b026d0a6b76ec99750792bb
+      - description: First name of the new account owner.
+        in: formData
+        name: firstname
+        type: string
+        default: John
+      - description: Last name of the new account owner.
+        in: formData
+        name: lastname
+        type: string
+        default: Doe
+      - description: 'Currency of the created account [using ISO 4217 Currency Codes convention.](http://www.xe.com/iso4217.php)
+
+          Examples of values: `EUR`, `USD`, `PLN`...'
+        in: formData
+        name: currency
+        type: string
+        default: EUR
+      - description: '
+
+          Language and country of the new account [using this convention.](https://www.softaculous.com/docs/Scripts_Language_Codes) Examples of values: `fr_FR`, `de_DE`, `es_ES`, `uk_UA`...'
+        in: formData
+        name: locale
+        type: string
+        default: fr_FR
+      - description: 'New account login (default : _email_ parameter).'
+        in: formData
+        name: login
+        type: string
+        default: customLogin
+      - description: "Title of the account owner (default : `1`).\n\n- `1` = Mr, \n\n- `2` = Mrs, \n\n- `3` = Miss"
+        enum:
+        - 1
+        - 2
+        - 3
+        in: formData
+        name: civility
+        type: integer
+        default: 1
+      - description: IP of the initial query to create the account. Ipv4 valid IP accepted.
+        in: formData
+        name: ip_address
+        type: string
+      - description: 'Merchant group ID to apply to the new account.
+
+
+          /!\ Parameter deprecated! Use _merchant_group_code_ parameter.
+
+          '
+        format: int32
+        in: formData
+        name: merchant_group_id
+        type: integer
+      - in: formData
+        description: Merchant group code to apply to the new account.
+        name: merchant_group_code
+        type: string
+      - description: Entity to apply to the new account (HiPay will inform the merchant of the entity to use).
+        in: formData
+        name: entity_code
+        type: string
+      - description: "Select your account type (default : `1`).\n- `0` = personal account, \n- `1` = business account"
+        enum:
+        - 0
+        - 1
+        in: formData
+        name: account_type
+        type: integer
+        default: 1
+      - description: "Select your professional profile (default : `1`).\n- `1` = corporation, \n- `2` = person, \n- `3` = association"
+        enum:
+        - 1
+        - 2
+        - 3
+        in: formData
+        name: pro_type
+        type: integer
+        default: 1
+      - description: Alias of the created account.
+        in: formData
+        name: alias
+        type: string
+        default: myalias
+      - description: Type of company (e.g.:ltd...).
+        in: formData
+        name: structure
+        type: string
+        default: Startup
+      - description: Name of the company.
+        in: formData
+        name: company_name
+        type: string
+        default: Revolution Corp.
+      - description: VAT company number.
+        in: formData
+        name: vat_number
+        type: string
+        default: AZERTY1234
+      - description: Street address.
+        name: address[address]
+        in: formData
+        type: string
+        default: 2 Avenue de Paris
+      - description: Zip code.
+        name: address[zipcode]
+        in: formData
+        type: string
+        default: '75001'
+      - description: City.
+        name: address[city]
+        in: formData
+        type: string
+        default: Paris
+      - description: 'Enter country code [using ISO_3166-1 convention.](https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements)
+
+          Examples of values: `FR`, `AL`, `AU`, `PT`, `US`...'
+        name: address[country]
+        in: formData
+        type: string
+        default: FR
+      - description: Phone number.
+        name: address[phone_number]
+        in: formData
+        type: string
+        default: 0123456789
+      - description: Mobile phone number.
+        name: address[mobile_phone_number]
+        in: formData
+        type: string
+        default: 0612345789
+      - description: Fax number.
+        name: address[fax_number]
+        in: formData
+        type: string
+        default: 0198765432
+      - description: 'Timezone (default : `Europe/Paris`).'
+        in: formData
+        name: timezone
+        type: string
+        default: Europe/Paris
+      - description: 'Birthdate of the account owner. E.g.: `1965-11-12` for November 12, 1965.'
+        format: date
+        in: formData
+        name: birthdate
+        type: string
+        default: '1965-11-12'
+      - description: City of birth.
+        format: string
+        in: formData
+        name: city_of_birth
+        type: string
+      - description: The country of birth code. This two-letter country code complies with ISO 3166-1
+        format: string
+        in: formData
+        name: country_of_birth
+        type: string
+      - description: Antiphishing string.
+        in: formData
+        name: anti_phishing_key
+        type: string
+      - description: '1 if the user agrees with the terms (default : `0`).'
+        enum:
+        - 0
+        - 1
+        in: formData
+        name: hipay_information
+        type: integer
+        default: 1
+      - description: '1 if the user agrees with the commercial offers (default : `0`).'
+        enum:
+        - 0
+        - 1
+        in: formData
+        name: commercial_information
+        type: integer
+        default: 1
+      - description: URL where the notifications concerning this account will be sent.
+        in: formData
+        name: callback_url
+        type: string
+        default: https://developer.hipay.com/callback-url
+      - description: 'salt used in the notification signature.
+
+          If this parameter is empty, a callback salt will be generated.'
+        in: formData
+        name: callback_salt
+        type: string
+      - description: “Cadastro de Pessoas Físicas” (for Brazilian accounts).
+        in: formData
+        name: cpf[cpf]
+        type: integer
+        format: int32
+      - description: “Cadastro de Pessoas Físicas” identification number (for Brazilian accounts).
+        in: formData
+        name: cpf[id]
+        type: string
+      - description: '“Cadastro de Pessoas Físicas” type (for Brazilian accounts).
+
+
+          - `RG` = “Registro Geral”,
+
+
+          - `RNE` = “Registro Nacional de Estrangeiros”
+
+          '
+        in: formData
+        name: cpf[id_type]
+        type: string
+        enum:
+        - RG
+        - RNE
+        default: RG
+      - description: “Cadastro de Pessoas Físicas” state (for Brazilian accounts).
+        in: formData
+        name: cpf[state]
+        type: string
+      - description: 'Select your activation type (default : `0`).
+
+          - `0` = Activation by link,
+
+          - `1` = Activation by code'
+        enum:
+        - 0
+        - 1
+        in: formData
+        name: activation_type
+        type: integer
+        default: 0
+      - description: Account ID in an external application.
+        format: string
+        in: formData
+        name: external_account_id
+        type: string
+      - description: 'Authorized values: UNKNOWN, Mirakl, Izeberg, Prestashop, Magento.
+
+          {"UNKNOWN":`0`,"Mirakl":`1`,"Izeberg":`2`,"Prestashop":`3`,"Magento":`4`}'
+        in: formData
+        name: external_type
+        type: integer
+        enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+      - description: '`0` or `1` if user agrees to validate HiPay terms (default : `0`).'
+        enum:
+        - 0
+        - 1
+        in: formData
+        name: cgu_validation
+        type: integer
+        default: 0
+      - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-id
+        type: integer
+      - description: Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-login
+        type: string
+      produces: []
+      responses:
+        '201':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                description: Status code of the answer.
+                format: int32
+                type: integer
+              message:
+                description: Description of the answer.
+                type: string
+              email:
+                description: Email address of the HiPay account created.
+                type: string
+              wslogin:
+                description: wsLogin of the HiPay account created.
+                type: string
+              wspassword:
+                description: wsPassword of the HiPay account created.
+                type: string
+              status:
+                description: True if the account is activated. activated = 0 => Means that the account can't access to the hipay backoffice. In fact, the password hasn't be registered or confirmed. activated = 1 => Means that the account can access to the hipay backoffice. Password registered.
+                format: int32
+                type: integer
+              account_id:
+                description: ID of the HiPay account created.
+                format: int32
+                type: integer
+              user_space_id:
+                description: ID of the HiPay user space created.
+                format: int32
+                type: integer
+              callback_url:
+                description: URL where the notifications concerning this account will be sent.
+                type: string
+              callback_salt:
+                description: salt used in notification signature.
+                type: string
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      summary: Create a HiPay account
+      tags:
+      - user-account
+      security:
+      - basicAuth: []
+  /user-account/sub-account.{_format}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: '
+
+        ### Information
+
+        Create a HiPay Sub-Account inside an already created HiPay account.'
+      operationId: post_user-account_sub-account
+      x-disableTryItOut: true
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      - description: Alias of the created account.
+        in: formData
+        name: alias
+        type: string
+        default: myalias
+        required: true
+      - description: First name of the new account owner.
+        in: formData
+        name: firstname
+        type: string
+        default: John
+        required: true
+      - description: Last name of the new account owner.
+        in: formData
+        name: lastname
+        type: string
+        default: Doe
+        required: true
+      - description: 'Currency of the created account [using ISO 4217 Currency Codes convention.](http://www.xe.com/iso4217.php)
+
+          Examples of values: `EUR`, `USD`, `PLN`...'
+        in: formData
+        name: currency
+        type: string
+        default: EUR
+        required: true
+      - description: Street address.
+        name: address[address]
+        in: formData
+        type: string
+        default: 2 Avenue de Paris
+      - description: Zip code.
+        name: address[zipcode]
+        in: formData
+        type: string
+        default: '75001'
+      - description: City.
+        name: address[city]
+        in: formData
+        type: string
+        default: Paris
+      - description: 'Enter country code [using ISO_3166-1 convention.](https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements)
+
+          Examples of values: `FR`, `AL`, `AU`, `PT`, `US`...'
+        name: address[country]
+        in: formData
+        type: string
+        default: FR
+      - description: Phone number.
+        name: address[phone_number]
+        in: formData
+        type: string
+        default: 0123456789
+      - description: Mobile phone number.
+        name: address[mobile_phone_number]
+        in: formData
+        type: string
+        default: 0612345789
+      - description: Fax number.
+        name: address[fax_number]
+        in: formData
+        type: string
+        default: 0198765432
+      - description: 'Birthdate of the account owner. E.g.: `1965-11-12` for November 12, 1965.'
+        format: date
+        in: formData
+        name: birthdate
+        type: string
+        default: '1965-11-12'
+        required: true
+      - description: City of birth.
+        format: string
+        in: formData
+        name: city_of_birth
+        type: string
+      - description: The country of birth code. This two-letter country code complies with ISO 3166-1
+        format: string
+        in: formData
+        name: country_of_birth
+        type: string
+      - description: New account email address.
+        in: formData
+        name: email
+        type: string
+        default: developer+user-api@hipay.com
+      - description: New account login.
+        in: formData
+        name: login
+        type: string
+        default: customLogin
+      - description: New account password.
+        in: formData
+        name: password
+        type: string
+        default: customPassword
+      - description: Maximum spending allowance.
+        in: formData
+        name: max_expense_amount
+        type: number
+      - description: Per period of 7, 15, 30 or 45 days.
+        in: formData
+        name: max_expense_period_amount
+        type: string
+      - description: Maximum amount for a payment.
+        in: formData
+        name: max_payment_amount
+        type: number
+      - description: URL where the notifications concerning this account will be sent.
+        in: formData
+        name: callback_url
+        type: string
+        default: https://developer.hipay.com/callback-url
+      - description: 'salt used in the notification signature.
+
+          If this parameter is empty, a callback salt will be generated.'
+        in: formData
+        name: callback_salt
+        type: string
+      - description: Age category (+12 => For ages 13 and over, +16 => For ages 16 and over, +18 => * For ages 18 and over, ALL => For all ages), default is ALL
+        in: formData
+        name: class
+        type: string
+      - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-id
+        type: integer
+      - description: Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-login
+        type: string
+      produces: []
+      responses:
+        '200':
+          description: Error response
+          schema:
+            properties:
+              code:
+                description: Status code of the answer. 260 => An account with the given login already exists for the given entity 290 => Origin account is not a main account 330 => Origin account is not activated
+                format: int32
+                type: integer
+                default: 260
+              message:
+                description: Description of the answer.
+                type: string
+                default: An account with the given login already exists for the given entity
+        '201':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                description: Status code of the answer.
+                format: int32
+                type: integer
+              message:
+                description: Description of the answer.
+                type: string
+              parent_account_id:
+                description: Id of the parent HiPay Account.
+                format: int32
+                type: integer
+              subaccount_id:
+                description: Id of the created HiPay Sub-Account.
+                format: int32
+                type: integer
+              entity_code:
+                description: Id of the created HiPay Sub-Account.
+                type: string
+              merchant_group_id:
+                description: Merchant group ID of the created HiPay Sub-Account. /!\ Parameter deprecated !
+                format: int32
+                type: integer
+              merchant_group_code:
+                description: Merchant group code of the created HiPay Sub-Account.
+                type: string
+              callback_url:
+                description: URL where the notifications concerning this account will be sent.
+                type: string
+              callback_salt:
+                description: salt used in notification signature.
+                type: string
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      summary: Create a HiPay account
+      tags:
+      - user-account
+      security:
+      - basicAuth: []
+  /user-account/is-available.{_format}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: '
+
+        ### Information
+
+        Verify if an email address is available to create a new HiPay account.
+
+        ### Account creation step 1/3
+
+        The agent checks the email address availability with this API. Next step: create a HiPay account via our API.'
+      operationId: post_user-account_is-available
+      x-disableTryItOut: true
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      - description: Email address to verify.
+        in: formData
+        name: user_email
+        required: true
+        type: string
+        default: developer@hipay.com
+      - description: Entity code to apply to the new account (HiPay will inform the merchant of the entity to use), the default one is wallet.
+        in: formData
+        name: entity
+        type: string
+      - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-id
+        type: integer
+      - description: Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-login
+        type: string
+      produces: []
+      responses:
+        '200':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                description: Status code of the answer.
+                format: int32
+                type: integer
+              message:
+                description: Description of the answer.
+                type: string
+              user_email:
+                description: Email address verified.
+                type: string
+              is_available:
+                description: True if the email address is available to create a new HiPay account.
+                type: boolean
+              entity:
+                description: Entity to apply to the new account.
+                type: string
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      summary: Verify if an email address is available to create a new HiPay account
+      tags:
+      - user-account
+      security:
+      - basicAuth: []
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+externalDocs:
+  description: Find out more about HiPay
+  url: https://developer.hipay.com/

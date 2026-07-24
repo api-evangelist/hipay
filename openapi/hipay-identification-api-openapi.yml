@@ -1,0 +1,217 @@
+openapi: 3.0.0
+info:
+  title: Hipay Payment Gateway balance identification API
+  description: '## Version 1.6.1 - June 11, 2025
+
+
+    The Gateway API allows you to get paid and manage orders and transactions.
+
+
+    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
+
+
+    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
+
+    # Web service information
+
+    ## Gateway API base URLs
+
+    | Environment | Base URL |
+
+    | --- | --- |
+
+    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
+
+    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
+
+    ## Authentication
+
+    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
+
+    `Authorization: Basic base64(''API login>:<API password>'')`
+
+    '
+  version: 1.6.1
+servers:
+- url: https://stage-api-gateway.hipay.com
+  description: Stage
+- url: https://api-gateway.hipay.com
+  description: Production
+tags:
+- name: identification
+  description: Manage your identification documents
+paths:
+  /identification.{_format}:
+    get:
+      consumes:
+      - multipart/form-data
+      description: '
+
+        ### Information
+
+        Get the list of all identification documents for a user-space
+
+
+        For more information, please read the [HiPay Marketplace Account creation section.](/marketplace/api-integration/vendors#account-creation)'
+      operationId: get_Identification
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-id
+        type: integer
+      - description: Account login (email) if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-login
+        type: string
+      produces: []
+      responses:
+        '200':
+          description: Success response
+          schema:
+            properties:
+              code:
+                description: Status code of the answer. 0 => Successful response 2 => Missing parameter 3 => Invalid parameter 7 => Not found 13 => An error occurred, please try again 400 => Bad request
+                format: int32
+                type: integer
+              message:
+                description: Description of the answer.
+                type: string
+              user_space:
+                description: integer
+                format: int32
+                type: integer
+              identification_status:
+                description: "###  Identification status\n\n  - `Unidentified`\n  - `In progress`\n  - `Identified`"
+                type: string
+              documents:
+                description: Array of objects (IdentificationDocumentResponse).
+                items:
+                  description: Array of objects (IdentificationDocumentResponse).
+                  properties:
+                    type:
+                      description: "### Type\n\n  - `-1`: Missing document\n  - `1`: Identity card\n  - `2`: Proof of address\n  - `4`: Company Registration\n  - `5`: Distribution of power\n  - `6`: Bank\n  - `9`: Tax status\n  - `11`: President of the association\n  - `12`: Official journal\n  - `13`: Association status\n  - `14`: Licence"
+                      format: int32
+                      type: integer
+                    label:
+                      description: string
+                      type: string
+                    status_code:
+                      description: "###  Status\n\n  - `0`: new\n  - `1`: waiting\n  - `2`: validated\n  - `3`: refused\n  - `4`: deleted"
+                      format: int32
+                      type: integer
+                    status_label:
+                      description: string
+                      type: string
+                    message:
+                      description: string
+                      type: string
+                type: array
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      summary: Get the list of all identification documents for a user-space
+      tags:
+      - identification
+      security:
+      - basicAuth: []
+    post:
+      consumes:
+      - multipart/form-data
+      description: "\n### Information\n\nUpload identification documents. Uploaded documents can't exceed 15MB.\n\n__Type of document for a customer account__\n  - `1`: Copy of a valid identification document\n\n\n__Type of document for a merchant account (corporation)__\n  - `1`: Copy of a valid identification document of the legal representative. *Deprecated, please use type 1 for all ID documents*\n  \n  - `4`: Document certifying Company registration\n\n  - `5`: Signed Articles of Association with the division of powers (featuring the address of the head office, the name of the company and the name of the legal representative)\n\n__Type of document for a merchant account (corporation) with a gambling licence__\n  - `1`: Copy of a valid identification document of the legal representative. *Deprecated, please use type 1 for all ID documents*\n  \n  - `4`: Document certifying Company registration\n\n  - `5`: Signed Articles of Association with the division of powers (featuring the address of the head office, the name of the company and the name of the legal representative)\n\n  - `14`:  Gambling licence document\n\n__Type of document for a merchant account (person)__\n  - `1`: Copy of a valid identification document of the legal representative. *Deprecated, please use type 1 for all ID documents*\n\n  - `8`: Document certifying registration\n\n  - `9`: Document certifying tax status\n\n__In test environment__\n\nYou can choose if the document will be accepted or not by changing the 3 first characters of the uploaded file name.\n  - Filename starts with `01_`: document will be refused because unrecognized\n\n  - Filename starts with `02_`: document will be refused because falsified\n\n  - Filename starts with `03_`: document will be refused because unreadable\n\n  - Filename starts with `06_`: document will be refused because inconsistent\n\n  - Filename starts with `07_`: document will be refused because expired\n\n  - Any other name : document will be automatically accepted\n\n### Account creation step 3/3\nThe agent sends us the account number and the identification/KYC information with this API. HiPay validates the identification/KYC information within three days and sends the agent a notification confirming that the merchant is fully operational."
+      operationId: post_Identification
+      parameters:
+      - in: path
+        name: _format
+        required: true
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+      - description: Type of document.
+        format: int32
+        in: formData
+        required: true
+        name: type
+        type: integer
+        default: '1'
+      - description: File to upload (jpg, gif, png, pdf). For ID documents, if you have a single file regrouping the front and back sides, please use only this field.
+        format: byte
+        in: formData
+        required: true
+        name: file
+        type: file
+      - description: BBack of file to upload (jpg, gif, png, pdf). Only to be used in case the front and back sides of the ID document are in two separate files
+        in: formData
+        name: back
+        type: file
+        format: byte
+      - description: Expiration date of your document.
+        format: date
+        in: formData
+        name: validity_date
+        type: string
+        default: '2020-11-20'
+      - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-id
+        type: integer
+      - description: Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).
+        in: header
+        name: php-auth-subaccount-login
+        type: string
+      produces: []
+      responses:
+        '200':
+          description: Success response.
+          schema:
+            properties:
+              code:
+                description: Status code of the answer. 0 => Document successfully uploaded 414 => User space already identified 415 => A document of this type is already waiting for validation
+                format: int32
+                type: integer
+              message:
+                description: Description of the answer.
+                type: string
+              user_space:
+                description: integer
+                format: int32
+                type: integer
+              type:
+                description: "### Type\n   - `-1` : Missing document\n   - `1` : Identity card\n   - `2` : Proof of address\n   - `4`: Company Registration\n   - `5` : Distribution of power\n   - `6` : Bank\n   - `9` : Tax status\n   - `11` : President of the association\n   - `12` : Official journal\n   - `13` : Association status\n   - `14` : Licence"
+                format: int32
+                type: integer
+              validity_date:
+                description: DateTime
+                format: date-time
+                type: string
+        '400':
+          description: Validation failed.
+        '401':
+          description: Authentication failed.
+      summary: Upload identification documents
+      tags:
+      - identification
+      security:
+      - basicAuth: []
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+externalDocs:
+  description: Find out more about HiPay
+  url: https://developer.hipay.com/

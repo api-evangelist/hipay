@@ -1,0 +1,281 @@
+openapi: 3.0.0
+info:
+  title: Hipay Payment Gateway balance Routing API
+  description: '## Version 1.6.1 - June 11, 2025
+
+
+    The Gateway API allows you to get paid and manage orders and transactions.
+
+
+    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
+
+
+    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
+
+    # Web service information
+
+    ## Gateway API base URLs
+
+    | Environment | Base URL |
+
+    | --- | --- |
+
+    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
+
+    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
+
+    ## Authentication
+
+    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
+
+    `Authorization: Basic base64(''API login>:<API password>'')`
+
+    '
+  version: 1.6.1
+servers:
+- url: https://stage-api-gateway.hipay.com
+  description: Stage
+- url: https://api-gateway.hipay.com
+  description: Production
+tags:
+- name: Routing
+paths:
+  /v3/routes/available-payment-products:
+    get:
+      tags:
+      - Routing
+      operationId: get_api_routing_available_payment_products_public
+      parameters:
+      - name: country
+        in: query
+        description: One or many payment countries.
+        required: false
+        schema:
+          description: One or many payment countries.
+          type: string
+          default: []
+          example: FR, ES
+        example: FR, ES
+      - name: payment_product
+        in: query
+        description: One or many payment products.
+        required: false
+        schema:
+          description: One or many payment products.
+          type: string
+          default: []
+          example: sdd, paypal
+        example: sdd, paypal
+      - name: payment_product_category
+        in: query
+        description: One or many payment product categories.
+        required: false
+        schema:
+          description: One or many payment product categories.
+          type: string
+          default: []
+          example: debit-card, credit-card
+        example: debit-card, credit-card
+      - name: currency
+        in: query
+        description: One or many currencies.
+        required: false
+        schema:
+          description: One or many currencies.
+          type: string
+          default: []
+          example: EUR, USD
+        example: EUR, USD
+      - name: eci
+        in: query
+        description: One or many ECI.
+        required: false
+        schema:
+          description: One or many ECI.
+          type: int
+          default: []
+          example: 1, 10
+        example: 1, 10
+      - name: payment_terminal
+        in: query
+        description: One or many payment terminals.
+        required: false
+        schema:
+          description: One or many payment terminals.
+          type: string
+          default: []
+          example: 1, 20, 33
+        example: 1, 20, 33
+      - name: initialize_payment_terminal
+        in: query
+        description: Payment terminal is initialized ? 0 = false, 1 = true.
+        required: false
+        schema:
+          description: Payment terminal is initialized ? 0 = false, 1 = true.
+          type: string
+          default: []
+          example: '1'
+        example: '1'
+      - name: operation
+        in: query
+        description: One or many operation (ALL=1, AUTHENTICATION=2, AUTORIZATION=3, CAPTURE=4, CREDIT=5, CHARGEBACK=6, REFUND=7).
+        required: false
+        schema:
+          description: One or many operation (ALL=1, AUTHENTICATION=2, AUTORIZATION=3, CAPTURE=4, CREDIT=5, CHARGEBACK=6, REFUND=7).
+          type: string
+          default: []
+          example: 2, 3
+        example: 2, 3
+      - name: acquirer_registration_id
+        in: query
+        description: One or many acquirer_registration_id.
+        required: false
+        schema:
+          description: One or many acquirer_registration_id.
+          type: string
+          default: []
+          example: '1234'
+        example: '1234'
+      - name: authentication_method
+        in: query
+        description: One or many authentication method (1, 2 or 3)
+        required: false
+        schema:
+          description: One or many authentication method (1, 2 or 3)
+          type: string
+          default: []
+          example: 1, 3
+        example: 1, 3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoutingSearchDto2'
+      responses:
+        '200':
+          description: Payment products retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AvailablePaymentProduct'
+        '204':
+          description: No payment products could be found.
+        '400':
+          description: The request was rejected due to a validation error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: An authentication error occurred/invalid credentials.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Access denied.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - BasicAuth: []
+components:
+  schemas:
+    AvailablePaymentProduct:
+      required:
+      - code
+      - description
+      - tokenizable
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        tokenizable:
+          type: integer
+      type: object
+    RoutingSearchDto2:
+      properties:
+        country:
+          description: One or many payment countries.
+          type: string
+          default: []
+          example: FR, ES
+        payment_product:
+          description: One or many payment products.
+          type: string
+          default: []
+          example: sdd, paypal
+        payment_product_category:
+          description: One or many payment product categories.
+          type: string
+          default: []
+          example: debit-card, credit-card
+        currency:
+          description: One or many currencies.
+          type: string
+          default: []
+          example: EUR, USD
+        eci:
+          description: One or many ECI.
+          type: int
+          default: []
+          example: 1, 10
+        payment_terminal:
+          description: One or many payment terminals.
+          type: string
+          default: []
+          example: 1, 20, 33
+        initialize_payment_terminal:
+          description: Payment terminal is initialized ? 0 = false, 1 = true.
+          type: string
+          default: []
+          example: '1'
+        operation:
+          description: One or many operation (ALL=1, AUTHENTICATION=2, AUTORIZATION=3, CAPTURE=4, CREDIT=5, CHARGEBACK=6, REFUND=7).
+          type: string
+          default: []
+          example: 2, 3
+        acquirer_registration_id:
+          description: One or many acquirer_registration_id.
+          type: string
+          default: []
+          example: '1234'
+        authentication_method:
+          description: One or many authentication method (1, 2 or 3)
+          type: string
+          default: []
+          example: 1, 3
+      type: object
+    Error:
+      required:
+      - message
+      - code
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+        details:
+          type: array
+          items: {}
+          default: null
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      type: object
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+externalDocs:
+  description: Find out more about HiPay
+  url: https://developer.hipay.com/
