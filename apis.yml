@@ -1,6 +1,19 @@
 name: HiPay
 description: HiPay is a European omnichannel payment platform headquartered in Levallois-Perret, France, offering REST APIs for online payments, in-store terminal management, fraud prevention, 3DS authentication, tokenization, marketplace payments, and payment reporting. Founded in 2011, HiPay is listed on Euronext Growth Paris and processes over €7.5 billion in transactions annually across five European countries.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hipay.png
 url: https://raw.githubusercontent.com/api-evangelist/hipay/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -15,175 +28,366 @@ tags:
   - Tokenization
   - Marketplace
 apis:
-  - name: HiPay Payment Gateway API
-    description: The HiPay Payment Gateway API (v3) allows merchants to get paid and manage orders and transactions. Supports querying orders, retrieving transactions by multiple identifiers, and discovering available payment products and routing options.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developer.hipay.com/api-explorer/api-gateway
-    baseURL: https://api-gateway.hipay.com
-    tags:
-      - Payments
-      - Orders
-      - Transactions
-    properties:
-      - type: Documentation
-        url: https://developer.hipay.com/api-explorer/api-gateway
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/hipay/openapi-hipay/master/enterprise/api-gateway.yml
-    contact:
-      - FN: HiPay Support
-        url: https://support.hipay.com
-        email: pi-ecommerce@hipay.com
-  - name: HiPay Enterprise Gateway API
-    description: The HiPay Enterprise Gateway API (v1) enables payment processing and transaction management, supporting both credit/debit card payments and alternative payment methods. Provides order creation, transaction retrieval, and maintenance operations including capture, refund, and cancel.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developer.hipay.com/api-explorer/api-online-payments
-    baseURL: https://secure-gateway.hipay-tpp.com/rest
-    tags:
-      - Payments
-      - Orders
-      - Transactions
-      - Refunds
-    properties:
-      - type: Documentation
-        url: https://developer.hipay.com/api-explorer/api-online-payments
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/hipay/openapi-hipay/master/enterprise/gateway.yaml
-    contact:
-      - FN: HiPay Support
-        url: https://support.hipay.com
-        email: pi-ecommerce@hipay.com
-  - name: HiPay Enterprise HostedPage API
-    description: The HiPay Enterprise HostedPage API allows merchants to create secure, PCI-compliant hosted payment pages that customers can be redirected to or displayed in an iFrame. Supports multiple payment methods and customizable themes.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developer.hipay.com/api-explorer/hpayment-api
-    baseURL: https://api.hipay.com
-    tags:
-      - Payments
-      - Hosted Page
-      - PCI Compliance
-    properties:
-      - type: Documentation
-        url: https://developer.hipay.com/api-explorer/hpayment-api
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/hipay/openapi-hipay/master/enterprise/hpayment.yaml
-    contact:
-      - FN: HiPay Support
-        url: https://support.hipay.com
-        email: pi-ecommerce@hipay.com
-  - name: HiPay Enterprise Finance API
-    description: The HiPay Enterprise Finance API consolidates sales and settlements for merchant accounts. Provides access to settlement details including amounts transferred to bank accounts, sales, refunds, fees, and chargebacks, with export in CSV, XLS, or TXT formats.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developer.hipay.com
-    baseURL: https://api.hipay-tpp.com/v1
-    tags:
-      - Finance
-      - Settlements
-      - Reporting
-      - Reconciliation
-    properties:
-      - type: Documentation
-        url: https://developer.hipay.com
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/hipay/openapi-hipay/master/enterprise/settlement.yaml
-    contact:
-      - FN: HiPay Support
-        url: https://support.hipay.com
-        email: pi-ecommerce@hipay.com
-  - name: HiPay Enterprise Tokenization API
-    description: The HiPay Enterprise Tokenization API enables merchants to securely tokenize payment card data in HiPay's Secure Vault, eliminating the need to store sensitive cardholder information locally. Includes a BIN lookup tool and supports create, retrieve, update, and delete operations on tokens.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developer.hipay.com
-    baseURL: https://secure2-vault.hipay-tpp.com/rest/v2/token
-    tags:
-      - Tokenization
-      - Security
-      - PCI Compliance
-      - Vault
-    properties:
-      - type: Documentation
-        url: https://developer.hipay.com
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/hipay/openapi-hipay/master/enterprise/tokenization.yaml
-    contact:
-      - FN: HiPay Support
-        url: https://support.hipay.com
-        email: pi-ecommerce@hipay.com
-  - name: HiPay Apple Pay Web API
-    description: The HiPay Apple Pay Web API enables merchants to request valid Apple Pay payment sessions from Apple servers, supporting Apple Pay integration in web applications for both online and in-store payment flows.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developer.hipay.com
-    baseURL: https://api.hipay.com
-    tags:
-      - Apple Pay
-      - Mobile Payments
-      - Wallets
-    properties:
-      - type: Documentation
-        url: https://developer.hipay.com
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/hipay/openapi-hipay/master/enterprise/applepay-web.yaml
-    contact:
-      - FN: HiPay Support
-        url: https://support.hipay.com
-        email: pi-ecommerce@hipay.com
-  - name: HiPay POS API
-    description: The HiPay POS API enables in-store payments by waking point-of-sale terminal devices with payment details and creating corresponding transactions in HiPay Console. Supports omnichannel retail with seamless online-to-in-store payment flows.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developer.hipay.com
-    baseURL: https://cloudrun-api-n3l7nqotca-ew.a.run.app
-    tags:
-      - Point of Sale
-      - In-Store
-      - Omnichannel
-      - Terminals
-    properties:
-      - type: Documentation
-        url: https://developer.hipay.com
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/hipay/openapi-hipay/master/omnichannel/pos_api.yaml
-    contact:
-      - FN: HiPay Support
-        url: https://support.hipay.com
-        email: pi-ecommerce@hipay.com
-  - name: HiPay Omnichannel Gateway API
-    description: The HiPay Omnichannel Gateway API allows merchants to process in-store and omnichannel payments, manage orders and transactions without customer redirection, and perform maintenance operations such as refunds and cancellations on existing transactions.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developer.hipay.com
-    baseURL: https://secure-gateway.hipay-tpp.com/rest
-    tags:
-      - Omnichannel
-      - Point of Sale
-      - Payments
-      - Transactions
-    properties:
-      - type: Documentation
-        url: https://developer.hipay.com
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/hipay/openapi-hipay/master/omnichannel/omnichannel.yaml
-    contact:
-      - FN: HiPay Support
-        url: https://support.hipay.com
-        email: pi-ecommerce@hipay.com
-  - name: HiPay Marketplace API
-    description: The HiPay Marketplace API facilitates connections between marketplace platforms and HiPay for split payment management. Supports user account creation (KYC/KYB onboarding), UBO declarations, banking information management, fund transfers, withdrawals, and transaction reporting for marketplace operators.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developer.hipay.com
-    baseURL: https://professional.hipay.com/api
-    tags:
-      - Marketplace
-      - KYC
-      - KYB
-      - Split Payments
-      - Transfers
-    properties:
-      - type: Documentation
-        url: https://developer.hipay.com
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/hipay/openapi-hipay/master/marketplace/marketplace.yaml
-    contact:
-      - FN: HiPay Support
-        url: https://support.hipay.com
-        email: pi-ecommerce@hipay.com
+- aid: hipay:hipay-balance-api
+  name: HiPay balance API
+  description: Manage the balance of a HiPay account
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - balance
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-balance-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-bank-info-api
+  name: HiPay bank-info API
+  description: Manage bank informations of a HiPay account
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - bank-info
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-bank-info-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-captcha-generation-api
+  name: HiPay captcha-generation API
+  description: Generate captcha
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - captcha-generation
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-captcha-generation-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-connector-api
+  name: HiPay Connector API
+  description: The Connector API from HiPay — 1 operation(s) for connector.
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - Connector
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-connector-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-constants-api
+  name: HiPay constants API
+  description: Manage your account with our API tools
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - constants
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-constants-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-identification-api
+  name: HiPay identification API
+  description: Manage your identification documents
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - identification
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-identification-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-invoice-api
+  name: HiPay invoice API
+  description: Manage marketplace invoices
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - invoice
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-invoice-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-maintenance-api
+  name: HiPay maintenance API
+  description: Perform operations (capture, refund) on transactions
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - maintenance
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-maintenance-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-merchant-group-api
+  name: HiPay merchant-group API
+  description: Manage merchant groups
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - merchant-group
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-merchant-group-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-order-api
+  name: HiPay Order API
+  description: The Order API from HiPay — 2 operation(s) for order.
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - Order
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-order-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-payments-api
+  name: HiPay payments API
+  description: Everything you need to create orders and transactions
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - payments
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-routing-api
+  name: HiPay Routing API
+  description: The Routing API from HiPay — 1 operation(s) for routing.
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - Routing
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-routing-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-sessions-api
+  name: HiPay Sessions API
+  description: The Sessions API from HiPay — 1 operation(s) for sessions.
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-settlement-api
+  name: HiPay settlement API
+  description: Everything you need to get all settlement details
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - settlement
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-settlement-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-tokenization-api
+  name: HiPay tokenization API
+  description: Everything you need to tokenize payment cards
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - tokenization
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-tokenization-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-transaction-api
+  name: HiPay Transaction API
+  description: The Transaction API from HiPay — 6 operation(s) for transaction.
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - Transaction
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-transaction-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-transfer-api
+  name: HiPay transfer API
+  description: Transfer funds between HiPay accounts
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - transfer
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-transfer-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-ubo-api
+  name: HiPay ubo API
+  description: Manage your Ultimate Beneficial Ownerships (UBO)
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - ubo
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-ubo-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-user-account-api
+  name: HiPay user-account API
+  description: Manage your HiPay account
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - user-account
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-user-account-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
+- aid: hipay:hipay-withdrawal-api
+  name: HiPay withdrawal API
+  description: Request a withdrawal from a HiPay account
+  humanURL: https://developer.hipay.com/api-explorer/api-gateway
+  baseURL: https://api-gateway.hipay.com
+  tags:
+  - withdrawal
+  properties:
+  - type: OpenAPI
+    url: openapi/hipay-withdrawal-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-gateway
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/api-online-payments
+  - type: Documentation
+    url: https://developer.hipay.com/api-explorer/hpayment-api
+  - type: Documentation
+    url: https://developer.hipay.com
 common:
   - type: AgenticAccess
     url: agentic-access/hipay-agentic-access.yml
