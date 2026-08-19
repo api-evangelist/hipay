@@ -1,0 +1,241 @@
+{
+  "item": [
+    {
+      "id": "19e1481c-7e0a-4aee-9de6-971a2c41bcb4",
+      "name": "balance",
+      "description": {
+        "content": "Manage the balance of a HiPay account",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "00cc96c3-dd6a-497e-b5c8-3db3f94f94d0",
+          "name": "Get the balance of a HiPay account",
+          "request": {
+            "name": "Get the balance of a HiPay account",
+            "description": {
+              "content": "\n### Information\nGet the balance of a specific HiPay account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user-account",
+                "balance.{{_format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "description": {
+                    "content": "Date for the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "date",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "disabled": false,
+                "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "0f1e676b-4b44-4929-ad16-573dce8251ed",
+              "name": "Success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-account",
+                    "balance.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bf6f1694-6392-4253-90ab-37efca558c4f",
+              "name": "Validation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-account",
+                    "balance.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "95ada856-30f5-4cb3-b906-cef4f978a930",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-account",
+                    "balance.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stage-api-gateway.hipay.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required)  (This can only be one of json,xml)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "_format"
+    }
+  ],
+  "info": {
+    "_postman_id": "b0650a5f-df52-464f-9772-1d4861af2e4f",
+    "name": "Hipay Payment Gateway balance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Version 1.6.1 - June 11, 2025\n\nThe Gateway API allows you to get paid and manage orders and transactions.\n\nPlease note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.\n\nThis page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.\n# Web service information\n## Gateway API base URLs\n| Environment | Base URL |\n| --- | --- |\n| Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |\n| Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |\n## Authentication\nAll requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.\n`Authorization: Basic base64('API login>:<API password>')`\n",
+      "type": "text/plain"
+    }
+  }
+}

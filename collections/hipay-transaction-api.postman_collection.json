@@ -1,0 +1,1459 @@
+{
+  "item": [
+    {
+      "id": "34ddf629-fd11-4f2f-9180-f09acb373cc1",
+      "name": "Transaction",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "77fe2632-30f3-44c2-85f3-a269fd2bb738",
+          "name": "get api transaction consultation public",
+          "request": {
+            "name": "get api transaction consultation public",
+            "description": {},
+            "url": {
+              "path": [
+                "v3",
+                "transaction",
+                ":transaction_reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transaction_reference",
+                  "description": "(Required) The unique identifier of the transaction."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0cdf305a-1daa-488a-ac5f-4697c2e45af3",
+              "name": "Transaction retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transaction",
+                    ":transaction_reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transaction_reference",
+                      "description": "(Required) The unique identifier of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2198,\n  \"attemptid\": 3543,\n  \"merchant_order_id\": \"string\",\n  \"state\": \"forwarding\",\n  \"status\": 41,\n  \"eci\": 7,\n  \"amount\": \"125.75\",\n  \"captured_amount\": \"125.75\",\n  \"refunded_amount\": \"0.00\",\n  \"credited_amount\": \"125.75\",\n  \"chargebacked_amount\": \"125.75\",\n  \"acquirer\": {\n    \"transaction_reference\": \"800000790677\"\n  },\n  \"issuer\": {\n    \"fullname\": \"string\",\n    \"institution\": \"string\",\n    \"country\": \"string\"\n  },\n  \"device\": {\n    \"ip_address\": \"127.0.0.1\",\n    \"id\": \"string\"\n  },\n  \"forward_url\": \"\",\n  \"customer_country\": \"FR\",\n  \"date_created\": \"1997-09-24T02:13:18.499Z\",\n  \"date_updated\": \"1984-01-01T07:23:46.449Z\",\n  \"mid\": 6626,\n  \"operations\": [\n    {\n      \"type\": \"CHGBCK\",\n      \"status\": \"REMITTED\",\n      \"amount\": \"10.00\",\n      \"arn\": \"75064953264000221624949\",\n      \"date_created\": \"2014-10-11T14:52:11.750Z\",\n      \"id\": 3765,\n      \"currency\": \"GEL\",\n      \"decimals\": 6376,\n      \"merchant_reference\": \"string\",\n      \"date_updated\": \"1972-03-05T02:06:59.571Z\",\n      \"date_remitted\": \"2004-09-25T18:07:21.877Z\",\n      \"date_processed\": \"1997-03-08T05:32:06.596Z\",\n      \"date_reconciled\": \"1993-03-25T22:05:00.933Z\",\n      \"caseid\": \"string\"\n    },\n    {\n      \"type\": \"RDR\",\n      \"status\": \"SPLIT\",\n      \"amount\": \"10.00\",\n      \"arn\": \"75064953264000221624949\",\n      \"date_created\": \"2010-05-12T00:44:26.818Z\",\n      \"id\": 7516,\n      \"currency\": \"INR\",\n      \"decimals\": 4743,\n      \"merchant_reference\": \"string\",\n      \"date_updated\": \"1991-11-07T18:41:20.307Z\",\n      \"date_remitted\": \"1975-01-28T00:34:43.664Z\",\n      \"date_processed\": \"1982-02-25T20:23:36.448Z\",\n      \"date_reconciled\": \"1960-05-10T13:35:01.332Z\",\n      \"caseid\": \"string\"\n    }\n  ],\n  \"authorized_amount\": \"125.75\",\n  \"currency\": \"BDT\",\n  \"decimals\": 9196,\n  \"order\": {\n    \"id\": 9726,\n    \"attempts\": 1,\n    \"amount\": \"8.99\",\n    \"shipping\": \"1.30\",\n    \"tax\": \"1.10\",\n    \"customer\": {\n      \"email\": \"otto.graph@foobar.email\",\n      \"phone\": \"string\",\n      \"id\": \"283749291\",\n      \"firstname\": \"Rose\",\n      \"lastname\": \"Dévent\",\n      \"language\": \"en_GB\"\n    },\n    \"shipping_to\": {\n      \"house_number\": \"101\",\n      \"house_extension\": \"B\",\n      \"street\": \"Rue de Rivoli\",\n      \"street_additional\": \"Immeuble B\",\n      \"locality\": \"Paris\",\n      \"locality_additional\": \"\",\n      \"postal_code\": \"75001\",\n      \"country\": \"FR\"\n    },\n    \"date_created\": \"1952-11-15T07:50:57.129Z\",\n    \"currency\": \"MRO\",\n    \"decimals\": 5979,\n    \"terminal_information\": {\n      \"payment_context\": \"online\",\n      \"input_mode\": \"contact\",\n      \"aid\": \"A0000000422010\",\n      \"payment_gateway\": \"nepting\",\n      \"authorization_code\": \"00\",\n      \"authorization_number\": \"963379\",\n      \"customer_receipt\": \"string\",\n      \"payment_source\": \"IPN Nepting\",\n      \"payment_terminal_serial_number\": \"string\",\n      \"idsa\": \"string\",\n      \"rts\": \"string\",\n      \"card_entry_mode\": \"Not specified\",\n      \"file_number\": \"string\"\n    },\n    \"billing_to\": {\n      \"house_number\": \"101\",\n      \"house_extension\": \"B\",\n      \"street\": \"Rue de Rivoli\",\n      \"street_additional\": \"Immeuble B\",\n      \"locality\": \"Paris\",\n      \"locality_additional\": \"\",\n      \"postal_code\": \"75001\",\n      \"country\": \"FR\"\n    },\n    \"custom_data\": \"string\"\n  },\n  \"computed_authentication_status\": \"Failed authentication\",\n  \"reason\": {\n    \"code\": 8965,\n    \"reason\": \"string\"\n  },\n  \"payment_product\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"payment_method\": {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    }\n  },\n  \"acquirer_tra\": {},\n  \"card\": {\n    \"pan\": \"string\",\n    \"last_digits\": \"string\",\n    \"scheme\": \"string\",\n    \"category\": \"string\",\n    \"type\": \"string\",\n    \"bin\": 8975,\n    \"token\": \"string\"\n  },\n  \"debit_agreement\": {\n    \"id\": 4233,\n    \"status\": \"suspended\",\n    \"scheme_reference_data\": \"string\",\n    \"recurring_payment_end_date\": \"string\"\n  },\n  \"authentication\": {\n    \"eci\": 5,\n    \"enrollment_status\": \"N\",\n    \"enrollment_message\": \"Cardholder Not Enrolled\",\n    \"authentication_status\": \"Authentication Could Not Be Performed\",\n    \"authentication_message\": \"string\",\n    \"sca_preference\": 3,\n    \"method\": \"3DSecure\",\n    \"three_ds_version\": \"2\",\n    \"three_ds_authentication_method\": \"challenge\",\n    \"three_ds_liability\": \"merchant\"\n  },\n  \"authorization_code\": \"string\",\n  \"fraud_screening\": {\n    \"result\": \"NOT_LAUNCHED\",\n    \"review\": \"DENIED\",\n    \"score\": 200\n  },\n  \"cvc_result\": \"Match\",\n  \"date_authorized\": \"1957-10-18T19:53:07.421Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61e6116c-a640-495d-8984-92c3302a9786",
+              "name": "An authentication error occurred/invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transaction",
+                    ":transaction_reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transaction_reference",
+                      "description": "(Required) The unique identifier of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 520,\n  \"details\": null,\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "582d80a2-7156-4e7b-a991-450df6eb6760",
+              "name": "This transaction is not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transaction",
+                    ":transaction_reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transaction_reference",
+                      "description": "(Required) The unique identifier of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 1170,\n  \"details\": null,\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2784128f-58b0-4fd4-a13c-f56db8cf0a73",
+          "name": "get api transaction consultations by type public",
+          "request": {
+            "name": "get api transaction consultations by type public",
+            "description": {},
+            "url": {
+              "path": [
+                "v3",
+                "transactions",
+                ":type",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fcc76bf8-6556-46fb-a0ad-c5f5fe0a1757",
+              "name": "Transactions retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions",
+                    ":type",
+                    ":value"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "value",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b748d68-ab37-4d93-af24-f8e0341640d9",
+              "name": "The request was rejected due to a validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions",
+                    ":type",
+                    ":value"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "value",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 1170,\n  \"details\": null,\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4eb918ff-5046-4641-9fdd-a04a96fda3ef",
+              "name": "An authentication error occurred/invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions",
+                    ":type",
+                    ":value"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "value",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 1170,\n  \"details\": null,\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad8ee835-f897-46a1-9124-7399a6af40ef",
+              "name": "No transaction found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions",
+                    ":type",
+                    ":value"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "value",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 1170,\n  \"details\": null,\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa79e0cb-d884-4ea5-ab42-a486fcc5669a",
+          "name": "Gets details of existing transactions based on a transaction ID",
+          "request": {
+            "name": "Gets details of existing transactions based on a transaction ID",
+            "description": {
+              "content": "Gets details of existing transactions based on a transaction ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "transaction",
+                ":transaction_reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transaction_reference",
+                  "description": "(Required) The unique identifier of the transaction."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "0fe5e19d-e389-4bf5-a91d-9688ab1be645",
+              "name": "Transaction retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transaction",
+                    ":transaction_reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transaction_reference",
+                      "description": "(Required) The unique identifier of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transaction\": {\n    \"order\": {\n      \"id\": \"1549547828947\",\n      \"dateCreated\": \"2019-02-07T13:57:08+0000\",\n      \"attempts\": \"0\",\n      \"amount\": \"125.75\",\n      \"shipping\": \"0\",\n      \"tax\": \"1.10\",\n      \"decimals\": \"2\",\n      \"currency\": \"EUR\",\n      \"customerId\": \"283749291\",\n      \"language\": \"en_GB\",\n      \"email\": \"john.doe@foobar99.com\",\n      \"amount_to_capture\": \"125.75\",\n      \"sca_preference\": 1\n    },\n    \"authorizationCode\": \"author\",\n    \"dateCreated\": \"2019-02-07T10:07:09+0000\",\n    \"dateAuthorized\": \"2019-02-07T10:07:09+0000\",\n    \"authorizedAmount\": \"125.85\",\n    \"decimals\": \"2\",\n    \"currency\": \"EUR\",\n    \"ipAddress\": \"0.0.0.0\",\n    \"ipCountry\": \"0.0.0.0\",\n    \"avsResult\": \"string\",\n    \"cvcResult\": \"string\",\n    \"threeDSecure\": {\n      \"eci\": \"6\",\n      \"enrollmentStatus\": \"N\",\n      \"enrollmentMessage\": \"Cardholder Not Enrolled\",\n      \"authenticationStatus\": \"\",\n      \"authenticationMessage\": \"\",\n      \"authenticationToken\": \"\",\n      \"xid\": \"\"\n    },\n    \"transactionReference\": \"800000790677\",\n    \"attemptId\": 2946,\n    \"dateUpdated\": \"string\",\n    \"state\": \"completed\",\n    \"mid\": 5943,\n    \"capturedAmount\": \"125.75\",\n    \"refundedAmount\": \"00.00\",\n    \"creditedAmount\": \"string\",\n    \"chargebackedAmount\": \"125.75\",\n    \"paymentProduct\": \"visa\",\n    \"paymentMethod\": {\n      \"token\": \"string\",\n      \"brand\": \"string\",\n      \"pan\": \"string\",\n      \"cardExpiryMonth\": \"03\",\n      \"cardExpiryYear\": \"2020\",\n      \"issuer\": \"string\",\n      \"country\": \"US\",\n      \"cardHolder\": \"JOHN DOE\"\n    },\n    \"status\": 7110,\n    \"reason\": {\n      \"code\": \"string\",\n      \"message\": \"string\"\n    },\n    \"forwardUrl\": \"string\",\n    \"deviceId\": \"string\",\n    \"fraudScreening\": {\n      \"scoring\": \"0\",\n      \"result\": \"ACCEPTED\",\n      \"review\": \"\"\n    },\n    \"eci\": 9111,\n    \"debitAgreement\": {\n      \"id\": \"string\",\n      \"status\": \"string\"\n    },\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7f97064-36f3-498f-b322-f7a57abe5473",
+              "name": "The request was rejected due to a validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transaction",
+                    ":transaction_reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transaction_reference",
+                      "description": "(Required) The unique identifier of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8954,\n  \"message\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18b86f54-8d87-4de9-b603-784e50cdda80",
+              "name": "An authentication error occurred/invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transaction",
+                    ":transaction_reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transaction_reference",
+                      "description": "(Required) The unique identifier of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8954,\n  \"message\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49a86465-08d2-4058-b9a2-d519dd0e2371",
+              "name": "Access to this resource is fordidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transaction",
+                    ":transaction_reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transaction_reference",
+                      "description": "(Required) The unique identifier of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8954,\n  \"message\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e34fe1aa-60dd-4d84-bc20-b10e87b14806",
+          "name": "Gets details of existing transactions related to a given order",
+          "request": {
+            "name": "Gets details of existing transactions related to a given order",
+            "description": {
+              "content": "Gets details of existing transactions related to a given order. Deprecated, you can refer to [this page](https://developer.hipay.com/api-explorer/api-gateway#/transaction/get_api_consultation_transaction) for new endpoint",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "transaction"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "orderid",
+                  "value": "<string>",
+                  "description": "(Required) Merchant unique order id. Return all the transactions related to an order id."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "bf206774-707d-4ab7-abb3-d9d754c0f5f7",
+              "name": "Transactions retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orderid",
+                      "value": "ORDER_1487239265080"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transaction\": {\n    \"order\": {\n      \"id\": \"1549547828947\",\n      \"dateCreated\": \"2019-02-07T13:57:08+0000\",\n      \"attempts\": \"0\",\n      \"amount\": \"125.75\",\n      \"shipping\": \"0\",\n      \"tax\": \"1.10\",\n      \"decimals\": \"2\",\n      \"currency\": \"EUR\",\n      \"customerId\": \"283749291\",\n      \"language\": \"en_GB\",\n      \"email\": \"john.doe@foobar99.com\",\n      \"amount_to_capture\": \"125.75\",\n      \"sca_preference\": 1\n    },\n    \"authorizationCode\": \"author\",\n    \"dateCreated\": \"2019-02-07T10:07:09+0000\",\n    \"dateAuthorized\": \"2019-02-07T10:07:09+0000\",\n    \"authorizedAmount\": \"125.85\",\n    \"decimals\": \"2\",\n    \"currency\": \"EUR\",\n    \"ipAddress\": \"0.0.0.0\",\n    \"ipCountry\": \"0.0.0.0\",\n    \"avsResult\": \"string\",\n    \"cvcResult\": \"string\",\n    \"threeDSecure\": {\n      \"eci\": \"6\",\n      \"enrollmentStatus\": \"N\",\n      \"enrollmentMessage\": \"Cardholder Not Enrolled\",\n      \"authenticationStatus\": \"\",\n      \"authenticationMessage\": \"\",\n      \"authenticationToken\": \"\",\n      \"xid\": \"\"\n    },\n    \"transactionReference\": \"800000790677\",\n    \"attemptId\": 2946,\n    \"dateUpdated\": \"string\",\n    \"state\": \"completed\",\n    \"mid\": 5943,\n    \"capturedAmount\": \"125.75\",\n    \"refundedAmount\": \"00.00\",\n    \"creditedAmount\": \"string\",\n    \"chargebackedAmount\": \"125.75\",\n    \"paymentProduct\": \"visa\",\n    \"paymentMethod\": {\n      \"token\": \"string\",\n      \"brand\": \"string\",\n      \"pan\": \"string\",\n      \"cardExpiryMonth\": \"03\",\n      \"cardExpiryYear\": \"2020\",\n      \"issuer\": \"string\",\n      \"country\": \"US\",\n      \"cardHolder\": \"JOHN DOE\"\n    },\n    \"status\": 7110,\n    \"reason\": {\n      \"code\": \"string\",\n      \"message\": \"string\"\n    },\n    \"forwardUrl\": \"string\",\n    \"deviceId\": \"string\",\n    \"fraudScreening\": {\n      \"scoring\": \"0\",\n      \"result\": \"ACCEPTED\",\n      \"review\": \"\"\n    },\n    \"eci\": 9111,\n    \"debitAgreement\": {\n      \"id\": \"string\",\n      \"status\": \"string\"\n    },\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3c46cb6-3448-48af-99eb-bd520ca3762a",
+              "name": "The request was rejected due to a validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orderid",
+                      "value": "ORDER_1487239265080"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8954,\n  \"message\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9178df9-4dcd-4b72-94e1-720237ddac6f",
+              "name": "An authentication error occurred/invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orderid",
+                      "value": "ORDER_1487239265080"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8954,\n  \"message\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60122cc9-20bf-4309-b9a3-b5f6dfc1e896",
+              "name": "Access to this resource is fordidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orderid",
+                      "value": "ORDER_1487239265080"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8954,\n  \"message\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e08d8a5a-a209-47ee-a94d-57d619cb29db",
+          "name": "Get transactions list",
+          "request": {
+            "name": "Get transactions list",
+            "description": {
+              "content": "\n### Information\n\nGet transactions list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transaction.{{_format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "description": {
+                    "content": "Start of transaction date range. Accepted formats : yyyy-MM-dd HH:MM:ss and yyyy-MM-dd. Default date : 7 days ago. Default time : 00:00:00.",
+                    "type": "text/plain"
+                  },
+                  "key": "start-date",
+                  "value": ""
+                },
+                {
+                  "description": {
+                    "content": "End of transaction date range. Accepted formats : yyyy-MM-dd HH:MM:ss and yyyy-MM-dd. Default date : today. Default time : 23:59:59.\n\nInterval between start-date and end-date cannot be greater than 3 months (92 days).\n",
+                    "type": "text/plain"
+                  },
+                  "key": "end-date",
+                  "value": ""
+                },
+                {
+                  "description": {
+                    "content": "Number of results to display on each page. Cannot exceed 1000. Default : 20",
+                    "type": "text/plain"
+                  },
+                  "key": "nb-result-per-page",
+                  "value": ""
+                },
+                {
+                  "description": {
+                    "content": "Page number. First page has number 1. Default : 1",
+                    "type": "text/plain"
+                  },
+                  "key": "page",
+                  "value": ""
+                },
+                {
+                  "description": {
+                    "content": "Properties sorting configuration. Ex: sort-props[email]=asc&sort-props[status]=desc. Default : sort-props[captured]=desc",
+                    "type": "text/plain"
+                  },
+                  "key": "sort-props",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "disabled": false,
+                "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "e98b9d08-c853-40a2-b98b-78cae03fb6b0",
+              "name": "Success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start-date",
+                      "value": ""
+                    },
+                    {
+                      "key": "end-date",
+                      "value": ""
+                    },
+                    {
+                      "key": "nb-result-per-page",
+                      "value": ""
+                    },
+                    {
+                      "key": "page",
+                      "value": ""
+                    },
+                    {
+                      "key": "sort-props",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0e8aac45-e84b-4e4e-a9b4-cfd8a5fe0ebb",
+              "name": "Validation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start-date",
+                      "value": ""
+                    },
+                    {
+                      "key": "end-date",
+                      "value": ""
+                    },
+                    {
+                      "key": "nb-result-per-page",
+                      "value": ""
+                    },
+                    {
+                      "key": "page",
+                      "value": ""
+                    },
+                    {
+                      "key": "sort-props",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "86cf45f9-b1d8-43de-bb41-00a757846389",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start-date",
+                      "value": ""
+                    },
+                    {
+                      "key": "end-date",
+                      "value": ""
+                    },
+                    {
+                      "key": "nb-result-per-page",
+                      "value": ""
+                    },
+                    {
+                      "key": "page",
+                      "value": ""
+                    },
+                    {
+                      "key": "sort-props",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08588a20-dbbc-4c24-a989-6a1859ecfea6",
+          "name": "Get transaction details",
+          "request": {
+            "name": "Get transaction details",
+            "description": {
+              "content": "\n### Information\n\nThis request will send you the details of a requested transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transaction",
+                "{{id}}.{{_format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "disabled": false,
+                "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "d649c47b-94fb-47a4-a1f5-f5bb295ea62e",
+              "name": "Success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    "{{id}}.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3ab8eb0c-9748-46be-86d9-140454a4eb52",
+              "name": "Validation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    "{{id}}.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d28cd96a-a104-44ea-8fa3-509cf214f13f",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    "{{id}}.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stage-api-gateway.hipay.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required)  (This can only be one of json,xml)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "_format"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) HiPay transaction ID or Merchant reference of transaction ID to verify.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "id"
+    }
+  ],
+  "info": {
+    "_postman_id": "c58dcf6d-361c-4eec-8230-83d76dfd77f1",
+    "name": "Hipay Payment Gateway balance Transaction API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Version 1.6.1 - June 11, 2025\n\nThe Gateway API allows you to get paid and manage orders and transactions.\n\nPlease note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.\n\nThis page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.\n# Web service information\n## Gateway API base URLs\n| Environment | Base URL |\n| --- | --- |\n| Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |\n| Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |\n## Authentication\nAll requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.\n`Authorization: Basic base64('API login>:<API password>')`\n",
+      "type": "text/plain"
+    }
+  }
+}

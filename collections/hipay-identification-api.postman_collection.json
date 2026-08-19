@@ -1,0 +1,384 @@
+{
+  "item": [
+    {
+      "id": "17c1da24-40f9-466c-99f9-dec9fa9413b6",
+      "name": "identification",
+      "description": {
+        "content": "Manage your identification documents",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1ce4d9c9-7ce8-485c-8da7-a59bb9cec2b8",
+          "name": "Get the list of all identification documents for a user-space",
+          "request": {
+            "name": "Get the list of all identification documents for a user-space",
+            "description": {
+              "content": "\n### Information\nGet the list of all identification documents for a user-space\n\nFor more information, please read the [HiPay Marketplace Account creation section.](/marketplace/api-integration/vendors#account-creation)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "identification.{{_format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "disabled": false,
+                "description": "Account login (email) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "8190a655-c0a9-459f-90ca-81347a3dd488",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "identification.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7c32f6de-87a2-46d1-acb6-9c9cf9a0548d",
+              "name": "Validation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "identification.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "21e93d74-eb7b-4381-808e-12e614b729b9",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "identification.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ca05c91-4c06-4481-8ff3-be6818bec266",
+          "name": "Upload identification documents",
+          "request": {
+            "name": "Upload identification documents",
+            "description": {
+              "content": "\n### Information\n\nUpload identification documents. Uploaded documents can't exceed 15MB.\n\n__Type of document for a customer account__\n  - `1`: Copy of a valid identification document\n\n\n__Type of document for a merchant account (corporation)__\n  - `1`: Copy of a valid identification document of the legal representative. *Deprecated, please use type 1 for all ID documents*\n  \n  - `4`: Document certifying Company registration\n\n  - `5`: Signed Articles of Association with the division of powers (featuring the address of the head office, the name of the company and the name of the legal representative)\n\n__Type of document for a merchant account (corporation) with a gambling licence__\n  - `1`: Copy of a valid identification document of the legal representative. *Deprecated, please use type 1 for all ID documents*\n  \n  - `4`: Document certifying Company registration\n\n  - `5`: Signed Articles of Association with the division of powers (featuring the address of the head office, the name of the company and the name of the legal representative)\n\n  - `14`:  Gambling licence document\n\n__Type of document for a merchant account (person)__\n  - `1`: Copy of a valid identification document of the legal representative. *Deprecated, please use type 1 for all ID documents*\n\n  - `8`: Document certifying registration\n\n  - `9`: Document certifying tax status\n\n__In test environment__\n\nYou can choose if the document will be accepted or not by changing the 3 first characters of the uploaded file name.\n  - Filename starts with `01_`: document will be refused because unrecognized\n\n  - Filename starts with `02_`: document will be refused because falsified\n\n  - Filename starts with `03_`: document will be refused because unreadable\n\n  - Filename starts with `06_`: document will be refused because inconsistent\n\n  - Filename starts with `07_`: document will be refused because expired\n\n  - Any other name : document will be automatically accepted\n\n### Account creation step 3/3\nThe agent sends us the account number and the identification/KYC information with this API. HiPay validates the identification/KYC information within three days and sends the agent a notification confirming that the merchant is fully operational.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "identification.{{_format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "disabled": false,
+                "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "0fff10af-2afa-4c3b-8e38-354b85eb3010",
+              "name": "Success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "identification.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fa88965a-59e7-4378-b2f9-47a883bcd609",
+              "name": "Validation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "identification.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a62d3ea3-2207-4c3d-a0b2-810473a48d61",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "identification.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stage-api-gateway.hipay.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required)  (This can only be one of json,xml)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "_format"
+    }
+  ],
+  "info": {
+    "_postman_id": "9c77ed13-597d-441e-b341-5c1b6ccb9a79",
+    "name": "Hipay Payment Gateway balance identification API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Version 1.6.1 - June 11, 2025\n\nThe Gateway API allows you to get paid and manage orders and transactions.\n\nPlease note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.\n\nThis page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.\n# Web service information\n## Gateway API base URLs\n| Environment | Base URL |\n| --- | --- |\n| Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |\n| Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |\n## Authentication\nAll requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.\n`Authorization: Basic base64('API login>:<API password>')`\n",
+      "type": "text/plain"
+    }
+  }
+}

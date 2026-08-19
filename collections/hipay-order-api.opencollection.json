@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance Order API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Order",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_api_order_consultation_public",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/v3/order/:orderid",
+            "params": [
+              {
+                "name": "orderid",
+                "value": "ORD_202501_0001",
+                "type": "path",
+                "description": "Unique merchant orderid."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Wake a POS payment terminal to process an order payment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/v1/connector/order",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Wake a POS payment terminal to process an order payment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

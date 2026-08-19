@@ -1,0 +1,256 @@
+{
+  "item": [
+    {
+      "id": "112ea6f0-9638-4b93-a5d3-c108817c5c93",
+      "name": "transfer",
+      "description": {
+        "content": "Transfer funds between HiPay accounts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "195a1737-6652-433e-8c29-5603d17f681c",
+          "name": "Transfer funds between HiPay accounts",
+          "request": {
+            "name": "Transfer funds between HiPay accounts",
+            "description": {
+              "content": "\n### Information\nAllows you to transfer funds from a HiPay account to another HiPay account. HiPay suggests performing fund allocation and withdrawal all at once.\n\nAll the funds are held in escrow before being deposited on the technical account. The Transfer API is then used to allocate funds from the technical account to the merchants' accounts. The Transfer API allows transfer requests to be made on the agent’s behalf or on the behalf of a third party.\n\nThe technical account is therefore a monitoring tool that provides a clear view of fund allocation (fund remittance, refunds, chargebacks).\n\nFor more information, please read the [HiPay Marketplace Fund allocation section](/marketplace/api-integration/cash-out#fund-allocation)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfer.{{_format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "disabled": false,
+                "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "021a569f-35a5-4f45-b540-c0f0f32e91f2",
+              "name": "Error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f408b050-6d21-4da9-aafd-6f5406aab736",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "06c58eab-4d8e-484c-845c-716f46d113bf",
+              "name": "Validation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6973b33e-c344-4051-b12e-91399e3f9fcd",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stage-api-gateway.hipay.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required)  (This can only be one of json,xml)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "_format"
+    }
+  ],
+  "info": {
+    "_postman_id": "e198e58c-be86-4ba9-a809-aafdc2579835",
+    "name": "Hipay Payment Gateway balance transfer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Version 1.6.1 - June 11, 2025\n\nThe Gateway API allows you to get paid and manage orders and transactions.\n\nPlease note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.\n\nThis page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.\n# Web service information\n## Gateway API base URLs\n| Environment | Base URL |\n| --- | --- |\n| Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |\n| Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |\n## Authentication\nAll requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.\n`Authorization: Basic base64('API login>:<API password>')`\n",
+      "type": "text/plain"
+    }
+  }
+}

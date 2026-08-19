@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance user-account API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "user-account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get general information about a HiPay account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/user-account.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\nGet information about a specific HiPay account."
+        },
+        {
+          "info": {
+            "name": "Create a HiPay account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/user-account.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\nCreate a HiPay account\n### Account creation step 2/3\nThe agent creates a HiPay account for merchants using this API. Next step: \"Identification API\"."
+        },
+        {
+          "info": {
+            "name": "Update a Hipay account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://stage-api-gateway.hipay.com/user-account.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\nUpdate a HiPay account."
+        },
+        {
+          "info": {
+            "name": "Create a HiPay account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/user-account/sub-account.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\nCreate a HiPay Sub-Account inside an already created HiPay account."
+        },
+        {
+          "info": {
+            "name": "Verify if an email address is available to create a new HiPay account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/user-account/is-available.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\nVerify if an email address is available to create a new HiPay account.\n### Account creation step 1/3\nThe agent checks the email address availability with this API. Next step: create a HiPay account via our API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

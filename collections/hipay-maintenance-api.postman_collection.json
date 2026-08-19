@@ -1,0 +1,693 @@
+{
+  "item": [
+    {
+      "id": "91828ac3-dde8-45ef-a861-f2fdec29da64",
+      "name": "maintenance",
+      "description": {
+        "content": "Perform operations (capture, refund) on transactions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7df50dda-014e-46b1-87b1-e904ca374b9d",
+          "name": "Performs a maintenance operation on a given transaction",
+          "request": {
+            "name": "Performs a maintenance operation on a given transaction",
+            "description": {
+              "content": "Performs a maintenance operation on a given transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "maintenance",
+                "transaction",
+                ":transaction_reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transaction_reference",
+                  "description": "(Required) The unique identifier of the transaction."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "operation",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The operation to perform on the transaction.\n\n    The payment gateway supports the following types of maintenance transactions.\n\n    | Operation Type | Description |\n    | -------------- | ----------- |\n    | `capture` | A request instructing the payment gateway to capture a previously-authorized transaction, i.e. transfer the funds from the customer’s bank account to the merchant’s bank account. This transaction is always preceded by an authorization. |\n    | `refund` | A request instructing the payment gateway to refund a previously captured transaction. A captured transaction can be partly or fully refunded. |\n    | `cancel` | A request instructing the payment gateway to cancel a previously authorized transaction. Only authorized transactions can be cancelled, captured transactions must be refunded. |\n    | `acceptChallenge` | A request instructing the payment gateway to accept a previously challenged transaction. |\n    | `denyChallenge` | A request instructing the payment gateway to deny a previously challenged transaction. |\n    | `finalize` | A request instructing the payment gateway to finalize an asynchronous operation. | (This can only be one of capture,refund,cancel,acceptChallenge,denyChallenge,finalize)"
+                },
+                {
+                  "key": "currency",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Base currency for this order. This three-character currency code complies with ISO 4217. (This can only be one of FRF,SKK,EEK,TMT,AED,AFN,ALL,AMD,ANG,AOA,ARS,AUD,AWG,AZN,BAM,BBD,BDT,BGN,BHD,BIF,BMD,BND,BOB,BRL,BSD,BTN,BWP,BYR,BZD,CAD,CDF,CHF,CLP,CNY,COP,CRC,CUC,CUP,CVE,CZK,DJF,DKK,DOP,DZD,EGP,ERN,ETB,EUR,FJD,FKP,GBP,GEL,GHS,GIP,GMD,GNF,GTQ,GYD,HKD,HNL,HRK,HTG,HUF,IDR,ILS,INR,IQD,IRR,ISK,JMD,JOD,JPY,KES,KGS,KHR,KMF,KPW,KRW,KWD,KYD,KZT,LAK,LBP,LKR,LRD,LSL,LTL,LVL,LYD,MAD,MDL,MGA,MKD,MMK,MNT,MOP,MRO,MUR,MVR,MWK,MXN,MYR,MZN,NAD,NGN,NIO,NOK,NPR,NZD,OMR,PAB,PEN,PGK,PHP,PKR,PLN,PYG,QAR,RON,RSD,RUB,RWF,SAR,SBD,SCR,SDG,SEK,SGD,SHP,SLL,SOS,SRD,STD,SVC,SYP,SZL,THB,TJS,TND,TOP,TRY,TTD,TWD,TZS,UAH,UGX,USD,UYU,UZS,VEF,VND,VUV,TMM,WST,XAF,XCD,XOF,XPF,YER,ZAR,ZMK,ZWL)"
+                },
+                {
+                  "key": "amount",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Amount is required for partial maintenances. Do not specify amount for full captures or refunds."
+                },
+                {
+                  "key": "operation_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Operation merchant ID. This value will be returned to merchant with the notifications related to this operation."
+                },
+                {
+                  "key": "basket",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Shopping cart details. **You must send only items that must be captured or refunded.**\n\n    Please refer to [HiPay Enterprise - Payment Gateway - Shopping cart managment](https://support.hipay.com/hc/fr/articles/115001660469-Payment-Gateway-Shopping-cart-management) technical documentation."
+                },
+                {
+                  "key": "sub_transaction_reference",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Number of the subtransaction to be refunded."
+                },
+                {
+                  "key": "source",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "To identify the origin of the transaction. Here are the authorized values for source property:\n\n    `AUTO`, `SAPI`, `CONS`, `PAGE`, `TPE`, `RTRY`, `MANU`, `PREF`, `REVI`, `CMS`, `SSDK`, `CSDK`"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e97b69f5-1d17-44be-986e-cb28115b6d51",
+              "name": "The maintenance operation was executed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "maintenance",
+                    "transaction",
+                    ":transaction_reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transaction_reference",
+                      "description": "(Required) The unique identifier of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The operation to perform on the transaction.\n\n    The payment gateway supports the following types of maintenance transactions.\n\n    | Operation Type | Description |\n    | -------------- | ----------- |\n    | `capture` | A request instructing the payment gateway to capture a previously-authorized transaction, i.e. transfer the funds from the customer’s bank account to the merchant’s bank account. This transaction is always preceded by an authorization. |\n    | `refund` | A request instructing the payment gateway to refund a previously captured transaction. A captured transaction can be partly or fully refunded. |\n    | `cancel` | A request instructing the payment gateway to cancel a previously authorized transaction. Only authorized transactions can be cancelled, captured transactions must be refunded. |\n    | `acceptChallenge` | A request instructing the payment gateway to accept a previously challenged transaction. |\n    | `denyChallenge` | A request instructing the payment gateway to deny a previously challenged transaction. |\n    | `finalize` | A request instructing the payment gateway to finalize an asynchronous operation. | (This can only be one of capture,refund,cancel,acceptChallenge,denyChallenge,finalize)",
+                        "type": "text/plain"
+                      },
+                      "key": "operation",
+                      "value": "capture",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base currency for this order. This three-character currency code complies with ISO 4217. (This can only be one of FRF,SKK,EEK,TMT,AED,AFN,ALL,AMD,ANG,AOA,ARS,AUD,AWG,AZN,BAM,BBD,BDT,BGN,BHD,BIF,BMD,BND,BOB,BRL,BSD,BTN,BWP,BYR,BZD,CAD,CDF,CHF,CLP,CNY,COP,CRC,CUC,CUP,CVE,CZK,DJF,DKK,DOP,DZD,EGP,ERN,ETB,EUR,FJD,FKP,GBP,GEL,GHS,GIP,GMD,GNF,GTQ,GYD,HKD,HNL,HRK,HTG,HUF,IDR,ILS,INR,IQD,IRR,ISK,JMD,JOD,JPY,KES,KGS,KHR,KMF,KPW,KRW,KWD,KYD,KZT,LAK,LBP,LKR,LRD,LSL,LTL,LVL,LYD,MAD,MDL,MGA,MKD,MMK,MNT,MOP,MRO,MUR,MVR,MWK,MXN,MYR,MZN,NAD,NGN,NIO,NOK,NPR,NZD,OMR,PAB,PEN,PGK,PHP,PKR,PLN,PYG,QAR,RON,RSD,RUB,RWF,SAR,SBD,SCR,SDG,SEK,SGD,SHP,SLL,SOS,SRD,STD,SVC,SYP,SZL,THB,TJS,TND,TOP,TRY,TTD,TWD,TZS,UAH,UGX,USD,UYU,UZS,VEF,VND,VUV,TMM,WST,XAF,XCD,XOF,XPF,YER,ZAR,ZMK,ZWL)",
+                        "type": "text/plain"
+                      },
+                      "key": "currency",
+                      "value": "EUR",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Amount is required for partial maintenances. Do not specify amount for full captures or refunds.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "3.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Operation merchant ID. This value will be returned to merchant with the notifications related to this operation.",
+                        "type": "text/plain"
+                      },
+                      "key": "operation_id",
+                      "value": "204OJ23LKJ234",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Shopping cart details. **You must send only items that must be captured or refunded.**\n\n    Please refer to [HiPay Enterprise - Payment Gateway - Shopping cart managment](https://support.hipay.com/hc/fr/articles/115001660469-Payment-Gateway-Shopping-cart-management) technical documentation.",
+                        "type": "text/plain"
+                      },
+                      "key": "basket",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Number of the subtransaction to be refunded.",
+                        "type": "text/plain"
+                      },
+                      "key": "sub_transaction_reference",
+                      "value": "134470136955",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "To identify the origin of the transaction. Here are the authorized values for source property:\n\n    `AUTO`, `SAPI`, `CONS`, `PAGE`, `TPE`, `RTRY`, `MANU`, `PREF`, `REVI`, `CMS`, `SSDK`, `CSDK`",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "{\"integration_version\":\"1.9.0\",\"brand\":\"DEVPORTAL\",\"source\":\"CSDK\",\"brand_version\":\"12.2.0\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operation\": \"capture\",\n  \"mid\": \"string\",\n  \"authorizationCode\": \"author\",\n  \"transactionReference\": \"800000968431\",\n  \"status\": \"118\",\n  \"message\": \"Captured\",\n  \"dateCreated\": \"2019-02-07T10:07:09+0000\",\n  \"dateUpdated\": \"2019-02-07T10:07:09+0000\",\n  \"dateAuthorized\": \"2019-02-07T10:07:09+0000\",\n  \"authorizedAmount\": \"125.85\",\n  \"capturedAmount\": \"125.85\",\n  \"refundedAmount\": \"0.00\",\n  \"decimals\": \"2\",\n  \"currency\": \"EUR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cee51e2f-d996-4752-b00c-e9a00e1a4cc2",
+              "name": "The request was rejected due to a validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "maintenance",
+                    "transaction",
+                    ":transaction_reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transaction_reference",
+                      "description": "(Required) The unique identifier of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The operation to perform on the transaction.\n\n    The payment gateway supports the following types of maintenance transactions.\n\n    | Operation Type | Description |\n    | -------------- | ----------- |\n    | `capture` | A request instructing the payment gateway to capture a previously-authorized transaction, i.e. transfer the funds from the customer’s bank account to the merchant’s bank account. This transaction is always preceded by an authorization. |\n    | `refund` | A request instructing the payment gateway to refund a previously captured transaction. A captured transaction can be partly or fully refunded. |\n    | `cancel` | A request instructing the payment gateway to cancel a previously authorized transaction. Only authorized transactions can be cancelled, captured transactions must be refunded. |\n    | `acceptChallenge` | A request instructing the payment gateway to accept a previously challenged transaction. |\n    | `denyChallenge` | A request instructing the payment gateway to deny a previously challenged transaction. |\n    | `finalize` | A request instructing the payment gateway to finalize an asynchronous operation. | (This can only be one of capture,refund,cancel,acceptChallenge,denyChallenge,finalize)",
+                        "type": "text/plain"
+                      },
+                      "key": "operation",
+                      "value": "capture",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base currency for this order. This three-character currency code complies with ISO 4217. (This can only be one of FRF,SKK,EEK,TMT,AED,AFN,ALL,AMD,ANG,AOA,ARS,AUD,AWG,AZN,BAM,BBD,BDT,BGN,BHD,BIF,BMD,BND,BOB,BRL,BSD,BTN,BWP,BYR,BZD,CAD,CDF,CHF,CLP,CNY,COP,CRC,CUC,CUP,CVE,CZK,DJF,DKK,DOP,DZD,EGP,ERN,ETB,EUR,FJD,FKP,GBP,GEL,GHS,GIP,GMD,GNF,GTQ,GYD,HKD,HNL,HRK,HTG,HUF,IDR,ILS,INR,IQD,IRR,ISK,JMD,JOD,JPY,KES,KGS,KHR,KMF,KPW,KRW,KWD,KYD,KZT,LAK,LBP,LKR,LRD,LSL,LTL,LVL,LYD,MAD,MDL,MGA,MKD,MMK,MNT,MOP,MRO,MUR,MVR,MWK,MXN,MYR,MZN,NAD,NGN,NIO,NOK,NPR,NZD,OMR,PAB,PEN,PGK,PHP,PKR,PLN,PYG,QAR,RON,RSD,RUB,RWF,SAR,SBD,SCR,SDG,SEK,SGD,SHP,SLL,SOS,SRD,STD,SVC,SYP,SZL,THB,TJS,TND,TOP,TRY,TTD,TWD,TZS,UAH,UGX,USD,UYU,UZS,VEF,VND,VUV,TMM,WST,XAF,XCD,XOF,XPF,YER,ZAR,ZMK,ZWL)",
+                        "type": "text/plain"
+                      },
+                      "key": "currency",
+                      "value": "EUR",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Amount is required for partial maintenances. Do not specify amount for full captures or refunds.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "3.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Operation merchant ID. This value will be returned to merchant with the notifications related to this operation.",
+                        "type": "text/plain"
+                      },
+                      "key": "operation_id",
+                      "value": "204OJ23LKJ234",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Shopping cart details. **You must send only items that must be captured or refunded.**\n\n    Please refer to [HiPay Enterprise - Payment Gateway - Shopping cart managment](https://support.hipay.com/hc/fr/articles/115001660469-Payment-Gateway-Shopping-cart-management) technical documentation.",
+                        "type": "text/plain"
+                      },
+                      "key": "basket",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Number of the subtransaction to be refunded.",
+                        "type": "text/plain"
+                      },
+                      "key": "sub_transaction_reference",
+                      "value": "134470136955",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "To identify the origin of the transaction. Here are the authorized values for source property:\n\n    `AUTO`, `SAPI`, `CONS`, `PAGE`, `TPE`, `RTRY`, `MANU`, `PREF`, `REVI`, `CMS`, `SSDK`, `CSDK`",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "{\"integration_version\":\"1.9.0\",\"brand\":\"DEVPORTAL\",\"source\":\"CSDK\",\"brand_version\":\"12.2.0\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6905,\n  \"message\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80592805-d3b3-4c79-b514-c9f42816c9c9",
+              "name": "An authentication error occurred/invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "maintenance",
+                    "transaction",
+                    ":transaction_reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transaction_reference",
+                      "description": "(Required) The unique identifier of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The operation to perform on the transaction.\n\n    The payment gateway supports the following types of maintenance transactions.\n\n    | Operation Type | Description |\n    | -------------- | ----------- |\n    | `capture` | A request instructing the payment gateway to capture a previously-authorized transaction, i.e. transfer the funds from the customer’s bank account to the merchant’s bank account. This transaction is always preceded by an authorization. |\n    | `refund` | A request instructing the payment gateway to refund a previously captured transaction. A captured transaction can be partly or fully refunded. |\n    | `cancel` | A request instructing the payment gateway to cancel a previously authorized transaction. Only authorized transactions can be cancelled, captured transactions must be refunded. |\n    | `acceptChallenge` | A request instructing the payment gateway to accept a previously challenged transaction. |\n    | `denyChallenge` | A request instructing the payment gateway to deny a previously challenged transaction. |\n    | `finalize` | A request instructing the payment gateway to finalize an asynchronous operation. | (This can only be one of capture,refund,cancel,acceptChallenge,denyChallenge,finalize)",
+                        "type": "text/plain"
+                      },
+                      "key": "operation",
+                      "value": "capture",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base currency for this order. This three-character currency code complies with ISO 4217. (This can only be one of FRF,SKK,EEK,TMT,AED,AFN,ALL,AMD,ANG,AOA,ARS,AUD,AWG,AZN,BAM,BBD,BDT,BGN,BHD,BIF,BMD,BND,BOB,BRL,BSD,BTN,BWP,BYR,BZD,CAD,CDF,CHF,CLP,CNY,COP,CRC,CUC,CUP,CVE,CZK,DJF,DKK,DOP,DZD,EGP,ERN,ETB,EUR,FJD,FKP,GBP,GEL,GHS,GIP,GMD,GNF,GTQ,GYD,HKD,HNL,HRK,HTG,HUF,IDR,ILS,INR,IQD,IRR,ISK,JMD,JOD,JPY,KES,KGS,KHR,KMF,KPW,KRW,KWD,KYD,KZT,LAK,LBP,LKR,LRD,LSL,LTL,LVL,LYD,MAD,MDL,MGA,MKD,MMK,MNT,MOP,MRO,MUR,MVR,MWK,MXN,MYR,MZN,NAD,NGN,NIO,NOK,NPR,NZD,OMR,PAB,PEN,PGK,PHP,PKR,PLN,PYG,QAR,RON,RSD,RUB,RWF,SAR,SBD,SCR,SDG,SEK,SGD,SHP,SLL,SOS,SRD,STD,SVC,SYP,SZL,THB,TJS,TND,TOP,TRY,TTD,TWD,TZS,UAH,UGX,USD,UYU,UZS,VEF,VND,VUV,TMM,WST,XAF,XCD,XOF,XPF,YER,ZAR,ZMK,ZWL)",
+                        "type": "text/plain"
+                      },
+                      "key": "currency",
+                      "value": "EUR",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Amount is required for partial maintenances. Do not specify amount for full captures or refunds.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "3.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Operation merchant ID. This value will be returned to merchant with the notifications related to this operation.",
+                        "type": "text/plain"
+                      },
+                      "key": "operation_id",
+                      "value": "204OJ23LKJ234",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Shopping cart details. **You must send only items that must be captured or refunded.**\n\n    Please refer to [HiPay Enterprise - Payment Gateway - Shopping cart managment](https://support.hipay.com/hc/fr/articles/115001660469-Payment-Gateway-Shopping-cart-management) technical documentation.",
+                        "type": "text/plain"
+                      },
+                      "key": "basket",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Number of the subtransaction to be refunded.",
+                        "type": "text/plain"
+                      },
+                      "key": "sub_transaction_reference",
+                      "value": "134470136955",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "To identify the origin of the transaction. Here are the authorized values for source property:\n\n    `AUTO`, `SAPI`, `CONS`, `PAGE`, `TPE`, `RTRY`, `MANU`, `PREF`, `REVI`, `CMS`, `SSDK`, `CSDK`",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "{\"integration_version\":\"1.9.0\",\"brand\":\"DEVPORTAL\",\"source\":\"CSDK\",\"brand_version\":\"12.2.0\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6905,\n  \"message\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c22d15c-2151-4441-a0b5-38947a65ce90",
+              "name": "Access to this resource is fordidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "maintenance",
+                    "transaction",
+                    ":transaction_reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transaction_reference",
+                      "description": "(Required) The unique identifier of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The operation to perform on the transaction.\n\n    The payment gateway supports the following types of maintenance transactions.\n\n    | Operation Type | Description |\n    | -------------- | ----------- |\n    | `capture` | A request instructing the payment gateway to capture a previously-authorized transaction, i.e. transfer the funds from the customer’s bank account to the merchant’s bank account. This transaction is always preceded by an authorization. |\n    | `refund` | A request instructing the payment gateway to refund a previously captured transaction. A captured transaction can be partly or fully refunded. |\n    | `cancel` | A request instructing the payment gateway to cancel a previously authorized transaction. Only authorized transactions can be cancelled, captured transactions must be refunded. |\n    | `acceptChallenge` | A request instructing the payment gateway to accept a previously challenged transaction. |\n    | `denyChallenge` | A request instructing the payment gateway to deny a previously challenged transaction. |\n    | `finalize` | A request instructing the payment gateway to finalize an asynchronous operation. | (This can only be one of capture,refund,cancel,acceptChallenge,denyChallenge,finalize)",
+                        "type": "text/plain"
+                      },
+                      "key": "operation",
+                      "value": "capture",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base currency for this order. This three-character currency code complies with ISO 4217. (This can only be one of FRF,SKK,EEK,TMT,AED,AFN,ALL,AMD,ANG,AOA,ARS,AUD,AWG,AZN,BAM,BBD,BDT,BGN,BHD,BIF,BMD,BND,BOB,BRL,BSD,BTN,BWP,BYR,BZD,CAD,CDF,CHF,CLP,CNY,COP,CRC,CUC,CUP,CVE,CZK,DJF,DKK,DOP,DZD,EGP,ERN,ETB,EUR,FJD,FKP,GBP,GEL,GHS,GIP,GMD,GNF,GTQ,GYD,HKD,HNL,HRK,HTG,HUF,IDR,ILS,INR,IQD,IRR,ISK,JMD,JOD,JPY,KES,KGS,KHR,KMF,KPW,KRW,KWD,KYD,KZT,LAK,LBP,LKR,LRD,LSL,LTL,LVL,LYD,MAD,MDL,MGA,MKD,MMK,MNT,MOP,MRO,MUR,MVR,MWK,MXN,MYR,MZN,NAD,NGN,NIO,NOK,NPR,NZD,OMR,PAB,PEN,PGK,PHP,PKR,PLN,PYG,QAR,RON,RSD,RUB,RWF,SAR,SBD,SCR,SDG,SEK,SGD,SHP,SLL,SOS,SRD,STD,SVC,SYP,SZL,THB,TJS,TND,TOP,TRY,TTD,TWD,TZS,UAH,UGX,USD,UYU,UZS,VEF,VND,VUV,TMM,WST,XAF,XCD,XOF,XPF,YER,ZAR,ZMK,ZWL)",
+                        "type": "text/plain"
+                      },
+                      "key": "currency",
+                      "value": "EUR",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Amount is required for partial maintenances. Do not specify amount for full captures or refunds.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "3.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Operation merchant ID. This value will be returned to merchant with the notifications related to this operation.",
+                        "type": "text/plain"
+                      },
+                      "key": "operation_id",
+                      "value": "204OJ23LKJ234",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Shopping cart details. **You must send only items that must be captured or refunded.**\n\n    Please refer to [HiPay Enterprise - Payment Gateway - Shopping cart managment](https://support.hipay.com/hc/fr/articles/115001660469-Payment-Gateway-Shopping-cart-management) technical documentation.",
+                        "type": "text/plain"
+                      },
+                      "key": "basket",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Number of the subtransaction to be refunded.",
+                        "type": "text/plain"
+                      },
+                      "key": "sub_transaction_reference",
+                      "value": "134470136955",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "To identify the origin of the transaction. Here are the authorized values for source property:\n\n    `AUTO`, `SAPI`, `CONS`, `PAGE`, `TPE`, `RTRY`, `MANU`, `PREF`, `REVI`, `CMS`, `SSDK`, `CSDK`",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "{\"integration_version\":\"1.9.0\",\"brand\":\"DEVPORTAL\",\"source\":\"CSDK\",\"brand_version\":\"12.2.0\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6905,\n  \"message\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e24e4d01-cd43-4558-aa1b-de7e9f9882c6",
+              "name": "Transaction was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "maintenance",
+                    "transaction",
+                    ":transaction_reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transaction_reference",
+                      "description": "(Required) The unique identifier of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The operation to perform on the transaction.\n\n    The payment gateway supports the following types of maintenance transactions.\n\n    | Operation Type | Description |\n    | -------------- | ----------- |\n    | `capture` | A request instructing the payment gateway to capture a previously-authorized transaction, i.e. transfer the funds from the customer’s bank account to the merchant’s bank account. This transaction is always preceded by an authorization. |\n    | `refund` | A request instructing the payment gateway to refund a previously captured transaction. A captured transaction can be partly or fully refunded. |\n    | `cancel` | A request instructing the payment gateway to cancel a previously authorized transaction. Only authorized transactions can be cancelled, captured transactions must be refunded. |\n    | `acceptChallenge` | A request instructing the payment gateway to accept a previously challenged transaction. |\n    | `denyChallenge` | A request instructing the payment gateway to deny a previously challenged transaction. |\n    | `finalize` | A request instructing the payment gateway to finalize an asynchronous operation. | (This can only be one of capture,refund,cancel,acceptChallenge,denyChallenge,finalize)",
+                        "type": "text/plain"
+                      },
+                      "key": "operation",
+                      "value": "capture",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base currency for this order. This three-character currency code complies with ISO 4217. (This can only be one of FRF,SKK,EEK,TMT,AED,AFN,ALL,AMD,ANG,AOA,ARS,AUD,AWG,AZN,BAM,BBD,BDT,BGN,BHD,BIF,BMD,BND,BOB,BRL,BSD,BTN,BWP,BYR,BZD,CAD,CDF,CHF,CLP,CNY,COP,CRC,CUC,CUP,CVE,CZK,DJF,DKK,DOP,DZD,EGP,ERN,ETB,EUR,FJD,FKP,GBP,GEL,GHS,GIP,GMD,GNF,GTQ,GYD,HKD,HNL,HRK,HTG,HUF,IDR,ILS,INR,IQD,IRR,ISK,JMD,JOD,JPY,KES,KGS,KHR,KMF,KPW,KRW,KWD,KYD,KZT,LAK,LBP,LKR,LRD,LSL,LTL,LVL,LYD,MAD,MDL,MGA,MKD,MMK,MNT,MOP,MRO,MUR,MVR,MWK,MXN,MYR,MZN,NAD,NGN,NIO,NOK,NPR,NZD,OMR,PAB,PEN,PGK,PHP,PKR,PLN,PYG,QAR,RON,RSD,RUB,RWF,SAR,SBD,SCR,SDG,SEK,SGD,SHP,SLL,SOS,SRD,STD,SVC,SYP,SZL,THB,TJS,TND,TOP,TRY,TTD,TWD,TZS,UAH,UGX,USD,UYU,UZS,VEF,VND,VUV,TMM,WST,XAF,XCD,XOF,XPF,YER,ZAR,ZMK,ZWL)",
+                        "type": "text/plain"
+                      },
+                      "key": "currency",
+                      "value": "EUR",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Amount is required for partial maintenances. Do not specify amount for full captures or refunds.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "3.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Operation merchant ID. This value will be returned to merchant with the notifications related to this operation.",
+                        "type": "text/plain"
+                      },
+                      "key": "operation_id",
+                      "value": "204OJ23LKJ234",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Shopping cart details. **You must send only items that must be captured or refunded.**\n\n    Please refer to [HiPay Enterprise - Payment Gateway - Shopping cart managment](https://support.hipay.com/hc/fr/articles/115001660469-Payment-Gateway-Shopping-cart-management) technical documentation.",
+                        "type": "text/plain"
+                      },
+                      "key": "basket",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Number of the subtransaction to be refunded.",
+                        "type": "text/plain"
+                      },
+                      "key": "sub_transaction_reference",
+                      "value": "134470136955",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "To identify the origin of the transaction. Here are the authorized values for source property:\n\n    `AUTO`, `SAPI`, `CONS`, `PAGE`, `TPE`, `RTRY`, `MANU`, `PREF`, `REVI`, `CMS`, `SSDK`, `CSDK`",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "{\"integration_version\":\"1.9.0\",\"brand\":\"DEVPORTAL\",\"source\":\"CSDK\",\"brand_version\":\"12.2.0\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6905,\n  \"message\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stage-api-gateway.hipay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d5f0ba6a-013a-4420-9d84-9974bd5359e9",
+    "name": "Hipay Payment Gateway balance maintenance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Version 1.6.1 - June 11, 2025\n\nThe Gateway API allows you to get paid and manage orders and transactions.\n\nPlease note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.\n\nThis page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.\n# Web service information\n## Gateway API base URLs\n| Environment | Base URL |\n| --- | --- |\n| Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |\n| Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |\n## Authentication\nAll requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.\n`Authorization: Basic base64('API login>:<API password>')`\n",
+      "type": "text/plain"
+    }
+  }
+}

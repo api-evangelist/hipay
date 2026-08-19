@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance Transaction API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transaction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_api_transaction_consultation_public",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/v3/transaction/:transaction_reference",
+            "params": [
+              {
+                "name": "transaction_reference",
+                "value": "800000420435",
+                "type": "path",
+                "description": "The unique identifier of the transaction."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_api_transaction_consultations_by_type_public",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/v3/transactions/:type/:value",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Gets details of existing transactions based on a transaction ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/v1/transaction/:transaction_reference",
+            "params": [
+              {
+                "name": "transaction_reference",
+                "value": "800000420435",
+                "type": "path",
+                "description": "The unique identifier of the transaction."
+              }
+            ]
+          },
+          "docs": "Gets details of existing transactions based on a transaction ID."
+        },
+        {
+          "info": {
+            "name": "Gets details of existing transactions related to a given order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/v1/transaction",
+            "params": [
+              {
+                "name": "orderid",
+                "value": "ORDER_1487239265080",
+                "type": "query",
+                "description": "Merchant unique order id. Return all the transactions related to an order id."
+              }
+            ]
+          },
+          "docs": "Gets details of existing transactions related to a given order. Deprecated, you can refer to [this page](https://developer.hipay.com/api-explorer/api-gateway#/transaction/get_api_consultation_transaction) for new endpoint"
+        },
+        {
+          "info": {
+            "name": "Get transactions list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/transaction.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "start-date",
+                "value": "",
+                "type": "query",
+                "description": "Start of transaction date range. Accepted formats : yyyy-MM-dd HH:MM:ss and yyyy-MM-dd. Default date : 7 days ago. Default time : 00:00:00."
+              },
+              {
+                "name": "end-date",
+                "value": "",
+                "type": "query",
+                "description": "End of transaction date range. Accepted formats : yyyy-MM-dd HH:MM:ss and yyyy-MM-dd. Default date : today. Default time : 23:59:59.\n\nInterval between start-date and end-date cannot be greater than 3 months (92 days).\n"
+              },
+              {
+                "name": "nb-result-per-page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to display on each page. Cannot exceed 1000. Default : 20"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number. First page has number 1. Default : 1"
+              },
+              {
+                "name": "sort-props",
+                "value": "",
+                "type": "query",
+                "description": "Properties sorting configuration. Ex: sort-props[email]=asc&sort-props[status]=desc. Default : sort-props[captured]=desc"
+              }
+            ]
+          },
+          "docs": "\n### Information\n\nGet transactions list."
+        },
+        {
+          "info": {
+            "name": "Get transaction details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/transaction/:id.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "HiPay transaction ID or Merchant reference of transaction ID to verify."
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\n\nThis request will send you the details of a requested transaction."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

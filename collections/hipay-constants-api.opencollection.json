@@ -1,0 +1,185 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance constants API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "constants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get bank details required for a HiPay account depending on its country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/tools/bank-info-fields/:country/:locale.:_format",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "path",
+                "description": "Enter country code [using ISO_3166-1 convention.](https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements)\nExamples of values: `FR`, `AL`, `AU`, `PT`, `US`..."
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "path",
+                "description": "Enter locale code [using this convention.](https://www.softaculous.com/docs/Scripts_Language_Codes)\nExamples of values: `fr_FR`, `de_DE`, `es_ES`, `uk_UA`..."
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\n\nGet bank details required for a HiPay account depending on its country."
+        },
+        {
+          "info": {
+            "name": "Return business lines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/tools/business-lines/:locale.:_format",
+            "params": [
+              {
+                "name": "locale",
+                "value": "",
+                "type": "path",
+                "description": "Enter locale code [using this convention.](https://www.softaculous.com/docs/Scripts_Language_Codes)\nExamples of values: `fr_FR`, `de_DE`, `es_ES`, `uk_UA`..."
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\n\nReturn business lines."
+        },
+        {
+          "info": {
+            "name": "Return locales codes and names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/tools/locale/codes.:_format",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\n\nReturn locales codes and names."
+        },
+        {
+          "info": {
+            "name": "Return locales codes and names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/tools/locale/countries/:locale.:_format",
+            "params": [
+              {
+                "name": "locale",
+                "value": "",
+                "type": "path",
+                "description": "Enter locale code [using this convention.](https://www.softaculous.com/docs/Scripts_Language_Codes)\nExamples of values: `fr_FR`, `de_DE`, `es_ES`, `uk_UA`..."
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\n\nReturn countries codes and labels by locale."
+        },
+        {
+          "info": {
+            "name": "Return currencies codes and labels by locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/tools/locale/currencies/:locale.:_format",
+            "params": [
+              {
+                "name": "locale",
+                "value": "",
+                "type": "path",
+                "description": "Enter locale code [using this convention.](https://www.softaculous.com/docs/Scripts_Language_Codes)\nExamples of values: `fr_FR`, `de_DE`, `es_ES`, `uk_UA`..."
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\n\nReturn currencies codes and labels by locale."
+        },
+        {
+          "info": {
+            "name": "Return timezones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/tools/locale/timezones.:_format",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\n\nReturn timezones."
+        },
+        {
+          "info": {
+            "name": "Return website topics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/tools/website-topics/:business_line_id/:locale.:_format",
+            "params": [
+              {
+                "name": "locale",
+                "value": "",
+                "type": "path",
+                "description": "Enter locale code [using this convention.](https://www.softaculous.com/docs/Scripts_Language_Codes)\nExamples of values: `fr_FR`, `de_DE`, `es_ES`, `uk_UA`..."
+              },
+              {
+                "name": "business_line_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\n\nReturn website topics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,350 @@
+{
+  "item": [
+    {
+      "id": "30c4870b-84b2-437e-b9c6-465441df41d5",
+      "name": "bank-info",
+      "description": {
+        "content": "Manage bank informations of a HiPay account",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "92270ce3-940d-4d11-a7d8-153e17b7810a",
+          "name": "Register new bank details on a HiPay account",
+          "request": {
+            "name": "Register new bank details on a HiPay account",
+            "description": {
+              "content": "\n### Information\nRegister new bank-details on an HiPay account.\n\nMust be called with the bank identity document and bank info together\n\n\n__In test environment__\n\n\nYou can choose if the document will be accepted or not by changing the 3 first characters of the uploaded file name.\n  - Filename starts with `01_`: document will be refused because unrecognized\n\n  - Filename starts with `02_`: document will be refused because falsified\n\n  - Filename starts with `03_`: document will be refused because unreadable\n\n  - Filename starts with `06_`: document will be refused because inconsistent\n\n  - Filename starts with `07_`: document will be refused because expired\n\n  - Any other name : document will be automatically accepted",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user-account",
+                "bank-info.{{_format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "disabled": false,
+                "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "d83d8dca-df8f-41a3-809e-38f18d923957",
+              "name": "Success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-account",
+                    "bank-info.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c4b33fb3-2935-4946-a507-f2cfba00cd9c",
+              "name": "Validation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-account",
+                    "bank-info.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4663e2dc-99ec-407d-b697-5ebb33cc7321",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-account",
+                    "bank-info.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0fd476b-3119-4821-a17a-f09eb434e920",
+          "name": "Get bank details registered on a HiPay account",
+          "request": {
+            "name": "Get bank details registered on a HiPay account",
+            "description": {
+              "content": "\n### Information\nGet bank details of a HiPay account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user-account",
+                "bank-info",
+                "{{locale}}.{{_format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "99b7e0c9-75c8-4528-8ed8-c9f30add3408",
+              "name": "Success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-account",
+                    "bank-info",
+                    "{{locale}}.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0e0d7212-c291-43e0-92db-724bb07e4149",
+              "name": "Validation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-account",
+                    "bank-info",
+                    "{{locale}}.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ddd7db4-78b1-45bc-91b0-bbbefab97489",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-account",
+                    "bank-info",
+                    "{{locale}}.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stage-api-gateway.hipay.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required)  (This can only be one of json,xml)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "_format"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) \nEnter locale code [using this convention.](https://www.softaculous.com/docs/Scripts_Language_Codes) Examples of values: `fr_FR`, `de_DE`, `es_ES`, `uk_UA`...",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "locale"
+    }
+  ],
+  "info": {
+    "_postman_id": "d650ce99-ce96-42d8-ad5a-f4097f40039e",
+    "name": "Hipay Payment Gateway balance bank-info API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Version 1.6.1 - June 11, 2025\n\nThe Gateway API allows you to get paid and manage orders and transactions.\n\nPlease note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.\n\nThis page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.\n# Web service information\n## Gateway API base URLs\n| Environment | Base URL |\n| --- | --- |\n| Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |\n| Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |\n## Authentication\nAll requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.\n`Authorization: Basic base64('API login>:<API password>')`\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance ubo API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ubo",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Declare UBO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/ubo.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\nThis is the second step of UBO statement submission.\n\n- 1 UBO = 1 shareholders with >25% of capital or voting rights)\n- The document uploaded can't exceed 15MO."
+        },
+        {
+          "info": {
+            "name": "Delete an UBO",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://stage-api-gateway.hipay.com/ubo/:id.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the UBO."
+              }
+            ]
+          },
+          "docs": "\n### Information\nDelete an UBO"
+        },
+        {
+          "info": {
+            "name": "Declare UBO as legal representative",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/ubo/legal-representative.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\n  This is the second step of UBO statement submission, only in case the legal representative declared for the user space is also a UBO.\n\n- 1 UBO = 1 shareholders with >25% of capital or voting rights)\n- The document uploaded can't exceed 15MO.\n- Civility, address and position informations will be retrieved from the user space's professional informations.\n- ID Document (and its backside if it is needed) will be retrieved from the uploaded KYC (identification) documents for the us"
+        },
+        {
+          "info": {
+            "name": "Get a UBO statement. Get the list of all UBOs and documents for a user-space. If an UBO is refused, you should send us a new UBO with https://professional.hipay.com/api/ubo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/ubo/ubo-statement.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\n  Get the list of all UBOs and documents for a user-space. If an UBO is refused, you should send us a new UBO with https://professional.hipay.com/api/ubo."
+        },
+        {
+          "info": {
+            "name": "Create a UBO statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/ubo/ubo-statement.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\n  This is the first step of UBO statement submission. An UBO statement is a list of UBO (Ultimate Beneficial Owners).\n\n  - Be sure to have all the data before starting an UBO statement.\n  - 1 UBO = 1 shareholder with >25% of capital or voting rights)"
+        },
+        {
+          "info": {
+            "name": "Delete a UBO statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://stage-api-gateway.hipay.com/ubo/ubo-statement.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\n If you initiate an UBO statement with a wrong number of UBO, and if you don't send all the UBO, You can delete this UBO statement and start a new one. If an UBO statement has been submitted (status WAITING or UPDATED), you can't delete it."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

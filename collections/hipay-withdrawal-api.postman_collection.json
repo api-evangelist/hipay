@@ -1,0 +1,299 @@
+{
+  "item": [
+    {
+      "id": "a09978e6-6a45-4b1b-b9a9-9cb992d20cc1",
+      "name": "withdrawal",
+      "description": {
+        "content": "Request a withdrawal from a HiPay account",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "75c4cb06-cdf8-4a0e-b178-f82a1761f8ea",
+          "name": "Request a withdrawal from a HiPay account",
+          "request": {
+            "name": "Request a withdrawal from a HiPay account",
+            "description": {
+              "content": "\n### Information\nAllows you to request a withdrawal from a HiPay account and transfer the funds to the bank account linked to the account.\nOnce funds are allocated, there are two withdrawal possibilities.\n\n  - Whenever a transaction is made – please note that this option is not recommended by HiPay.\n\n  - Whenever a withdrawal request is made – for example, every ten days, depending on the agent.\n\nWhen agents want to do a withdrawal, they need to check the merchant’s account balance with the getBalance API.\n\n  - In case of a zero balance, funds can be allocated with the Transfer API.\n\n  - If the balance equals the amount of the allocated funds, a fund withdrawal request can be made with the Withdrawal API. (The Withdrawal API allows for withdrawal requests to transfer money to the merchant’s bank account and also to the partner’s bank account.)\n\n  - There must be a zero balance in the end.\n\nFor more information, please read the [HiPay Marketplace Withdrawal requests section](/marketplace/api-integration/cash-out#withdrawal-requests)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "withdrawal.{{_format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "disabled": false,
+                "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                "key": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "87350ccc-af4c-447a-aa03-69ef13582070",
+              "name": "Error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "withdrawal.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3312e2ae-dc37-4a65-ace0-310b4d6b55cc",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "withdrawal.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5db91eaa-5382-495f-849a-08bc58c5bf7b",
+              "name": "Validation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "withdrawal.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5e823e52-3f64-4d86-8f33-57553ec69bcf",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "withdrawal.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4c3a6211-68c5-4ddb-a348-6b08b823e641",
+              "name": "See standard HTTP status code reason for 400x - Error code detail :\n\n| HTTP status code | Error code detail |\n| --- | --- |\n| `4002` | The userSpace is not activated. |\n| `4003` | The userSpace is being switched to pro or professionals info are not valid. |\n| `4004` | The user Space is not identified. |\n| `4005` | Bank info are not valid. |\n| `4006` | The userSpace state not normal. |\n| `4007` | The account is not activated. |\n| `4008` | The account is disabled. |\n| `4009` | The account is deleted. |\n| `4010` | The account is not main. |\n| `4012` | Bank country is blacklisted. |\n| `4013` | Withdrawal maximal limit reached. |\n| `4014` | Balance after the withdrawal will be inferior to minimal amount. |\n| `4015` | The declaration of your ultimate beneficial owners for your HiPay account has not been completed or has not been duly completed. |\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "withdrawal.{{_format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Account ID if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-id",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).",
+                    "key": "php-auth-subaccount-login",
+                    "value": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stage-api-gateway.hipay.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required)  (This can only be one of json,xml)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "_format"
+    }
+  ],
+  "info": {
+    "_postman_id": "d1feeb20-90d3-42bd-bf84-8c78d13bf073",
+    "name": "Hipay Payment Gateway balance withdrawal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Version 1.6.1 - June 11, 2025\n\nThe Gateway API allows you to get paid and manage orders and transactions.\n\nPlease note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.\n\nThis page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.\n# Web service information\n## Gateway API base URLs\n| Environment | Base URL |\n| --- | --- |\n| Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |\n| Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |\n## Authentication\nAll requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.\n`Authorization: Basic base64('API login>:<API password>')`\n",
+      "type": "text/plain"
+    }
+  }
+}

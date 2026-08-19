@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance transfer API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "transfer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transfer funds between HiPay accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/transfer.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\nAllows you to transfer funds from a HiPay account to another HiPay account. HiPay suggests performing fund allocation and withdrawal all at once.\n\nAll the funds are held in escrow before being deposited on the technical account. The Transfer API is then used to allocate funds from the technical account to the merchants' accounts. The Transfer API allows transfer requests to be made on the agent’s behalf or on the behalf of a third party.\n\nThe technical account is therefore a mon"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

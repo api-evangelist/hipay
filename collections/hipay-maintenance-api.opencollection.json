@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance maintenance API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "maintenance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Performs a maintenance operation on a given transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/v1/maintenance/transaction/:transaction_reference",
+            "params": [
+              {
+                "name": "transaction_reference",
+                "value": "800000420435",
+                "type": "path",
+                "description": "The unique identifier of the transaction."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Performs a maintenance operation on a given transaction."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

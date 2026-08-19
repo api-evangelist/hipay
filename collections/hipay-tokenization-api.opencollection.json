@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance tokenization API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tokenization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Performs credit or debit card tokenization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/create"
+          },
+          "docs": "Performs credit or debit card tokenization. Once the card is tokenized, you can use the generated token to make payments thanks to the HiPay Enterprise Gateway API.\n"
+        },
+        {
+          "info": {
+            "name": "Gets the details of a credit card that you have previously tokenized",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "The token to look for."
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "query",
+                "description": "The request ID linked to the card token."
+              }
+            ]
+          },
+          "docs": "Gets the details of a credit card that you have previously tokenized."
+        },
+        {
+          "info": {
+            "name": "Delete a previously created token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://stage-api-gateway.hipay.com/"
+          },
+          "docs": "Delete a previously created token"
+        },
+        {
+          "info": {
+            "name": "Updates the details of a previsouly tokenized credit or debit card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/update"
+          },
+          "docs": "Updates the details of a previsouly tokenized credit or debit card."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

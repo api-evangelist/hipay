@@ -1,0 +1,543 @@
+{
+  "item": [
+    {
+      "id": "d555d33e-5ca1-4af5-bb04-712ca6ef9bd9",
+      "name": "Order",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3c4143cf-dd52-4c12-8543-374ee107b42c",
+          "name": "get api order consultation public",
+          "request": {
+            "name": "get api order consultation public",
+            "description": {},
+            "url": {
+              "path": [
+                "v3",
+                "order",
+                ":orderid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderid",
+                  "description": "(Required) Unique merchant orderid."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "41f33043-1d0a-4a1a-861b-e4c049795bfb",
+              "name": "Order retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "order",
+                    ":orderid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderid",
+                      "description": "(Required) Unique merchant orderid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7599,\n  \"merchant_order_id\": \"string\",\n  \"attempts\": 1,\n  \"amount\": \"8.99\",\n  \"shipping\": \"1.30\",\n  \"tax\": \"1.10\",\n  \"customer\": {\n    \"email\": \"otto.graph@foobar.email\",\n    \"phone\": \"string\",\n    \"id\": \"283749291\",\n    \"firstname\": \"Rose\",\n    \"lastname\": \"Dévent\",\n    \"language\": \"en_GB\"\n  },\n  \"shipping_to\": {\n    \"house_number\": \"101\",\n    \"house_extension\": \"B\",\n    \"street\": \"Rue de Rivoli\",\n    \"street_additional\": \"Immeuble B\",\n    \"locality\": \"Paris\",\n    \"locality_additional\": \"\",\n    \"postal_code\": \"75001\",\n    \"country\": \"FR\"\n  },\n  \"date_created\": \"2015-06-03T15:11:03.016Z\",\n  \"transactions\": [\n    {\n      \"id\": 9824,\n      \"attemptid\": 6940,\n      \"state\": \"waiting\",\n      \"status\": 16,\n      \"eci\": 7,\n      \"amount\": \"125.75\",\n      \"captured_amount\": \"125.75\",\n      \"refunded_amount\": \"0.00\",\n      \"credited_amount\": \"125.75\",\n      \"chargebacked_amount\": \"125.75\",\n      \"acquirer\": {\n        \"transaction_reference\": \"800000790677\"\n      },\n      \"issuer\": {\n        \"fullname\": \"string\",\n        \"institution\": \"string\",\n        \"country\": \"string\"\n      },\n      \"device\": {\n        \"ip_address\": \"127.0.0.1\",\n        \"id\": \"string\"\n      },\n      \"forward_url\": \"\",\n      \"customer_country\": \"FR\",\n      \"date_created\": \"1990-01-25T15:42:14.612Z\",\n      \"date_updated\": \"1973-03-01T05:34:16.753Z\",\n      \"mid\": 2707,\n      \"operations\": [\n        {\n          \"type\": \"CAPTURE\",\n          \"status\": \"SPLIT\",\n          \"amount\": \"10.00\",\n          \"arn\": \"75064953264000221624949\",\n          \"date_created\": \"1974-01-12T17:49:05.692Z\",\n          \"id\": 3179,\n          \"currency\": \"PHP\",\n          \"decimals\": 5573,\n          \"merchant_reference\": \"string\",\n          \"date_updated\": \"1998-06-02T15:26:11.439Z\",\n          \"date_remitted\": \"2007-12-03T20:55:51.762Z\",\n          \"date_processed\": \"1990-06-08T19:49:13.602Z\",\n          \"date_reconciled\": \"2017-06-14T00:07:08.974Z\",\n          \"caseid\": \"string\"\n        },\n        {\n          \"type\": \"REFUND\",\n          \"status\": \"COMPLETED\",\n          \"amount\": \"10.00\",\n          \"arn\": \"75064953264000221624949\",\n          \"date_created\": \"1976-11-04T12:32:48.079Z\",\n          \"id\": 4549,\n          \"currency\": \"CRC\",\n          \"decimals\": 4190,\n          \"merchant_reference\": \"string\",\n          \"date_updated\": \"1997-02-23T10:06:54.894Z\",\n          \"date_remitted\": \"1977-10-20T21:28:24.290Z\",\n          \"date_processed\": \"1992-06-25T10:27:59.573Z\",\n          \"date_reconciled\": \"1959-08-12T17:48:59.088Z\",\n          \"caseid\": \"string\"\n        }\n      ],\n      \"authorized_amount\": \"125.75\",\n      \"currency\": \"GHS\",\n      \"decimals\": 4370,\n      \"computed_authentication_status\": \"Challenge authentication\",\n      \"reason\": {\n        \"code\": 3313,\n        \"reason\": \"string\"\n      },\n      \"payment_product\": {\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"payment_method\": {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"acquirer_tra\": {},\n      \"card\": {\n        \"pan\": \"string\",\n        \"last_digits\": \"string\",\n        \"scheme\": \"string\",\n        \"category\": \"string\",\n        \"type\": \"string\",\n        \"bin\": 5077,\n        \"token\": \"string\"\n      },\n      \"debit_agreement\": {\n        \"id\": 1466,\n        \"status\": \"pending\",\n        \"scheme_reference_data\": \"string\",\n        \"recurring_payment_end_date\": \"string\"\n      },\n      \"authentication\": {\n        \"eci\": 5,\n        \"enrollment_status\": \"N\",\n        \"enrollment_message\": \"Cardholder Not Enrolled\",\n        \"authentication_status\": \"Mastercard Delegated Authentication\",\n        \"authentication_message\": \"string\",\n        \"sca_preference\": 2,\n        \"method\": \"3DSecure\",\n        \"three_ds_version\": \"2\",\n        \"three_ds_authentication_method\": \"frictionless\",\n        \"three_ds_liability\": \"not applicable\"\n      },\n      \"authorization_code\": \"string\",\n      \"fraud_screening\": {\n        \"result\": \"PENDING\",\n        \"review\": \"ALLOWED\",\n        \"score\": 200\n      },\n      \"cvc_result\": \"Missing\",\n      \"date_authorized\": \"1956-07-06T20:59:31.513Z\"\n    },\n    {\n      \"id\": 643,\n      \"attemptid\": 594,\n      \"state\": \"pending\",\n      \"status\": 55,\n      \"eci\": 7,\n      \"amount\": \"125.75\",\n      \"captured_amount\": \"125.75\",\n      \"refunded_amount\": \"0.00\",\n      \"credited_amount\": \"125.75\",\n      \"chargebacked_amount\": \"125.75\",\n      \"acquirer\": {\n        \"transaction_reference\": \"800000790677\"\n      },\n      \"issuer\": {\n        \"fullname\": \"string\",\n        \"institution\": \"string\",\n        \"country\": \"string\"\n      },\n      \"device\": {\n        \"ip_address\": \"127.0.0.1\",\n        \"id\": \"string\"\n      },\n      \"forward_url\": \"\",\n      \"customer_country\": \"FR\",\n      \"date_created\": \"2024-05-16T07:05:03.616Z\",\n      \"date_updated\": \"2024-04-04T22:17:29.746Z\",\n      \"mid\": 4874,\n      \"operations\": [\n        {\n          \"type\": \"CHGBCK_REFUND\",\n          \"status\": \"REMITTED\",\n          \"amount\": \"10.00\",\n          \"arn\": \"75064953264000221624949\",\n          \"date_created\": \"1995-12-07T04:57:41.963Z\",\n          \"id\": 7891,\n          \"currency\": \"EGP\",\n          \"decimals\": 9221,\n          \"merchant_reference\": \"string\",\n          \"date_updated\": \"2005-09-20T02:48:41.790Z\",\n          \"date_remitted\": \"1966-09-11T12:05:11.268Z\",\n          \"date_processed\": \"2019-09-18T18:56:45.713Z\",\n          \"date_reconciled\": \"1965-07-17T13:18:52.417Z\",\n          \"caseid\": \"string\"\n        },\n        {\n          \"type\": \"CREDIT\",\n          \"status\": \"SPLIT\",\n          \"amount\": \"10.00\",\n          \"arn\": \"75064953264000221624949\",\n          \"date_created\": \"1963-05-31T10:28:20.182Z\",\n          \"id\": 1203,\n          \"currency\": \"BYR\",\n          \"decimals\": 488,\n          \"merchant_reference\": \"string\",\n          \"date_updated\": \"2002-07-26T03:31:25.190Z\",\n          \"date_remitted\": \"1976-08-12T17:38:19.947Z\",\n          \"date_processed\": \"1989-07-15T02:57:21.977Z\",\n          \"date_reconciled\": \"1960-12-29T05:23:57.363Z\",\n          \"caseid\": \"string\"\n        }\n      ],\n      \"authorized_amount\": \"125.75\",\n      \"currency\": \"KHR\",\n      \"decimals\": 4065,\n      \"computed_authentication_status\": \"Unsuccessful authentication attempted\",\n      \"reason\": {\n        \"code\": 6591,\n        \"reason\": \"string\"\n      },\n      \"payment_product\": {\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"payment_method\": {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"acquirer_tra\": {},\n      \"card\": {\n        \"pan\": \"string\",\n        \"last_digits\": \"string\",\n        \"scheme\": \"string\",\n        \"category\": \"string\",\n        \"type\": \"string\",\n        \"bin\": 5890,\n        \"token\": \"string\"\n      },\n      \"debit_agreement\": {\n        \"id\": 8270,\n        \"status\": \"incomplete\",\n        \"scheme_reference_data\": \"string\",\n        \"recurring_payment_end_date\": \"string\"\n      },\n      \"authentication\": {\n        \"eci\": 5,\n        \"enrollment_status\": \"N\",\n        \"enrollment_message\": \"Cardholder Not Enrolled\",\n        \"authentication_status\": \"Mastercard Delegated Authentication\",\n        \"authentication_message\": \"string\",\n        \"sca_preference\": 2,\n        \"method\": \"3DSecure\",\n        \"three_ds_version\": \"2\",\n        \"three_ds_authentication_method\": \"challenge\",\n        \"three_ds_liability\": \"merchant\"\n      },\n      \"authorization_code\": \"string\",\n      \"fraud_screening\": {\n        \"result\": \"OVERRIDE\",\n        \"review\": \"ALLOWED\",\n        \"score\": 200\n      },\n      \"cvc_result\": \"No Match\",\n      \"date_authorized\": \"1989-03-31T01:26:06.615Z\"\n    }\n  ],\n  \"currency\": \"MRO\",\n  \"decimals\": 2526,\n  \"terminal_information\": {\n    \"payment_context\": \"online\",\n    \"input_mode\": \"contact\",\n    \"aid\": \"A0000000422010\",\n    \"payment_gateway\": \"nepting\",\n    \"authorization_code\": \"00\",\n    \"authorization_number\": \"963379\",\n    \"customer_receipt\": \"string\",\n    \"payment_source\": \"IPN Nepting\",\n    \"payment_terminal_serial_number\": \"string\",\n    \"idsa\": \"string\",\n    \"rts\": \"string\",\n    \"card_entry_mode\": \"Contactless chip transaction using magstripe data\",\n    \"file_number\": \"string\"\n  },\n  \"billing_to\": {\n    \"house_number\": \"101\",\n    \"house_extension\": \"B\",\n    \"street\": \"Rue de Rivoli\",\n    \"street_additional\": \"Immeuble B\",\n    \"locality\": \"Paris\",\n    \"locality_additional\": \"\",\n    \"postal_code\": \"75001\",\n    \"country\": \"FR\"\n  },\n  \"custom_data\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b241322-def5-46a2-b2cb-a2b633e6d130",
+              "name": "An authentication error occurred/invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "order",
+                    ":orderid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderid",
+                      "description": "(Required) Unique merchant orderid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 4349,\n  \"details\": null,\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc900fe6-bf49-469c-a24f-2b5c6ab4c318",
+              "name": "This order is not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "order",
+                    ":orderid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderid",
+                      "description": "(Required) Unique merchant orderid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 9850,\n  \"details\": null,\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "661f828a-af1f-4701-8e35-a5f71f2c64da",
+          "name": "Wake a POS payment terminal to process an order payment.",
+          "request": {
+            "name": "Wake a POS payment terminal to process an order payment.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "connector",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"order_id\": \"<string>\",\n    \"price\": {\n      \"amount\": \"<number>\",\n      \"currency\": \"EUR\",\n      \"tax_fees\": \"<number>\",\n      \"shipping_fees\": \"<number>\"\n    },\n    \"transaction_type\": \"Debit\",\n    \"initialize_payment_terminal\": true,\n    \"basket\": [\n      {\n        \"product_reference\": \"<string>\",\n        \"type\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"unit_price\": \"<number>\",\n        \"tax_rate\": \"<number>\",\n        \"total_amount\": \"<number>\",\n        \"european_article_numbering\": \"<string>\",\n        \"discount\": \"<number>\",\n        \"product_category\": \"<number>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"product_reference\": \"<string>\",\n        \"type\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"unit_price\": \"<number>\",\n        \"tax_rate\": \"<number>\",\n        \"total_amount\": \"<number>\",\n        \"european_article_numbering\": \"<string>\",\n        \"discount\": \"<number>\",\n        \"product_category\": \"<number>\",\n        \"url\": \"<string>\"\n      }\n    ],\n    \"description\": \"POS payment\",\n    \"long_description\": \"<string>\",\n    \"soft_descriptor\": \"<string>\",\n    \"custom_data\": \"<object>\"\n  },\n  \"pos_technical_info\": {\n    \"terminal_transaction_display\": {\n      \"contract_array\": [\n        {\n          \"merchant_contract\": \"<string>\",\n          \"rank\": \"<string>\",\n          \"payment_application\": \"<string>\"\n        },\n        {\n          \"merchant_contract\": \"<string>\",\n          \"rank\": \"<string>\",\n          \"payment_application\": \"<string>\"\n        }\n      ],\n      \"push_to\": \"POS\",\n      \"protocol\": \"ConcertV3.1\",\n      \"force_authorization\": false\n    },\n    \"notify_url\": \"<string>\",\n    \"device_information\": {\n      \"serial_number\": \"<string>\",\n      \"manufacturer\": \"<string>\"\n    },\n    \"host_information\": {\n      \"host\": \"<string>\",\n      \"port\": 8888\n    }\n  },\n  \"customer\": {\n    \"customer_id\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"birthdate\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"additional_customer_information\": \"<string>\",\n    \"customer_location\": {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\",\n      \"city\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"street_additional_details\": \"<string>\",\n      \"house_number\": \"<string>\"\n    }\n  },\n  \"shipping\": {\n    \"delivery_date\": \"<string>\",\n    \"delivery_method\": \"<string>\",\n    \"carrier_description\": \"<string>\",\n    \"recipient_information\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"additional_info\": \"<string>\",\n      \"gender\": \"<string>\",\n      \"phone\": \"<string>\"\n    },\n    \"delivery_address\": {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\",\n      \"city\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"street_additional_details\": \"<string>\",\n      \"house_number\": \"<string>\"\n    }\n  }\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "a0fd8274-e0c2-4f80-97e3-2773a0e148f0",
+              "name": "OK - The request has succeeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connector",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order\": {\n    \"order_id\": \"ORDER_1537532589263\",\n    \"price\": {\n      \"amount\": 100,\n      \"currency\": \"EUR\",\n      \"tax_fees\": 1.1,\n      \"shipping_fees\": 1.3\n    },\n    \"transaction_type\": \"Debit\",\n    \"initialize_payment_terminal\": true,\n    \"basket\": [\n      {\n        \"product_reference\": \"NF-a1690\",\n        \"type\": \"good\",\n        \"quantity\": 1,\n        \"name\": \"My first product\",\n        \"unit_price\": 8.99,\n        \"tax_rate\": 0,\n        \"total_amount\": 8.99,\n        \"european_article_numbering\": \"<string>\",\n        \"discount\": 0,\n        \"product_category\": 2,\n        \"url\": \"https://image.example.com/image_180x180.jpg\"\n      },\n      {\n        \"product_reference\": \"NF-a1690\",\n        \"type\": \"good\",\n        \"quantity\": 1,\n        \"name\": \"My first product\",\n        \"unit_price\": 8.99,\n        \"tax_rate\": 0,\n        \"total_amount\": 8.99,\n        \"european_article_numbering\": \"<string>\",\n        \"discount\": 0,\n        \"product_category\": 2,\n        \"url\": \"https://image.example.com/image_180x180.jpg\"\n      }\n    ],\n    \"description\": \"A super short description here...\",\n    \"long_description\": \"A super long description here...\",\n    \"soft_descriptor\": \"Dell Inspiron 15 3583 (i3583-3112BLK-PFR)\",\n    \"custom_data\": \"<object>\"\n  },\n  \"pos_technical_info\": {\n    \"terminal_transaction_display\": {\n      \"contract_array\": [\n        {\n          \"merchant_contract\": \"<string>\",\n          \"rank\": \"001\",\n          \"payment_application\": \"001\"\n        },\n        {\n          \"merchant_contract\": \"<string>\",\n          \"rank\": \"001\",\n          \"payment_application\": \"001\"\n        }\n      ],\n      \"push_to\": \"POS\",\n      \"protocol\": \"AppNepting\",\n      \"force_authorization\": true\n    },\n    \"notify_url\": \"https://hipay.com/notify\",\n    \"device_information\": {\n      \"serial_number\": \"1850320198\",\n      \"manufacturer\": \"PAX\"\n    },\n    \"host_information\": {\n      \"host\": \"193.251.48.153\",\n      \"port\": 8888\n    }\n  },\n  \"customer\": {\n    \"customer_id\": \"283749291\",\n    \"email\": \"john.doe@foobar99.com\",\n    \"phone\": \"33012345678\",\n    \"first_name\": \"Cathy\",\n    \"last_name\": \"Doe\",\n    \"birthdate\": \"1988-06-12\",\n    \"gender\": \"U\",\n    \"additional_customer_information\": \"Dr.\",\n    \"customer_location\": {\n      \"country\": \"FR\",\n      \"state\": \"<string>\",\n      \"city\": \"Paris\",\n      \"zip_code\": \"75001\",\n      \"street_address\": \"101 Rue de Rivoli\",\n      \"street_additional_details\": \"Immeuble B\",\n      \"house_number\": \"101\"\n    }\n  },\n  \"shipping\": {\n    \"delivery_date\": \"2022-12-20\",\n    \"delivery_method\": \"CARRIER\",\n    \"carrier_description\": \"La Poste, 27 Rue des Francs Bourgeois\",\n    \"recipient_information\": {\n      \"first_name\": \"Cathy\",\n      \"last_name\": \"Doe\",\n      \"additional_info\": \"Dr.\",\n      \"gender\": \"U\",\n      \"phone\": \"33112345678\"\n    },\n    \"delivery_address\": {\n      \"country\": \"FR\",\n      \"state\": \"<string>\",\n      \"city\": \"Paris\",\n      \"zip_code\": \"75001\",\n      \"street_address\": \"101 Rue de Rivoli\",\n      \"street_additional_details\": \"Immeuble B\",\n      \"house_number\": \"101\"\n    }\n  }\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"paymentStatus\": \"Success\",\n  \"receipt\": \"UkVDRUlQVCA5OSBFVVI==\",\n  \"error\": {\n    \"errorCode\": \"string\",\n    \"errorDescription\": \"The network is unavailable\"\n  },\n  \"order\": {\n    \"order_id\": \"ORDER_1537532589263\",\n    \"price\": {\n      \"amount\": 100,\n      \"currency\": \"EUR\",\n      \"tax_fees\": 1.1,\n      \"shipping_fees\": 1.3\n    },\n    \"transaction_type\": \"Debit\",\n    \"initialize_payment_terminal\": true,\n    \"basket\": [\n      {\n        \"product_reference\": \"NF-a1690\",\n        \"type\": \"good\",\n        \"quantity\": 1,\n        \"name\": \"My first product\",\n        \"unit_price\": 8.99,\n        \"tax_rate\": 0,\n        \"total_amount\": 8.99,\n        \"european_article_numbering\": \"<string>\",\n        \"discount\": 0,\n        \"product_category\": 2,\n        \"url\": \"https://image.example.com/image_180x180.jpg\"\n      },\n      {\n        \"product_reference\": \"NF-a1690\",\n        \"type\": \"good\",\n        \"quantity\": 1,\n        \"name\": \"My first product\",\n        \"unit_price\": 8.99,\n        \"tax_rate\": 0,\n        \"total_amount\": 8.99,\n        \"european_article_numbering\": \"<string>\",\n        \"discount\": 0,\n        \"product_category\": 2,\n        \"url\": \"https://image.example.com/image_180x180.jpg\"\n      }\n    ],\n    \"description\": \"A super short description here...\",\n    \"long_description\": \"A super long description here...\",\n    \"soft_descriptor\": \"Dell Inspiron 15 3583 (i3583-3112BLK-PFR)\",\n    \"custom_data\": \"<object>\"\n  },\n  \"customer\": {\n    \"customer_id\": \"283749291\",\n    \"email\": \"john.doe@foobar99.com\",\n    \"phone\": \"33012345678\",\n    \"first_name\": \"Cathy\",\n    \"last_name\": \"Doe\",\n    \"birthdate\": \"1988-06-12\",\n    \"gender\": \"U\",\n    \"additional_customer_information\": \"Dr.\",\n    \"customer_location\": {\n      \"country\": \"FR\",\n      \"state\": \"<string>\",\n      \"city\": \"Paris\",\n      \"zip_code\": \"75001\",\n      \"street_address\": \"101 Rue de Rivoli\",\n      \"street_additional_details\": \"Immeuble B\",\n      \"house_number\": \"101\"\n    }\n  },\n  \"shipping\": {\n    \"delivery_date\": \"2022-12-20\",\n    \"delivery_method\": \"CARRIER\",\n    \"carrier_description\": \"La Poste, 27 Rue des Francs Bourgeois\",\n    \"recipient_information\": {\n      \"first_name\": \"Cathy\",\n      \"last_name\": \"Doe\",\n      \"additional_info\": \"Dr.\",\n      \"gender\": \"U\",\n      \"phone\": \"33112345678\"\n    },\n    \"delivery_address\": {\n      \"country\": \"FR\",\n      \"state\": \"<string>\",\n      \"city\": \"Paris\",\n      \"zip_code\": \"75001\",\n      \"street_address\": \"101 Rue de Rivoli\",\n      \"street_additional_details\": \"Immeuble B\",\n      \"house_number\": \"101\"\n    }\n  },\n  \"pos_technical_info\": {\n    \"terminal_transaction_display\": {\n      \"contract_array\": [\n        {\n          \"merchant_contract\": \"<string>\",\n          \"rank\": \"001\",\n          \"payment_application\": \"001\"\n        },\n        {\n          \"merchant_contract\": \"<string>\",\n          \"rank\": \"001\",\n          \"payment_application\": \"001\"\n        }\n      ],\n      \"push_to\": \"POS\",\n      \"protocol\": \"AppNepting\",\n      \"force_authorization\": true\n    },\n    \"notify_url\": \"https://hipay.com/notify\",\n    \"device_information\": {\n      \"serial_number\": \"1850320198\",\n      \"manufacturer\": \"PAX\"\n    },\n    \"host_information\": {\n      \"host\": \"193.251.48.153\",\n      \"port\": 8888\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ec249dc-d12a-4f54-9aa7-88b4c4741d10",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connector",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order\": {\n    \"order_id\": \"ORDER_1537532589263\",\n    \"price\": {\n      \"amount\": 100,\n      \"currency\": \"EUR\",\n      \"tax_fees\": 1.1,\n      \"shipping_fees\": 1.3\n    },\n    \"transaction_type\": \"Debit\",\n    \"initialize_payment_terminal\": true,\n    \"basket\": [\n      {\n        \"product_reference\": \"NF-a1690\",\n        \"type\": \"good\",\n        \"quantity\": 1,\n        \"name\": \"My first product\",\n        \"unit_price\": 8.99,\n        \"tax_rate\": 0,\n        \"total_amount\": 8.99,\n        \"european_article_numbering\": \"<string>\",\n        \"discount\": 0,\n        \"product_category\": 2,\n        \"url\": \"https://image.example.com/image_180x180.jpg\"\n      },\n      {\n        \"product_reference\": \"NF-a1690\",\n        \"type\": \"good\",\n        \"quantity\": 1,\n        \"name\": \"My first product\",\n        \"unit_price\": 8.99,\n        \"tax_rate\": 0,\n        \"total_amount\": 8.99,\n        \"european_article_numbering\": \"<string>\",\n        \"discount\": 0,\n        \"product_category\": 2,\n        \"url\": \"https://image.example.com/image_180x180.jpg\"\n      }\n    ],\n    \"description\": \"A super short description here...\",\n    \"long_description\": \"A super long description here...\",\n    \"soft_descriptor\": \"Dell Inspiron 15 3583 (i3583-3112BLK-PFR)\",\n    \"custom_data\": \"<object>\"\n  },\n  \"pos_technical_info\": {\n    \"terminal_transaction_display\": {\n      \"contract_array\": [\n        {\n          \"merchant_contract\": \"<string>\",\n          \"rank\": \"001\",\n          \"payment_application\": \"001\"\n        },\n        {\n          \"merchant_contract\": \"<string>\",\n          \"rank\": \"001\",\n          \"payment_application\": \"001\"\n        }\n      ],\n      \"push_to\": \"POS\",\n      \"protocol\": \"AppNepting\",\n      \"force_authorization\": true\n    },\n    \"notify_url\": \"https://hipay.com/notify\",\n    \"device_information\": {\n      \"serial_number\": \"1850320198\",\n      \"manufacturer\": \"PAX\"\n    },\n    \"host_information\": {\n      \"host\": \"193.251.48.153\",\n      \"port\": 8888\n    }\n  },\n  \"customer\": {\n    \"customer_id\": \"283749291\",\n    \"email\": \"john.doe@foobar99.com\",\n    \"phone\": \"33012345678\",\n    \"first_name\": \"Cathy\",\n    \"last_name\": \"Doe\",\n    \"birthdate\": \"1988-06-12\",\n    \"gender\": \"U\",\n    \"additional_customer_information\": \"Dr.\",\n    \"customer_location\": {\n      \"country\": \"FR\",\n      \"state\": \"<string>\",\n      \"city\": \"Paris\",\n      \"zip_code\": \"75001\",\n      \"street_address\": \"101 Rue de Rivoli\",\n      \"street_additional_details\": \"Immeuble B\",\n      \"house_number\": \"101\"\n    }\n  },\n  \"shipping\": {\n    \"delivery_date\": \"2022-12-20\",\n    \"delivery_method\": \"CARRIER\",\n    \"carrier_description\": \"La Poste, 27 Rue des Francs Bourgeois\",\n    \"recipient_information\": {\n      \"first_name\": \"Cathy\",\n      \"last_name\": \"Doe\",\n      \"additional_info\": \"Dr.\",\n      \"gender\": \"U\",\n      \"phone\": \"33112345678\"\n    },\n    \"delivery_address\": {\n      \"country\": \"FR\",\n      \"state\": \"<string>\",\n      \"city\": \"Paris\",\n      \"zip_code\": \"75001\",\n      \"street_address\": \"101 Rue de Rivoli\",\n      \"street_additional_details\": \"Immeuble B\",\n      \"house_number\": \"101\"\n    }\n  }\n}"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"status\": 3598,\n    \"message\": \"string\",\n    \"description\": \"string\",\n    \"details\": {\n      \"path\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "341491cf-4950-4a08-986c-bdb60398d37d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connector",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order\": {\n    \"order_id\": \"ORDER_1537532589263\",\n    \"price\": {\n      \"amount\": 100,\n      \"currency\": \"EUR\",\n      \"tax_fees\": 1.1,\n      \"shipping_fees\": 1.3\n    },\n    \"transaction_type\": \"Debit\",\n    \"initialize_payment_terminal\": true,\n    \"basket\": [\n      {\n        \"product_reference\": \"NF-a1690\",\n        \"type\": \"good\",\n        \"quantity\": 1,\n        \"name\": \"My first product\",\n        \"unit_price\": 8.99,\n        \"tax_rate\": 0,\n        \"total_amount\": 8.99,\n        \"european_article_numbering\": \"<string>\",\n        \"discount\": 0,\n        \"product_category\": 2,\n        \"url\": \"https://image.example.com/image_180x180.jpg\"\n      },\n      {\n        \"product_reference\": \"NF-a1690\",\n        \"type\": \"good\",\n        \"quantity\": 1,\n        \"name\": \"My first product\",\n        \"unit_price\": 8.99,\n        \"tax_rate\": 0,\n        \"total_amount\": 8.99,\n        \"european_article_numbering\": \"<string>\",\n        \"discount\": 0,\n        \"product_category\": 2,\n        \"url\": \"https://image.example.com/image_180x180.jpg\"\n      }\n    ],\n    \"description\": \"A super short description here...\",\n    \"long_description\": \"A super long description here...\",\n    \"soft_descriptor\": \"Dell Inspiron 15 3583 (i3583-3112BLK-PFR)\",\n    \"custom_data\": \"<object>\"\n  },\n  \"pos_technical_info\": {\n    \"terminal_transaction_display\": {\n      \"contract_array\": [\n        {\n          \"merchant_contract\": \"<string>\",\n          \"rank\": \"001\",\n          \"payment_application\": \"001\"\n        },\n        {\n          \"merchant_contract\": \"<string>\",\n          \"rank\": \"001\",\n          \"payment_application\": \"001\"\n        }\n      ],\n      \"push_to\": \"POS\",\n      \"protocol\": \"AppNepting\",\n      \"force_authorization\": true\n    },\n    \"notify_url\": \"https://hipay.com/notify\",\n    \"device_information\": {\n      \"serial_number\": \"1850320198\",\n      \"manufacturer\": \"PAX\"\n    },\n    \"host_information\": {\n      \"host\": \"193.251.48.153\",\n      \"port\": 8888\n    }\n  },\n  \"customer\": {\n    \"customer_id\": \"283749291\",\n    \"email\": \"john.doe@foobar99.com\",\n    \"phone\": \"33012345678\",\n    \"first_name\": \"Cathy\",\n    \"last_name\": \"Doe\",\n    \"birthdate\": \"1988-06-12\",\n    \"gender\": \"U\",\n    \"additional_customer_information\": \"Dr.\",\n    \"customer_location\": {\n      \"country\": \"FR\",\n      \"state\": \"<string>\",\n      \"city\": \"Paris\",\n      \"zip_code\": \"75001\",\n      \"street_address\": \"101 Rue de Rivoli\",\n      \"street_additional_details\": \"Immeuble B\",\n      \"house_number\": \"101\"\n    }\n  },\n  \"shipping\": {\n    \"delivery_date\": \"2022-12-20\",\n    \"delivery_method\": \"CARRIER\",\n    \"carrier_description\": \"La Poste, 27 Rue des Francs Bourgeois\",\n    \"recipient_information\": {\n      \"first_name\": \"Cathy\",\n      \"last_name\": \"Doe\",\n      \"additional_info\": \"Dr.\",\n      \"gender\": \"U\",\n      \"phone\": \"33112345678\"\n    },\n    \"delivery_address\": {\n      \"country\": \"FR\",\n      \"state\": \"<string>\",\n      \"city\": \"Paris\",\n      \"zip_code\": \"75001\",\n      \"street_address\": \"101 Rue de Rivoli\",\n      \"street_additional_details\": \"Immeuble B\",\n      \"house_number\": \"101\"\n    }\n  }\n}"
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"status\": 3598,\n    \"message\": \"string\",\n    \"description\": \"string\",\n    \"details\": {\n      \"path\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f65833bb-f2f8-4ab7-9c3e-1ae7d32b38a7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connector",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order\": {\n    \"order_id\": \"ORDER_1537532589263\",\n    \"price\": {\n      \"amount\": 100,\n      \"currency\": \"EUR\",\n      \"tax_fees\": 1.1,\n      \"shipping_fees\": 1.3\n    },\n    \"transaction_type\": \"Debit\",\n    \"initialize_payment_terminal\": true,\n    \"basket\": [\n      {\n        \"product_reference\": \"NF-a1690\",\n        \"type\": \"good\",\n        \"quantity\": 1,\n        \"name\": \"My first product\",\n        \"unit_price\": 8.99,\n        \"tax_rate\": 0,\n        \"total_amount\": 8.99,\n        \"european_article_numbering\": \"<string>\",\n        \"discount\": 0,\n        \"product_category\": 2,\n        \"url\": \"https://image.example.com/image_180x180.jpg\"\n      },\n      {\n        \"product_reference\": \"NF-a1690\",\n        \"type\": \"good\",\n        \"quantity\": 1,\n        \"name\": \"My first product\",\n        \"unit_price\": 8.99,\n        \"tax_rate\": 0,\n        \"total_amount\": 8.99,\n        \"european_article_numbering\": \"<string>\",\n        \"discount\": 0,\n        \"product_category\": 2,\n        \"url\": \"https://image.example.com/image_180x180.jpg\"\n      }\n    ],\n    \"description\": \"A super short description here...\",\n    \"long_description\": \"A super long description here...\",\n    \"soft_descriptor\": \"Dell Inspiron 15 3583 (i3583-3112BLK-PFR)\",\n    \"custom_data\": \"<object>\"\n  },\n  \"pos_technical_info\": {\n    \"terminal_transaction_display\": {\n      \"contract_array\": [\n        {\n          \"merchant_contract\": \"<string>\",\n          \"rank\": \"001\",\n          \"payment_application\": \"001\"\n        },\n        {\n          \"merchant_contract\": \"<string>\",\n          \"rank\": \"001\",\n          \"payment_application\": \"001\"\n        }\n      ],\n      \"push_to\": \"POS\",\n      \"protocol\": \"AppNepting\",\n      \"force_authorization\": true\n    },\n    \"notify_url\": \"https://hipay.com/notify\",\n    \"device_information\": {\n      \"serial_number\": \"1850320198\",\n      \"manufacturer\": \"PAX\"\n    },\n    \"host_information\": {\n      \"host\": \"193.251.48.153\",\n      \"port\": 8888\n    }\n  },\n  \"customer\": {\n    \"customer_id\": \"283749291\",\n    \"email\": \"john.doe@foobar99.com\",\n    \"phone\": \"33012345678\",\n    \"first_name\": \"Cathy\",\n    \"last_name\": \"Doe\",\n    \"birthdate\": \"1988-06-12\",\n    \"gender\": \"U\",\n    \"additional_customer_information\": \"Dr.\",\n    \"customer_location\": {\n      \"country\": \"FR\",\n      \"state\": \"<string>\",\n      \"city\": \"Paris\",\n      \"zip_code\": \"75001\",\n      \"street_address\": \"101 Rue de Rivoli\",\n      \"street_additional_details\": \"Immeuble B\",\n      \"house_number\": \"101\"\n    }\n  },\n  \"shipping\": {\n    \"delivery_date\": \"2022-12-20\",\n    \"delivery_method\": \"CARRIER\",\n    \"carrier_description\": \"La Poste, 27 Rue des Francs Bourgeois\",\n    \"recipient_information\": {\n      \"first_name\": \"Cathy\",\n      \"last_name\": \"Doe\",\n      \"additional_info\": \"Dr.\",\n      \"gender\": \"U\",\n      \"phone\": \"33112345678\"\n    },\n    \"delivery_address\": {\n      \"country\": \"FR\",\n      \"state\": \"<string>\",\n      \"city\": \"Paris\",\n      \"zip_code\": \"75001\",\n      \"street_address\": \"101 Rue de Rivoli\",\n      \"street_additional_details\": \"Immeuble B\",\n      \"house_number\": \"101\"\n    }\n  }\n}"
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"status\": 3598,\n    \"message\": \"string\",\n    \"description\": \"string\",\n    \"details\": {\n      \"path\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1262ba2-64d1-46c5-a1a6-04a06e17a7a4",
+              "name": "KO - The request has failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connector",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order\": {\n    \"order_id\": \"ORDER_1537532589263\",\n    \"price\": {\n      \"amount\": 100,\n      \"currency\": \"EUR\",\n      \"tax_fees\": 1.1,\n      \"shipping_fees\": 1.3\n    },\n    \"transaction_type\": \"Debit\",\n    \"initialize_payment_terminal\": true,\n    \"basket\": [\n      {\n        \"product_reference\": \"NF-a1690\",\n        \"type\": \"good\",\n        \"quantity\": 1,\n        \"name\": \"My first product\",\n        \"unit_price\": 8.99,\n        \"tax_rate\": 0,\n        \"total_amount\": 8.99,\n        \"european_article_numbering\": \"<string>\",\n        \"discount\": 0,\n        \"product_category\": 2,\n        \"url\": \"https://image.example.com/image_180x180.jpg\"\n      },\n      {\n        \"product_reference\": \"NF-a1690\",\n        \"type\": \"good\",\n        \"quantity\": 1,\n        \"name\": \"My first product\",\n        \"unit_price\": 8.99,\n        \"tax_rate\": 0,\n        \"total_amount\": 8.99,\n        \"european_article_numbering\": \"<string>\",\n        \"discount\": 0,\n        \"product_category\": 2,\n        \"url\": \"https://image.example.com/image_180x180.jpg\"\n      }\n    ],\n    \"description\": \"A super short description here...\",\n    \"long_description\": \"A super long description here...\",\n    \"soft_descriptor\": \"Dell Inspiron 15 3583 (i3583-3112BLK-PFR)\",\n    \"custom_data\": \"<object>\"\n  },\n  \"pos_technical_info\": {\n    \"terminal_transaction_display\": {\n      \"contract_array\": [\n        {\n          \"merchant_contract\": \"<string>\",\n          \"rank\": \"001\",\n          \"payment_application\": \"001\"\n        },\n        {\n          \"merchant_contract\": \"<string>\",\n          \"rank\": \"001\",\n          \"payment_application\": \"001\"\n        }\n      ],\n      \"push_to\": \"POS\",\n      \"protocol\": \"AppNepting\",\n      \"force_authorization\": true\n    },\n    \"notify_url\": \"https://hipay.com/notify\",\n    \"device_information\": {\n      \"serial_number\": \"1850320198\",\n      \"manufacturer\": \"PAX\"\n    },\n    \"host_information\": {\n      \"host\": \"193.251.48.153\",\n      \"port\": 8888\n    }\n  },\n  \"customer\": {\n    \"customer_id\": \"283749291\",\n    \"email\": \"john.doe@foobar99.com\",\n    \"phone\": \"33012345678\",\n    \"first_name\": \"Cathy\",\n    \"last_name\": \"Doe\",\n    \"birthdate\": \"1988-06-12\",\n    \"gender\": \"U\",\n    \"additional_customer_information\": \"Dr.\",\n    \"customer_location\": {\n      \"country\": \"FR\",\n      \"state\": \"<string>\",\n      \"city\": \"Paris\",\n      \"zip_code\": \"75001\",\n      \"street_address\": \"101 Rue de Rivoli\",\n      \"street_additional_details\": \"Immeuble B\",\n      \"house_number\": \"101\"\n    }\n  },\n  \"shipping\": {\n    \"delivery_date\": \"2022-12-20\",\n    \"delivery_method\": \"CARRIER\",\n    \"carrier_description\": \"La Poste, 27 Rue des Francs Bourgeois\",\n    \"recipient_information\": {\n      \"first_name\": \"Cathy\",\n      \"last_name\": \"Doe\",\n      \"additional_info\": \"Dr.\",\n      \"gender\": \"U\",\n      \"phone\": \"33112345678\"\n    },\n    \"delivery_address\": {\n      \"country\": \"FR\",\n      \"state\": \"<string>\",\n      \"city\": \"Paris\",\n      \"zip_code\": \"75001\",\n      \"street_address\": \"101 Rue de Rivoli\",\n      \"street_additional_details\": \"Immeuble B\",\n      \"house_number\": \"101\"\n    }\n  }\n}"
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"status\": 3598,\n    \"message\": \"string\",\n    \"description\": \"string\",\n    \"details\": {\n      \"path\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stage-api-gateway.hipay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dcbb51f9-0c23-4996-8dc0-d2e802fba06b",
+    "name": "Hipay Payment Gateway balance Order API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Version 1.6.1 - June 11, 2025\n\nThe Gateway API allows you to get paid and manage orders and transactions.\n\nPlease note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.\n\nThis page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.\n# Web service information\n## Gateway API base URLs\n| Environment | Base URL |\n| --- | --- |\n| Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |\n| Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |\n## Authentication\nAll requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.\n`Authorization: Basic base64('API login>:<API password>')`\n",
+      "type": "text/plain"
+    }
+  }
+}

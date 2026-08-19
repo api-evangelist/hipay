@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance merchant-group API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "merchant-group",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List merchant group member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/merchant-group/:merchant_group_code.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "merchant_group_code",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "past_date",
+                "value": "",
+                "type": "query",
+                "description": "The date from which the member accounts were created"
+              },
+              {
+                "name": "account_type[]",
+                "value": "",
+                "type": "query",
+                "description": "Account type"
+              },
+              {
+                "name": "nb_result_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to display on each page. Default is 20"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number. First page has number 1. Default is 1"
+              }
+            ]
+          },
+          "docs": "\n### Information\n\nList merchant group member."
+        },
+        {
+          "info": {
+            "name": "Count merchant group member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/merchant-group/:merchant_group_code/count.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "merchant_group_code",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "past_date",
+                "value": "",
+                "type": "query",
+                "description": "The date from which the member accounts were created"
+              },
+              {
+                "name": "account_type[]",
+                "value": "",
+                "type": "query",
+                "description": "Account type"
+              }
+            ]
+          },
+          "docs": "\n### Information\n\nCount merchant group member."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

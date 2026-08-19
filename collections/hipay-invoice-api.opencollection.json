@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance invoice API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "invoice",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List marketplace invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/marketplace/invoice.:_format",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "query",
+                "description": "Invoice reference"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "Invoices year"
+              }
+            ]
+          },
+          "docs": "\n### Information\nList marketplace invoices."
+        },
+        {
+          "info": {
+            "name": "Download an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/marketplace/invoice/:reference.:_format",
+            "params": [
+              {
+                "name": "reference",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\nDownload an invoice."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

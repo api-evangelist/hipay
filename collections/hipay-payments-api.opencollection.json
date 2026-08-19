@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance payments API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates an order and a transaction based on payment details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/v1/order",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "This service allows you to execute transactions through API with no need\nto redirect your customer to the payment page hosted by HiPay. This\nservice supports payments with credit or debit cards as well as\nalternative payment methods.\n\nIn **order** to make a payment with a credit or debit card, a token must\nhave been generated beforehand. In fact, this service cannot receive\ncredit or debit card numbers in clear. Instead, you must provide this\nservice with a token associated to a card number. Use"
+        },
+        {
+          "info": {
+            "name": "Creates a secure payment page which you can redirect your customer to, in order to proceed checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/v1/hpayment"
+          },
+          "docs": "This service allows you to **redirect your customer to a payment page (hosted by HiPay)** in order to proceed checkout.\n\nThis service creates an order and returns a forward URL. This forward URL is dedicated to display a payment page with your a customizable theme and validated payment products.\n\nAfter payment form validation, the checkout is processed and the customer is being returned to your website.\n\nAccording to transaction state and `authentication_indicator` parameter (see below), the cus"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

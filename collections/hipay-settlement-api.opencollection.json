@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance settlement API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "settlement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists settlements for your merchant account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/settlement",
+            "params": [
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Parameter which filters settlements equal to this amount."
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Parameter which filters settlements in this currency. This three-character currency code complies with ISO 4217."
+              },
+              {
+                "name": "date_from",
+                "value": "",
+                "type": "query",
+                "description": "Parameter which filters settlements after this date (format YYYY-MM-DD)."
+              },
+              {
+                "name": "date_to",
+                "value": "",
+                "type": "query",
+                "description": "Parameter which filters settlements before this date (format YYYY-MM-DD)."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Parameter which sorts settlements by this parameter."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Range of settlements to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of settlements to be returned."
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to get the whole list of settlements for the merchant account you're authenticated with.\nThe results are paginated, which means that not all the settlements are returned in one API call. Check the `page` and `per_page` parameters for more information about pagination.\n\nYou may need to search for particular settlements. To this end, this endpoint also offers filtering parameters which allow you to get settlements for a specific amount and currency or in a specific date ra"
+        },
+        {
+          "info": {
+            "name": "Retrieves details on a specific settlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/settlement/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The settlement ID."
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to get all details for a specific settlement based on its settlement ID. Details include:\n\n- Bank transfer info (bank name, recipient IBAN, etc.)\n\n- Total amount transferred to the bank account\n\n- Detailed amounts (sales, refunds, chargebacks, fees, etc.)\n"
+        },
+        {
+          "info": {
+            "name": "Returns the content of a settlement file in a given format",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/settlement/:id/raw:ext",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The settlement ID."
+              },
+              {
+                "name": "ext",
+                "value": "",
+                "type": "path",
+                "description": "The format of the settlement raw file you want to download."
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to download a settlement file in raw format given a specific settlement ID.\nAvailable formats for download are: `.txt`, `.xls` and `.csv`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance Routing API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Routing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_api_routing_available_payment_products_public",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/v3/routes/available-payment-products",
+            "params": [
+              {
+                "name": "country",
+                "value": "FR, ES",
+                "type": "query",
+                "description": "One or many payment countries."
+              },
+              {
+                "name": "payment_product",
+                "value": "sdd, paypal",
+                "type": "query",
+                "description": "One or many payment products."
+              },
+              {
+                "name": "payment_product_category",
+                "value": "debit-card, credit-card",
+                "type": "query",
+                "description": "One or many payment product categories."
+              },
+              {
+                "name": "currency",
+                "value": "EUR, USD",
+                "type": "query",
+                "description": "One or many currencies."
+              },
+              {
+                "name": "eci",
+                "value": "1, 10",
+                "type": "query",
+                "description": "One or many ECI."
+              },
+              {
+                "name": "payment_terminal",
+                "value": "1, 20, 33",
+                "type": "query",
+                "description": "One or many payment terminals."
+              },
+              {
+                "name": "initialize_payment_terminal",
+                "value": "1",
+                "type": "query",
+                "description": "Payment terminal is initialized ? 0 = false, 1 = true."
+              },
+              {
+                "name": "operation",
+                "value": "2, 3",
+                "type": "query",
+                "description": "One or many operation (ALL=1, AUTHENTICATION=2, AUTORIZATION=3, CAPTURE=4, CREDIT=5, CHARGEBACK=6, REFUND=7)."
+              },
+              {
+                "name": "acquirer_registration_id",
+                "value": "1234",
+                "type": "query",
+                "description": "One or many acquirer_registration_id."
+              },
+              {
+                "name": "authentication_method",
+                "value": "1, 3",
+                "type": "query",
+                "description": "One or many authentication method (1, 2 or 3)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

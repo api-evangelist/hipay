@@ -1,0 +1,557 @@
+{
+  "item": [
+    {
+      "id": "d0c76293-0f15-4178-a87a-2e7b07c19aa2",
+      "name": "Routing",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4fdbebfa-5777-462d-9c56-56a8fbbb9dcb",
+          "name": "get api routing available payment products public",
+          "request": {
+            "name": "get api routing available payment products public",
+            "description": {},
+            "url": {
+              "path": [
+                "v3",
+                "routes",
+                "available-payment-products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f03ba60-569b-4b85-afa1-e8c63d1bb8f7",
+              "name": "Payment products retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "routes",
+                    "available-payment-products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "FR, ES"
+                    },
+                    {
+                      "key": "payment_product",
+                      "value": "sdd, paypal"
+                    },
+                    {
+                      "key": "payment_product_category",
+                      "value": "debit-card, credit-card"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "EUR, USD"
+                    },
+                    {
+                      "key": "eci",
+                      "value": "1, 10"
+                    },
+                    {
+                      "key": "payment_terminal",
+                      "value": "1, 20, 33"
+                    },
+                    {
+                      "key": "initialize_payment_terminal",
+                      "value": "1"
+                    },
+                    {
+                      "key": "operation",
+                      "value": "2, 3"
+                    },
+                    {
+                      "key": "acquirer_registration_id",
+                      "value": "1234"
+                    },
+                    {
+                      "key": "authentication_method",
+                      "value": "1, 3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"FR, ES\",\n  \"payment_product\": \"sdd, paypal\",\n  \"payment_product_category\": \"debit-card, credit-card\",\n  \"currency\": \"EUR, USD\",\n  \"eci\": \"1, 10\",\n  \"payment_terminal\": \"1, 20, 33\",\n  \"initialize_payment_terminal\": \"1\",\n  \"operation\": \"2, 3\",\n  \"acquirer_registration_id\": \"1234\",\n  \"authentication_method\": \"1, 3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"string\",\n    \"description\": \"string\",\n    \"tokenizable\": 321\n  },\n  {\n    \"code\": \"string\",\n    \"description\": \"string\",\n    \"tokenizable\": 5590\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb964022-6b30-4318-aea5-d3805b0d6b2d",
+              "name": "No payment products could be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "routes",
+                    "available-payment-products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "FR, ES"
+                    },
+                    {
+                      "key": "payment_product",
+                      "value": "sdd, paypal"
+                    },
+                    {
+                      "key": "payment_product_category",
+                      "value": "debit-card, credit-card"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "EUR, USD"
+                    },
+                    {
+                      "key": "eci",
+                      "value": "1, 10"
+                    },
+                    {
+                      "key": "payment_terminal",
+                      "value": "1, 20, 33"
+                    },
+                    {
+                      "key": "initialize_payment_terminal",
+                      "value": "1"
+                    },
+                    {
+                      "key": "operation",
+                      "value": "2, 3"
+                    },
+                    {
+                      "key": "acquirer_registration_id",
+                      "value": "1234"
+                    },
+                    {
+                      "key": "authentication_method",
+                      "value": "1, 3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"FR, ES\",\n  \"payment_product\": \"sdd, paypal\",\n  \"payment_product_category\": \"debit-card, credit-card\",\n  \"currency\": \"EUR, USD\",\n  \"eci\": \"1, 10\",\n  \"payment_terminal\": \"1, 20, 33\",\n  \"initialize_payment_terminal\": \"1\",\n  \"operation\": \"2, 3\",\n  \"acquirer_registration_id\": \"1234\",\n  \"authentication_method\": \"1, 3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d26f2281-1334-4035-ae73-260f0fe650cc",
+              "name": "The request was rejected due to a validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "routes",
+                    "available-payment-products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "FR, ES"
+                    },
+                    {
+                      "key": "payment_product",
+                      "value": "sdd, paypal"
+                    },
+                    {
+                      "key": "payment_product_category",
+                      "value": "debit-card, credit-card"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "EUR, USD"
+                    },
+                    {
+                      "key": "eci",
+                      "value": "1, 10"
+                    },
+                    {
+                      "key": "payment_terminal",
+                      "value": "1, 20, 33"
+                    },
+                    {
+                      "key": "initialize_payment_terminal",
+                      "value": "1"
+                    },
+                    {
+                      "key": "operation",
+                      "value": "2, 3"
+                    },
+                    {
+                      "key": "acquirer_registration_id",
+                      "value": "1234"
+                    },
+                    {
+                      "key": "authentication_method",
+                      "value": "1, 3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"FR, ES\",\n  \"payment_product\": \"sdd, paypal\",\n  \"payment_product_category\": \"debit-card, credit-card\",\n  \"currency\": \"EUR, USD\",\n  \"eci\": \"1, 10\",\n  \"payment_terminal\": \"1, 20, 33\",\n  \"initialize_payment_terminal\": \"1\",\n  \"operation\": \"2, 3\",\n  \"acquirer_registration_id\": \"1234\",\n  \"authentication_method\": \"1, 3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 5589,\n  \"details\": null,\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab4a7c70-6bc5-4e7a-865a-84d7a5ea43a7",
+              "name": "An authentication error occurred/invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "routes",
+                    "available-payment-products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "FR, ES"
+                    },
+                    {
+                      "key": "payment_product",
+                      "value": "sdd, paypal"
+                    },
+                    {
+                      "key": "payment_product_category",
+                      "value": "debit-card, credit-card"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "EUR, USD"
+                    },
+                    {
+                      "key": "eci",
+                      "value": "1, 10"
+                    },
+                    {
+                      "key": "payment_terminal",
+                      "value": "1, 20, 33"
+                    },
+                    {
+                      "key": "initialize_payment_terminal",
+                      "value": "1"
+                    },
+                    {
+                      "key": "operation",
+                      "value": "2, 3"
+                    },
+                    {
+                      "key": "acquirer_registration_id",
+                      "value": "1234"
+                    },
+                    {
+                      "key": "authentication_method",
+                      "value": "1, 3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"FR, ES\",\n  \"payment_product\": \"sdd, paypal\",\n  \"payment_product_category\": \"debit-card, credit-card\",\n  \"currency\": \"EUR, USD\",\n  \"eci\": \"1, 10\",\n  \"payment_terminal\": \"1, 20, 33\",\n  \"initialize_payment_terminal\": \"1\",\n  \"operation\": \"2, 3\",\n  \"acquirer_registration_id\": \"1234\",\n  \"authentication_method\": \"1, 3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 225,\n  \"details\": null,\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9a7bb15-5fce-4e7c-bfdc-fa92599589f1",
+              "name": "Access denied.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "routes",
+                    "available-payment-products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "FR, ES"
+                    },
+                    {
+                      "key": "payment_product",
+                      "value": "sdd, paypal"
+                    },
+                    {
+                      "key": "payment_product_category",
+                      "value": "debit-card, credit-card"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "EUR, USD"
+                    },
+                    {
+                      "key": "eci",
+                      "value": "1, 10"
+                    },
+                    {
+                      "key": "payment_terminal",
+                      "value": "1, 20, 33"
+                    },
+                    {
+                      "key": "initialize_payment_terminal",
+                      "value": "1"
+                    },
+                    {
+                      "key": "operation",
+                      "value": "2, 3"
+                    },
+                    {
+                      "key": "acquirer_registration_id",
+                      "value": "1234"
+                    },
+                    {
+                      "key": "authentication_method",
+                      "value": "1, 3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"FR, ES\",\n  \"payment_product\": \"sdd, paypal\",\n  \"payment_product_category\": \"debit-card, credit-card\",\n  \"currency\": \"EUR, USD\",\n  \"eci\": \"1, 10\",\n  \"payment_terminal\": \"1, 20, 33\",\n  \"initialize_payment_terminal\": \"1\",\n  \"operation\": \"2, 3\",\n  \"acquirer_registration_id\": \"1234\",\n  \"authentication_method\": \"1, 3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 225,\n  \"details\": null,\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stage-api-gateway.hipay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f4985276-994f-4255-8915-5b21af9f4241",
+    "name": "Hipay Payment Gateway balance Routing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Version 1.6.1 - June 11, 2025\n\nThe Gateway API allows you to get paid and manage orders and transactions.\n\nPlease note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.\n\nThis page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.\n# Web service information\n## Gateway API base URLs\n| Environment | Base URL |\n| --- | --- |\n| Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |\n| Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |\n## Authentication\nAll requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.\n`Authorization: Basic base64('API login>:<API password>')`\n",
+      "type": "text/plain"
+    }
+  }
+}

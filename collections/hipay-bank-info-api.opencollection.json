@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance bank-info API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "bank-info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register new bank details on a HiPay account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/user-account/bank-info.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\nRegister new bank-details on an HiPay account.\n\nMust be called with the bank identity document and bank info together\n\n\n__In test environment__\n\n\nYou can choose if the document will be accepted or not by changing the 3 first characters of the uploaded file name.\n  - Filename starts with `01_`: document will be refused because unrecognized\n\n  - Filename starts with `02_`: document will be refused because falsified\n\n  - Filename starts with `03_`: document will be refused because "
+        },
+        {
+          "info": {
+            "name": "Get bank details registered on a HiPay account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/user-account/bank-info/:locale.:_format",
+            "params": [
+              {
+                "name": "locale",
+                "value": "",
+                "type": "path",
+                "description": "\nEnter locale code [using this convention.](https://www.softaculous.com/docs/Scripts_Language_Codes) Examples of values: `fr_FR`, `de_DE`, `es_ES`, `uk_UA`..."
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\nGet bank details of a HiPay account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

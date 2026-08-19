@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance withdrawal API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "withdrawal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request a withdrawal from a HiPay account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/withdrawal.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\nAllows you to request a withdrawal from a HiPay account and transfer the funds to the bank account linked to the account.\nOnce funds are allocated, there are two withdrawal possibilities.\n\n  - Whenever a transaction is made – please note that this option is not recommended by HiPay.\n\n  - Whenever a withdrawal request is made – for example, every ten days, depending on the agent.\n\nWhen agents want to do a withdrawal, they need to check the merchant’s account balance with the getB"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance identification API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "identification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the list of all identification documents for a user-space",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/identification.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\nGet the list of all identification documents for a user-space\n\nFor more information, please read the [HiPay Marketplace Account creation section.](/marketplace/api-integration/vendors#account-creation)"
+        },
+        {
+          "info": {
+            "name": "Upload identification documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stage-api-gateway.hipay.com/identification.:_format",
+            "headers": [
+              {
+                "name": "php-auth-subaccount-id",
+                "value": ""
+              },
+              {
+                "name": "php-auth-subaccount-login",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\n\nUpload identification documents. Uploaded documents can't exceed 15MB.\n\n__Type of document for a customer account__\n  - `1`: Copy of a valid identification document\n\n\n__Type of document for a merchant account (corporation)__\n  - `1`: Copy of a valid identification document of the legal representative. *Deprecated, please use type 1 for all ID documents*\n  \n  - `4`: Document certifying Company registration\n\n  - `5`: Signed Articles of Association with the division of powers (fea"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

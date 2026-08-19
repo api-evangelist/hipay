@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hipay Payment Gateway balance captcha-generation API",
+    "version": "1.6.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "captcha-generation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a captcha",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stage-api-gateway.hipay.com/tools/captcha.:_format",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "\n### Information\n\nGenerate a captcha."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
