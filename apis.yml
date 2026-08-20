@@ -23,6 +23,15 @@ tags:
   - Fintech
   - Europe
   - Omnichannel
+  - Point-of-Sale
+  - Fraud Prevention
+  - Tokenization
+  - Marketplace
+tags_raw:
+  - Payments
+  - Fintech
+  - Europe
+  - Omnichannel
   - Point of Sale
   - Fraud Prevention
   - Tokenization
@@ -34,6 +43,8 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
+  - Balances
+  tags_raw:
   - balance
   properties:
   - type: OpenAPI
@@ -106,6 +117,8 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
+  - Constants
+  tags_raw:
   - constants
   properties:
   - type: OpenAPI
@@ -124,6 +137,8 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
+  - Identification
+  tags_raw:
   - identification
   properties:
   - type: OpenAPI
@@ -142,6 +157,8 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
+  - Invoice
+  tags_raw:
   - invoice
   properties:
   - type: OpenAPI
@@ -160,6 +177,8 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
+  - Maintenance
+  tags_raw:
   - maintenance
   properties:
   - type: OpenAPI
@@ -214,6 +233,8 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
+  - Payments
+  tags_raw:
   - payments
   properties:
   - type: OpenAPI
@@ -268,6 +289,8 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
+  - Settlement
+  tags_raw:
   - settlement
   properties:
   - type: OpenAPI
@@ -286,6 +309,8 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
+  - Tokenization
+  tags_raw:
   - tokenization
   properties:
   - type: OpenAPI
@@ -322,6 +347,8 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
+  - Transfer
+  tags_raw:
   - transfer
   properties:
   - type: OpenAPI
@@ -340,6 +367,8 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
+  - UBO
+  tags_raw:
   - ubo
   properties:
   - type: OpenAPI
@@ -358,6 +387,8 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
+  - User Account
+  tags_raw:
   - user-account
   properties:
   - type: OpenAPI
