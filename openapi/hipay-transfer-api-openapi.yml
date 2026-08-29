@@ -1,50 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Hipay Payment Gateway balance transfer API
-  description: '## Version 1.6.1 - June 11, 2025
-
-
-    The Gateway API allows you to get paid and manage orders and transactions.
-
-
-    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
-
-
-    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
-
-    # Web service information
-
-    ## Gateway API base URLs
-
-    | Environment | Base URL |
-
-    | --- | --- |
-
-    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
-
-    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
-
-    ## Authentication
-
-    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
-
-    `Authorization: Basic base64(''API login>:<API password>'')`
-
-    '
-  version: 1.6.1
+  version: '0.3'
+  title: HiPay Marketplace Transfer API
+  description: "\nThe implementation of HiPay Marketplace involves establishing connections between your marketplace platform and HiPay based on a simple integration through a set of APIs.\n\n## Account creation:\n\n  1) The agent checks the e-mail availability with the [Is-available API](#/user-account/post_user-account_is-available).\n\n  2) The agent creates a HiPay account for merchants using the [User-account API](#/user-account/post_user-account).\n\n  3) The agent sends us the account number and the identification/KYC information using the [Identification API](#/identification/post_Identification). HiPay validates the identification/KYC information within three days and sends the agent a notification confirming that the merchant is fully operational.\n\n## Bank account information submission:\n\nPlease note that it is possible to submit bank account information any time between account creation and withdrawal requests.\nTo register a HiPay account bank information, use the [Bank-info API.](#/bank-info/post_user-account)\n\n## Fund allocation:\n\nFund allocation is only possible if the merchant's account is validated by HiPay.\n\nAll the funds are held in escrow before being deposited on the technical account.\n\nThe [Transfer API](#/transfer/post_transfer]) is then used to allocate funds from the technical account to the merchant's account.\nThe [Transfer API](#/transfer/post_transfer]) allows transfer requests to be made on the agent’s behalf or on the behalf of a third party.\n\nThe technical account is therefore a monitoring tool that provides a clear view of fund allocation (fund remittance, refunds, chargebacks).\n\n## Withdrawal requests:\n\nWithdrawal is only possible if the merchant's account AND banking informations are validated by HiPay.\n\nOnce funds are allocated, there are two withdrawal possibilities:\n\n  - Whenever a transaction is made – please note that this option is not recommended by HiPay,\n  - Whenever a withdrawal request is made by the merchant – for example, every ten days, depending on the agent.\n\nWhen agents want to do a withdrawal, they need to check the merchant’s account balance with the [Balance API.](#/balance/get_user-account)\n\n  - In case of a zero balance, funds must be allocated with the [Transfer API](#/transfer/post_transfer]).\n  - If the balance equals the amount of the allocated funds, a fund withdrawal request can be made with the [Withdrawal API](#/withdrawal/post_withdrawal). (The Withdrawal API allows for a withdrawal request to transfer money to the merchant’s bank account and also to the partner’s bank account.)\n  - There must be a zero balance in the end.\n\n## Marketplace live testing:\n\nThis documentation describes the Marketplace API parameters and response fields and allows you to test the platform in real time.\n\n## Marketplace API base URLs:\n\n| Environment | Base URL |\n| --- | --- |\n| Test | https://test-professional.hipay.com/api/ |\n| Production | https://professional.hipay.com/api/ |\n\n## Authentication:\n\nAll requests to the HiPay Marketplace API require you to authenticate yourself using the HTTP *Basic Authentication* to convey your identity. Your API credentials can be found in [your Test HiPay Professional back office](https://test-merchant.hipaywallet.com/login). Most HTTP clients (including web browsers) have built-in support for HTTP Basic Authentication. If not, the following header must be included in all HTTP requests.\n\n`Authorization: Basic base64(\"<API login>:<API password>\")`\n"
 servers:
-- url: https://stage-api-gateway.hipay.com
-  description: Stage
-- url: https://api-gateway.hipay.com
-  description: Production
+- url: https://test-professional.hipay.com/api
 tags:
 - name: transfer
   description: Transfer funds between HiPay accounts
 paths:
   /transfer.{_format}:
     post:
-      consumes:
-      - multipart/form-data
       description: '
 
         ### Information
@@ -65,133 +31,82 @@ paths:
       - in: path
         name: _format
         required: true
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
-      - description: Account ID of the recipient account.
-        format: int32
-        in: formData
-        name: recipient_account_id
-        type: integer
-        default: '592734'
-      - description: Login of the recipient account (email).
-        in: formData
-        name: recipient_account_login
-        type: string
-        default: developer@hipay.com
-      - description: Amount of the transfer in the account currency.
-        format: float
-        in: formData
-        name: amount
-        type: number
-        default: '19.90'
-      - description: Label of the transfer known by you and the recipient user.
-        in: formData
-        name: public_label
-        type: string
-        default: Custom public label
-      - description: Label of the transfer only known by you.
-        in: formData
-        name: private_label
-        type: string
-        default: Custom private label
-      - description: Unique ID of the transfer sent by the merchant. HiPay will process only 1 transfer with this ID.
-        in: formData
-        name: merchant_unique_id
-        type: string
-        default: ORDER_1973645854
-      - description: Periodicity type of the transfer.
-        enum:
-        - direct
-        - deferred
-        - periodic
-        default: direct
-        in: formData
-        name: periodicity_type
-        type: string
-      - description: 'Periodicity (required for a periodic transfer).
-
-          If you select a date which does not exist every month (29, 30 or 31), the transfer will take place on the last day of the month.
-
-          If you select a date before today''s date, the first transfer will take place next month.'
-        format: int32
-        in: formData
-        name: periodicity
-        type: integer
-        default: '15'
-      - description: Execution date of the transfer (required for a deferred transfer).
-        format: date
-        in: formData
-        name: date
-        type: string
-        default: '2020-11-20'
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
       - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
         in: header
         name: php-auth-subaccount-id
-        type: integer
+        schema:
+          type: integer
       - description: Account login (email address) if operations must be made on an account other than yours (you must have specific rights on this account).
         in: header
         name: php-auth-subaccount-login
-        type: string
-      produces: []
+        schema:
+          type: string
       responses:
         '200':
           description: Error response
-          schema:
-            properties:
-              code:
-                description: Status code of the answer. 4 => Action not allowed 26 => Transfer in progress
-                format: int32
-                type: integer
-                default: 4
-              message:
-                description: Description of the answer.
-                type: string
-                default: Action not allowed
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    description: Status code of the answer. 4 => Action not allowed 26 => Transfer in progress
+                    format: int32
+                    type: integer
+                    default: 4
+                  message:
+                    description: Description of the answer.
+                    type: string
+                    default: Action not allowed
         '201':
           description: Success response
-          schema:
-            properties:
-              code:
-                description: Status code of the answer.
-                format: int32
-                type: integer
-              message:
-                description: Description of the answer.
-                type: string
-              transaction_id:
-                description: HiPay’s transaction ID.
-                type: string
-              amount:
-                description: Transferred amount.
-                format: float
-                type: number
-              currency:
-                description: Currency of the transfer.
-                type: string
-              recipient_username:
-                description: Login of the recipient account (email).
-                type: string
-              public_label:
-                description: Label of the transfer known by you and the recipient user.
-                type: string
-              private_label:
-                description: Label of the transfer only known by you.
-                type: string
-              merchant_unique_id:
-                description: Unique ID of the transfer sent by the merchant.
-                type: string
-              periodicity_type:
-                description: Periodicity type of the transfer.
-                type: string
-              periodicity:
-                description: Periodicity of the transfer.
-                type: string
-              date:
-                description: Execution date of the transfer.
-                type: string
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    description: Status code of the answer.
+                    format: int32
+                    type: integer
+                  message:
+                    description: Description of the answer.
+                    type: string
+                  transaction_id:
+                    description: HiPay’s transaction ID.
+                    type: string
+                  amount:
+                    description: Transferred amount.
+                    format: float
+                    type: number
+                  currency:
+                    description: Currency of the transfer.
+                    type: string
+                  recipient_username:
+                    description: Login of the recipient account (email).
+                    type: string
+                  public_label:
+                    description: Label of the transfer known by you and the recipient user.
+                    type: string
+                  private_label:
+                    description: Label of the transfer only known by you.
+                    type: string
+                  merchant_unique_id:
+                    description: Unique ID of the transfer sent by the merchant.
+                    type: string
+                  periodicity_type:
+                    description: Periodicity type of the transfer.
+                    type: string
+                  periodicity:
+                    description: Periodicity of the transfer.
+                    type: string
+                  date:
+                    description: Execution date of the transfer.
+                    type: string
         '400':
           description: Validation failed.
         '401':
@@ -201,15 +116,62 @@ paths:
       - transfer
       security:
       - basicAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                recipient_account_id:
+                  type: integer
+                  format: int32
+                  default: '592734'
+                  description: Account ID of the recipient account.
+                recipient_account_login:
+                  type: string
+                  default: developer@hipay.com
+                  description: Login of the recipient account (email).
+                amount:
+                  type: number
+                  format: float
+                  default: '19.90'
+                  description: Amount of the transfer in the account currency.
+                public_label:
+                  type: string
+                  default: Custom public label
+                  description: Label of the transfer known by you and the recipient user.
+                private_label:
+                  type: string
+                  default: Custom private label
+                  description: Label of the transfer only known by you.
+                merchant_unique_id:
+                  type: string
+                  default: ORDER_1973645854
+                  description: Unique ID of the transfer sent by the merchant. HiPay will process only 1 transfer with this ID.
+                periodicity_type:
+                  type: string
+                  enum:
+                  - direct
+                  - deferred
+                  - periodic
+                  default: direct
+                  description: Periodicity type of the transfer.
+                periodicity:
+                  type: integer
+                  format: int32
+                  default: '15'
+                  description: 'Periodicity (required for a periodic transfer).
+
+                    If you select a date which does not exist every month (29, 30 or 31), the transfer will take place on the last day of the month.
+
+                    If you select a date before today''s date, the first transfer will take place next month.'
+                date:
+                  type: string
+                  format: date
+                  default: '2020-11-20'
+                  description: Execution date of the transfer (required for a deferred transfer).
 components:
   securitySchemes:
-    BasicAuth:
+    basicAuth:
       type: http
       scheme: basic
-    ApiKeyAuth:
-      type: apiKey
-      name: X-API-KEY
-      in: header
-externalDocs:
-  description: Find out more about HiPay
-  url: https://developer.hipay.com/

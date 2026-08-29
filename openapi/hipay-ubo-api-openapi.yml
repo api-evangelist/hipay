@@ -1,50 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Hipay Payment Gateway balance ubo API
-  description: '## Version 1.6.1 - June 11, 2025
-
-
-    The Gateway API allows you to get paid and manage orders and transactions.
-
-
-    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
-
-
-    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
-
-    # Web service information
-
-    ## Gateway API base URLs
-
-    | Environment | Base URL |
-
-    | --- | --- |
-
-    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
-
-    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
-
-    ## Authentication
-
-    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
-
-    `Authorization: Basic base64(''API login>:<API password>'')`
-
-    '
-  version: 1.6.1
+  version: '0.3'
+  title: HiPay Marketplace Ubo API
+  description: "\nThe implementation of HiPay Marketplace involves establishing connections between your marketplace platform and HiPay based on a simple integration through a set of APIs.\n\n## Account creation:\n\n  1) The agent checks the e-mail availability with the [Is-available API](#/user-account/post_user-account_is-available).\n\n  2) The agent creates a HiPay account for merchants using the [User-account API](#/user-account/post_user-account).\n\n  3) The agent sends us the account number and the identification/KYC information using the [Identification API](#/identification/post_Identification). HiPay validates the identification/KYC information within three days and sends the agent a notification confirming that the merchant is fully operational.\n\n## Bank account information submission:\n\nPlease note that it is possible to submit bank account information any time between account creation and withdrawal requests.\nTo register a HiPay account bank information, use the [Bank-info API.](#/bank-info/post_user-account)\n\n## Fund allocation:\n\nFund allocation is only possible if the merchant's account is validated by HiPay.\n\nAll the funds are held in escrow before being deposited on the technical account.\n\nThe [Transfer API](#/transfer/post_transfer]) is then used to allocate funds from the technical account to the merchant's account.\nThe [Transfer API](#/transfer/post_transfer]) allows transfer requests to be made on the agent’s behalf or on the behalf of a third party.\n\nThe technical account is therefore a monitoring tool that provides a clear view of fund allocation (fund remittance, refunds, chargebacks).\n\n## Withdrawal requests:\n\nWithdrawal is only possible if the merchant's account AND banking informations are validated by HiPay.\n\nOnce funds are allocated, there are two withdrawal possibilities:\n\n  - Whenever a transaction is made – please note that this option is not recommended by HiPay,\n  - Whenever a withdrawal request is made by the merchant – for example, every ten days, depending on the agent.\n\nWhen agents want to do a withdrawal, they need to check the merchant’s account balance with the [Balance API.](#/balance/get_user-account)\n\n  - In case of a zero balance, funds must be allocated with the [Transfer API](#/transfer/post_transfer]).\n  - If the balance equals the amount of the allocated funds, a fund withdrawal request can be made with the [Withdrawal API](#/withdrawal/post_withdrawal). (The Withdrawal API allows for a withdrawal request to transfer money to the merchant’s bank account and also to the partner’s bank account.)\n  - There must be a zero balance in the end.\n\n## Marketplace live testing:\n\nThis documentation describes the Marketplace API parameters and response fields and allows you to test the platform in real time.\n\n## Marketplace API base URLs:\n\n| Environment | Base URL |\n| --- | --- |\n| Test | https://test-professional.hipay.com/api/ |\n| Production | https://professional.hipay.com/api/ |\n\n## Authentication:\n\nAll requests to the HiPay Marketplace API require you to authenticate yourself using the HTTP *Basic Authentication* to convey your identity. Your API credentials can be found in [your Test HiPay Professional back office](https://test-merchant.hipaywallet.com/login). Most HTTP clients (including web browsers) have built-in support for HTTP Basic Authentication. If not, the following header must be included in all HTTP requests.\n\n`Authorization: Basic base64(\"<API login>:<API password>\")`\n"
 servers:
-- url: https://stage-api-gateway.hipay.com
-  description: Stage
-- url: https://api-gateway.hipay.com
-  description: Production
+- url: https://test-professional.hipay.com/api
 tags:
 - name: ubo
   description: Manage your Ultimate Beneficial Ownerships (UBO)
 paths:
   /ubo.{_format}:
     post:
-      consumes:
-      - multipart/form-data
       description: '
 
         ### Information
@@ -60,159 +26,44 @@ paths:
       - in: path
         name: _format
         required: true
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
       - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
         in: header
         name: php-auth-subaccount-id
-        type: integer
+        schema:
+          type: integer
       - description: Account login (email) if operations must be made on an account other than yours (you must have specific rights on this account).
         in: header
         name: php-auth-subaccount-login
-        type: string
-      - description: 'Civility title of owner account : `1` : Mr, `2` : Mrs, `3` : Miss.'
-        enum:
-        - 1
-        - 2
-        - 3
-        in: formData
-        name: title
-        type: integer
-        required: true
-        default: 1
-      - description: First name of this UBO
-        in: formData
-        name: first_name
-        required: true
-        type: string
-      - description: Last name of this UBO
-        in: formData
-        name: last_name
-        required: true
-        type: string
-      - description: Street address
-        in: formData
-        name: address
-        required: true
-        type: string
-      - description: The zip or postal code
-        in: formData
-        name: zip_code
-        required: true
-        type: string
-      - description: City
-        in: formData
-        name: city
-        required: true
-        type: string
-      - description: The country code. This two-letter country code complies with ISO 3166-1
-        in: formData
-        name: address_country
-        required: true
-        type: string
-      - description: '`1` : CEO, `2` : COO, `3` : CFO, `4` : Shareholder, `5` : Administrator, `6` : Other, `7` : Company manager'
-        enum:
-        - 1
-        - 2
-        - 3
-        - 4
-        - 5
-        - 6
-        - 7
-        in: formData
-        name: position
-        required: true
-        type: integer
-        default: 1
-      - description: If position is OTHER this parameter is needed
-        in: formData
-        name: position_detail
-        required: false
-        type: string
-      - description: '`1` if this beneficial ower is a decision maker, `0` otherwise'
-        enum:
-        - 0
-        - 1
-        in: formData
-        name: decision_maker
-        type: integer
-        required: true
-        default: 0
-      - description: '`1` if this beneficial ower is a politicaly exposed, `0` otherwise'
-        enum:
-        - 0
-        - 1
-        in: formData
-        name: pep
-        type: integer
-        required: true
-        default: 0
-      - description: The identification number of the ID document (identification_file)
-        in: formData
-        name: id_number
-        required: true
-        type: string
-      - description: Birth date of account owner. Ex. '1965-11-12' for November 12, 1965
-        in: formData
-        name: date_of_birth
-        required: true
-        type: string
-        default: '1965-11-12'
-      - description: Birth city of account owner.
-        in: formData
-        name: place_of_birth
-        required: true
-        type: string
-      - description: Country of birth - This two-letter country code complies with ISO 3166-1
-        in: formData
-        name: country_of_birth
-        required: true
-        type: string
-      - description: Nationality - This two-letter country code complies with ISO 3166-1
-        in: formData
-        name: nationality
-        required: true
-        type: string
-      - description: Percentage of shares owned by this UBO (25% minimum)
-        in: formData
-        name: share
-        required: true
-        type: integer
-        default: 25
-      - description: Passport or ID card - File to upload (jpg, gif, png, pdf)
-        in: formData
-        name: id_document[file]
-        required: true
-        type: file
-      - description: Back of file to upload (jpg, gif, png, pdf). Required for id cards in Belgium and Italy
-        in: formData
-        name: id_document_back[file]
-        required: false
-        type: file
-      produces: []
+        schema:
+          type: string
       responses:
         '201':
           description: Success response
-          schema:
-            properties:
-              code:
-                description: Status code of the answer. 0 => Ubo successfully created
-                format: int32
-                type: integer
-              message:
-                description: Description of the answer.
-                type: string
-              ubo_statement_id:
-                description: Id of the UBO statement.
-                format: int32
-                type: integer
-              ubo_id:
-                description: Id of this UBO.
-                format: int32
-                type: integer
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    description: Status code of the answer. 0 => Ubo successfully created
+                    format: int32
+                    type: integer
+                  message:
+                    description: Description of the answer.
+                    type: string
+                  ubo_statement_id:
+                    description: Id of the UBO statement.
+                    format: int32
+                    type: integer
+                  ubo_id:
+                    description: Id of this UBO.
+                    format: int32
+                    type: integer
         '400':
           description: Validation failed.
         '401':
@@ -226,10 +77,115 @@ paths:
       - ubo
       security:
       - basicAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: integer
+                  enum:
+                  - 1
+                  - 2
+                  - 3
+                  default: 1
+                  description: 'Civility title of owner account : `1` : Mr, `2` : Mrs, `3` : Miss.'
+                first_name:
+                  type: string
+                  description: First name of this UBO
+                last_name:
+                  type: string
+                  description: Last name of this UBO
+                address:
+                  type: string
+                  description: Street address
+                zip_code:
+                  type: string
+                  description: The zip or postal code
+                city:
+                  type: string
+                  description: City
+                address_country:
+                  type: string
+                  description: The country code. This two-letter country code complies with ISO 3166-1
+                position:
+                  type: integer
+                  enum:
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  default: 1
+                  description: '`1` : CEO, `2` : COO, `3` : CFO, `4` : Shareholder, `5` : Administrator, `6` : Other, `7` : Company manager'
+                position_detail:
+                  type: string
+                  description: If position is OTHER this parameter is needed
+                decision_maker:
+                  type: integer
+                  enum:
+                  - 0
+                  - 1
+                  default: 0
+                  description: '`1` if this beneficial ower is a decision maker, `0` otherwise'
+                pep:
+                  type: integer
+                  enum:
+                  - 0
+                  - 1
+                  default: 0
+                  description: '`1` if this beneficial ower is a politicaly exposed, `0` otherwise'
+                id_number:
+                  type: string
+                  description: The identification number of the ID document (identification_file)
+                date_of_birth:
+                  type: string
+                  default: '1965-11-12'
+                  description: Birth date of account owner. Ex. '1965-11-12' for November 12, 1965
+                place_of_birth:
+                  type: string
+                  description: Birth city of account owner.
+                country_of_birth:
+                  type: string
+                  description: Country of birth - This two-letter country code complies with ISO 3166-1
+                nationality:
+                  type: string
+                  description: Nationality - This two-letter country code complies with ISO 3166-1
+                share:
+                  type: integer
+                  default: 25
+                  description: Percentage of shares owned by this UBO (25% minimum)
+                id_document[file]:
+                  type: string
+                  description: Passport or ID card - File to upload (jpg, gif, png, pdf)
+                  format: binary
+                id_document_back[file]:
+                  type: string
+                  description: Back of file to upload (jpg, gif, png, pdf). Required for id cards in Belgium and Italy
+                  format: binary
+              required:
+              - title
+              - first_name
+              - last_name
+              - address
+              - zip_code
+              - city
+              - address_country
+              - position
+              - decision_maker
+              - pep
+              - id_number
+              - date_of_birth
+              - place_of_birth
+              - country_of_birth
+              - nationality
+              - share
+              - id_document[file]
   /ubo/{id}.{_format}:
     delete:
-      consumes:
-      - multipart/form-data
       description: '
 
         ### Information
@@ -241,38 +197,43 @@ paths:
       - in: path
         name: _format
         required: true
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
       - in: path
         name: id
         description: Id of the UBO.
         required: true
-        type: string
-        default: 0
+        schema:
+          type: string
+          default: 0
       - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
         in: header
         name: php-auth-subaccount-id
-        type: integer
+        schema:
+          type: integer
       - description: Account login (email) if operations must be made on an account other than yours (you must have specific rights on this account).
         in: header
         name: php-auth-subaccount-login
-        type: string
-      produces: []
+        schema:
+          type: string
       responses:
         '200':
           description: 'Success response : UBO has been deleted.'
-          schema:
-            properties:
-              code:
-                description: Status code of the answer. 0 => Ubo successfully deleted.
-                format: int32
-                type: integer
-              message:
-                description: Description of the answer.
-                type: string
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    description: Status code of the answer. 0 => Ubo successfully deleted.
+                    format: int32
+                    type: integer
+                  message:
+                    description: Description of the answer.
+                    type: string
         '401':
           description: Authentication failed.
         '403':
@@ -284,108 +245,50 @@ paths:
       - basicAuth: []
   /ubo/legal-representative.{_format}:
     post:
-      consumes:
-      - multipart/form-data
       description: "\n### Information\n  This is the second step of UBO statement submission, only in case the legal representative declared for the user space is also a UBO.\n\n- 1 UBO = 1 shareholders with >25% of capital or voting rights)\n- The document uploaded can't exceed 15MO.\n- Civility, address and position informations will be retrieved from the user space's professional informations.\n- ID Document (and its backside if it is needed) will be retrieved from the uploaded KYC (identification) documents for the user space. if they are already uploaded. Otherwise, they can be uploaded here and handled like a KYC, both identifying the user space and this UBO.\n- As there can only be one legal representive per user space, only one UBO/legal representative can be declared."
       operationId: post_Ubo-legal-representative
       parameters:
       - in: path
         name: _format
         required: true
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
       - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
         in: header
         name: php-auth-subaccount-id
-        type: integer
+        schema:
+          type: integer
       - description: Account login (email) if operations must be made on an account other than yours (you must have specific rights on this account).
         in: header
         name: php-auth-subaccount-login
-        type: string
-      - description: '`1` if this beneficial ower is a decision maker, `0` otherwise'
-        enum:
-        - 0
-        - 1
-        in: formData
-        name: decision_maker
-        type: integer
-        required: true
-        default: 0
-      - description: The identification number of the ID document (identification_file)
-        in: formData
-        name: id_number
-        required: true
-        type: string
-      - description: '`1` if this beneficial ower is a politicaly exposed, `0` otherwise'
-        enum:
-        - 0
-        - 1
-        in: formData
-        name: pep
-        type: integer
-        required: true
-        default: 0
-      - description: Birth date of account owner. Ex. '1965-11-12' for November 12, 1965
-        in: formData
-        name: date_of_birth
-        required: true
-        type: string
-        default: '1965-11-12'
-      - description: Birth city of account owner.
-        in: formData
-        name: place_of_birth
-        required: true
-        type: string
-      - description: Country of birth - This two-letter country code complies with ISO 3166-1
-        in: formData
-        name: country_of_birth
-        required: true
-        type: string
-      - description: Nationality - This two-letter country code complies with ISO 3166-1
-        in: formData
-        name: nationality
-        required: true
-        type: string
-      - description: Percentage of shares owned by this UBO (25% minimum)
-        in: formData
-        name: share
-        required: true
-        type: integer
-        default: 25
-      - description: Passport or ID card - File to upload (jpg, gif, png, pdf)
-        in: formData
-        name: id_document[file]
-        required: false
-        type: file
-      - description: Back of file to upload (jpg, gif, png, pdf). Required for id cards in Belgium and Italy
-        in: formData
-        name: id_document_back[file]
-        required: false
-        type: file
-      produces: []
+        schema:
+          type: string
       responses:
         '201':
           description: Success response
-          schema:
-            properties:
-              code:
-                description: Status code of the answer.
-                format: int32
-                type: integer
-              message:
-                description: Description of the answer.
-                type: string
-              ubo_statement_id:
-                description: Id of the UBO statement.
-                format: int32
-                type: integer
-              ubo_id:
-                description: Id of this UBO.
-                format: int32
-                type: integer
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    description: Status code of the answer.
+                    format: int32
+                    type: integer
+                  message:
+                    description: Description of the answer.
+                    type: string
+                  ubo_statement_id:
+                    description: Id of the UBO statement.
+                    format: int32
+                    type: integer
+                  ubo_id:
+                    description: Id of this UBO.
+                    format: int32
+                    type: integer
         '400':
           description: Validation failed.
         '401':
@@ -399,10 +302,65 @@ paths:
       - ubo
       security:
       - basicAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                decision_maker:
+                  type: integer
+                  enum:
+                  - 0
+                  - 1
+                  default: 0
+                  description: '`1` if this beneficial ower is a decision maker, `0` otherwise'
+                id_number:
+                  type: string
+                  description: The identification number of the ID document (identification_file)
+                pep:
+                  type: integer
+                  enum:
+                  - 0
+                  - 1
+                  default: 0
+                  description: '`1` if this beneficial ower is a politicaly exposed, `0` otherwise'
+                date_of_birth:
+                  type: string
+                  default: '1965-11-12'
+                  description: Birth date of account owner. Ex. '1965-11-12' for November 12, 1965
+                place_of_birth:
+                  type: string
+                  description: Birth city of account owner.
+                country_of_birth:
+                  type: string
+                  description: Country of birth - This two-letter country code complies with ISO 3166-1
+                nationality:
+                  type: string
+                  description: Nationality - This two-letter country code complies with ISO 3166-1
+                share:
+                  type: integer
+                  default: 25
+                  description: Percentage of shares owned by this UBO (25% minimum)
+                id_document[file]:
+                  type: string
+                  description: Passport or ID card - File to upload (jpg, gif, png, pdf)
+                  format: binary
+                id_document_back[file]:
+                  type: string
+                  description: Back of file to upload (jpg, gif, png, pdf). Required for id cards in Belgium and Italy
+                  format: binary
+              required:
+              - decision_maker
+              - id_number
+              - pep
+              - date_of_birth
+              - place_of_birth
+              - country_of_birth
+              - nationality
+              - share
   /ubo/ubo-statement.{_format}:
     delete:
-      consumes:
-      - multipart/form-data
       description: "\n### Information\n If you initiate an UBO statement with a wrong number of UBO, and if you don't send all the UBO, You can delete this UBO statement and start a new one. If an UBO statement has been submitted (status WAITING or UPDATED), you can't delete it."
       operationId: delete_ubo-statement
       x-disableTryItOut: true
@@ -410,32 +368,36 @@ paths:
       - in: path
         name: _format
         required: true
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
       - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
         in: header
         name: php-auth-subaccount-id
-        type: integer
+        schema:
+          type: integer
       - description: Account login (email) if operations must be made on an account other than yours (you must have specific rights on this account).
         in: header
         name: php-auth-subaccount-login
-        type: string
-      produces: []
+        schema:
+          type: string
       responses:
         '200':
           description: Success response UBO statement has been deleted.
-          schema:
-            properties:
-              code:
-                description: Status code of the answer.
-                format: int32
-                type: integer
-              message:
-                description: Description of the answer.
-                type: string
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    description: Status code of the answer.
+                    format: int32
+                    type: integer
+                  message:
+                    description: Description of the answer.
+                    type: string
         '401':
           description: Authentication failed.
         '403':
@@ -446,96 +408,98 @@ paths:
       security:
       - basicAuth: []
     get:
-      consumes:
-      - multipart/form-data
       description: "\n### Information\n  Get the list of all UBOs and documents for a user-space. If an UBO is refused, you should send us a new UBO with https://professional.hipay.com/api/ubo."
       operationId: get_ubo-statement
       parameters:
       - in: path
         name: _format
         required: true
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
       - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
         in: header
         name: php-auth-subaccount-id
-        type: integer
+        schema:
+          type: integer
       - description: Account login (email) if operations must be made on an account other than yours (you must have specific rights on this account).
         in: header
         name: php-auth-subaccount-login
-        type: string
-      produces: []
+        schema:
+          type: string
       responses:
         '200':
           description: Success response
-          schema:
-            properties:
-              code:
-                description: Status code of the answer.
-                format: int32
-                type: integer
-              message:
-                description: Description of the answer.
-                type: string
-              user_space_id:
-                description: User space id.
-                type: integer
-              ubo_statement_id:
-                description: Id of the UBO statement.
-                type: integer
-              ubo_statement_status_code:
-                description: '0: new, 1: waiting, 2: to check, 3: validated, 4: rejected, 5: updated.'
-                type: integer
-              ubo_statement_status:
-                description: Text version of ubo_statement_status_code..
-                type: string
-              ubo:
-                description: List of UBO.
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      description: ID of the UBO.
-                      format: int32
-                      type: integer
-                    status_code:
-                      description: '0: new, 1: waiting, 2: to check, 3: identified, 4: rejected, 5: deleted, 6: updated.'
-                      type: integer
-                    status_label:
-                      description: Text version of ubo[status_code].
-                      type: string
-                    documents:
-                      description: List of the UBO.
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          id:
-                            description: ID of the UBO Document
-                            format: int32
-                            type: integer
-                          status_code:
-                            description: '0: new, 1: waiting, 2: validated, 3: refused, 4: deleted, 11: to check.'
-                            type: integer
-                          status_label:
-                            description: Text version of ubo[status_code].
-                            type: string
-                          type_code:
-                            description: '1: Passport or ID card, 2: Proof of address.'
-                            type: integer
-                          type_label:
-                            description: Text version of ubo[type_code].
-                            type: string
-                          status_refused_code:
-                            description: "\tIf an UBO is refused (status_code = 3), this is the reason. -1: Without detail, 1: Invalid date, 2: Unreadable, 3: Missing information, 4: Other, 6: Invalid document type."
-                            type: string
-                          status_refused_label:
-                            description: Text version of ubo[status_refused_code].
-                            type: string
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    description: Status code of the answer.
+                    format: int32
+                    type: integer
+                  message:
+                    description: Description of the answer.
+                    type: string
+                  user_space_id:
+                    description: User space id.
+                    type: integer
+                  ubo_statement_id:
+                    description: Id of the UBO statement.
+                    type: integer
+                  ubo_statement_status_code:
+                    description: '0: new, 1: waiting, 2: to check, 3: validated, 4: rejected, 5: updated.'
+                    type: integer
+                  ubo_statement_status:
+                    description: Text version of ubo_statement_status_code..
+                    type: string
+                  ubo:
+                    description: List of UBO.
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          description: ID of the UBO.
+                          format: int32
+                          type: integer
+                        status_code:
+                          description: '0: new, 1: waiting, 2: to check, 3: identified, 4: rejected, 5: deleted, 6: updated.'
+                          type: integer
+                        status_label:
+                          description: Text version of ubo[status_code].
+                          type: string
+                        documents:
+                          description: List of the UBO.
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                description: ID of the UBO Document
+                                format: int32
+                                type: integer
+                              status_code:
+                                description: '0: new, 1: waiting, 2: validated, 3: refused, 4: deleted, 11: to check.'
+                                type: integer
+                              status_label:
+                                description: Text version of ubo[status_code].
+                                type: string
+                              type_code:
+                                description: '1: Passport or ID card, 2: Proof of address.'
+                                type: integer
+                              type_label:
+                                description: Text version of ubo[type_code].
+                                type: string
+                              status_refused_code:
+                                description: "\tIf an UBO is refused (status_code = 3), this is the reason. -1: Without detail, 1: Invalid date, 2: Unreadable, 3: Missing information, 4: Other, 6: Invalid document type."
+                                type: string
+                              status_refused_label:
+                                description: Text version of ubo[status_refused_code].
+                                type: string
         '400':
           description: Validation failed.
         '401':
@@ -546,49 +510,45 @@ paths:
       security:
       - basicAuth: []
     post:
-      consumes:
-      - multipart/form-data
       description: "\n### Information\n  This is the first step of UBO statement submission. An UBO statement is a list of UBO (Ultimate Beneficial Owners).\n\n  - Be sure to have all the data before starting an UBO statement.\n  - 1 UBO = 1 shareholder with >25% of capital or voting rights)"
       operationId: post_ubo-statement
       parameters:
       - in: path
         name: _format
         required: true
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
       - description: Account ID if operations must be made on an account other than yours (you must have specific rights on this account).
         in: header
         name: php-auth-subaccount-id
-        type: integer
+        schema:
+          type: integer
       - description: Account login (email) if operations must be made on an account other than yours (you must have specific rights on this account).
         in: header
         name: php-auth-subaccount-login
-        type: string
-      - description: 'How many UBO do you have to declare ? * `0` : no UBO to declare * maximum of `4` UBOs'
-        in: formData
-        name: nb_ubo
-        required: true
-        type: integer
-        default: 0
-      produces: []
+        schema:
+          type: string
       responses:
         '201':
           description: Success response
-          schema:
-            properties:
-              code:
-                description: Status code of the answer.
-                format: int32
-                type: integer
-              message:
-                description: Description of the answer.
-                type: string
-              ubo_statement_id:
-                description: Id of the UBO statement.
-                type: integer
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    description: Status code of the answer.
+                    format: int32
+                    type: integer
+                  message:
+                    description: Description of the answer.
+                    type: string
+                  ubo_statement_id:
+                    description: Id of the UBO statement.
+                    type: integer
         '400':
           description: Validation failed.
         '401':
@@ -598,15 +558,20 @@ paths:
       - ubo
       security:
       - basicAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                nb_ubo:
+                  type: integer
+                  default: 0
+                  description: 'How many UBO do you have to declare ? * `0` : no UBO to declare * maximum of `4` UBOs'
+              required:
+              - nb_ubo
 components:
   securitySchemes:
-    BasicAuth:
+    basicAuth:
       type: http
       scheme: basic
-    ApiKeyAuth:
-      type: apiKey
-      name: X-API-KEY
-      in: header
-externalDocs:
-  description: Find out more about HiPay
-  url: https://developer.hipay.com/
