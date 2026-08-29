@@ -1,5 +1,17 @@
 name: HiPay
 description: HiPay is a European omnichannel payment platform headquartered in Levallois-Perret, France, offering REST APIs for online payments, in-store terminal management, fraud prevention, 3DS authentication, tokenization, marketplace payments, and payment reporting. Founded in 2011, HiPay is listed on Euronext Growth Paris and processes over €7.5 billion in transactions annually across five European countries.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
