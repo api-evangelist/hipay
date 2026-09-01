@@ -129,7 +129,7 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
-  - constants
+  - Constants
   tags_raw:
   - constants
   properties:
@@ -169,7 +169,7 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
-  - invoice
+  - Invoice
   tags_raw:
   - invoice
   properties:
@@ -301,7 +301,7 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
-  - settlement
+  - Settlement
   tags_raw:
   - settlement
   properties:
@@ -321,7 +321,7 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
-  - tokenization
+  - Tokenization
   tags_raw:
   - tokenization
   properties:
@@ -379,7 +379,7 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
-  - ubo
+  - UBO
   tags_raw:
   - ubo
   properties:
@@ -399,7 +399,7 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
-  - user-account
+  - User Account
   tags_raw:
   - user-account
   properties:
