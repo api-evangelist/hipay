@@ -75,6 +75,8 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
+  - Bank Info
+  tags_raw:
   - bank-info
   properties:
   - type: OpenAPI
@@ -169,7 +171,7 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
-  - Invoice
+  - Invoices
   tags_raw:
   - invoice
   properties:
