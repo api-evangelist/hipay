@@ -6,7 +6,6 @@
     "_original/gateway.yaml",
     "_original/hpayment.yaml",
     "_original/marketplace.yaml",
-    "_original/omnichannel.yaml",
     "_original/pos-api.yaml",
     "_original/settlement.yaml",
     "_original/tokenization.yaml"
@@ -39,7 +38,8 @@
     "tokenization.yaml: info.version missing"
   ],
   "notes": [
-    "sourced from openapi/_original/ (9 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (8 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "api-gateway.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
     "applepay-web.yaml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
     "applepay-web.yaml: declared missing tag: Sessions",
@@ -47,7 +47,6 @@
     "hpayment.yaml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
     "hpayment.yaml: declared missing tag: payments",
     "marketplace.yaml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
-    "omnichannel.yaml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
     "pos-api.yaml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
     "pos-api.yaml: tagged paths GET /v1/connector/healthcheck -> Connector",
     "pos-api.yaml: declared missing tag: Connector",
@@ -55,11 +54,12 @@
     "settlement.yaml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
     "tokenization.yaml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
     "tag 'Order' spans 2 source specs (api-gateway.yml, pos-api.yaml): per-path servers applied",
-    "tag 'Transaction' spans 4 source specs (api-gateway.yml, gateway.yaml, marketplace.yaml, omnichannel.yaml): per-path servers applied",
-    "tag 'maintenance' spans 2 source specs (gateway.yaml, omnichannel.yaml): per-path servers applied",
-    "tag 'payments' spans 3 source specs (gateway.yaml, hpayment.yaml, omnichannel.yaml): per-path servers applied"
+    "tag 'Transaction' spans 3 source specs (api-gateway.yml, gateway.yaml, marketplace.yaml): per-path servers applied",
+    "tag 'payments' spans 2 source specs (gateway.yaml, hpayment.yaml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
+    "_original/omnichannel.yaml: archived document superseded by a larger archived document",
     "hipay-balance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "hipay-bank-info-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "hipay-captcha-generation-api-openapi.yml: previously refined output, superseded by openapi/_original/",

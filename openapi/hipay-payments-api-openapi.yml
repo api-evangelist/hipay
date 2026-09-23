@@ -1,23 +1,24 @@
 openapi: 3.2.0
 info:
   title: Hipay Payments API
+  contact:
+    email: pi-commerce@hipay.com
   version: '1.0'
-  description: 'Operations tagged payments across 3 of this provider''s published API definitions: gateway.yaml, hpayment.yaml, omnichannel.yaml. Each path carries the servers of the definition it was published in.'
+  description: 'Operations tagged payments across 2 of this provider''s published API definitions: gateway.yaml, hpayment.yaml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://stage-secure-gateway.hipay-tpp.com/rest
   description: Stage
 - url: https://secure-gateway.hipay-tpp.com/rest
   description: Production
 - url: https://stage-api.hipay.com
-- url: https://stage-secure-gateway.hipay-tpp.com/rest/
 tags:
-- name: payments
+- name: Payments
   description: Everything you need to create orders and transactions
 paths:
   /v1/order:
     post:
       tags:
-      - payments
+      - Payments
       summary: Creates an order and a transaction based on payment details
       description: 'This service allows you to execute transactions through API with no need
 
@@ -120,7 +121,7 @@ paths:
       security:
       - basicAuth: []
       tags:
-      - payments
+      - Payments
       description: 'This service allows you to **redirect your customer to a payment page (hosted by HiPay)** in order to proceed checkout.
 
 
@@ -147,7 +148,7 @@ paths:
 
         You may also display the payment page in an iFrame, in order to have a unified checkout workflow. To do so, you have to provide the `template` parameter with the value `iframe-js` (see below).'
       operationId: generatePage
-      summary: Creates a secure payment page which you can redirect your customer to, in order to proceed checkout
+      summary: Creates a secure payment page which you can redirect your customer to, in order…
       requestBody:
         content:
           multipart/form-data:
@@ -1171,260 +1172,287 @@ paths:
     - url: https://stage-api.hipay.com
 components:
   schemas:
-    InputOrder:
-      title: InputOrder
-      description: InputOrder model
-      required:
-      - orderid
-      - payment_product
-      - description
-      - currency
-      - amount
-      - cardtoken
-      type: object
-      allOf:
-      - properties:
-          payment_product:
-            description: The payment method used to proceed checkout. Depending on the payment product, parameters specific to the payment method are required. The list of payment products to display on the payment page.
-            type: string
-            enum:
-            - visa
-            - mastercard
-            - maestro
-            - cb
-            - 3xcb
-            - 3xcb-no-fees
-            - 4xcb
-            - 4xcb-no-fees
-            - american-express
-            - bank-transfer
-            - bcmc
-            - bcmc-mobile
-            - cbc-online
-            - dexia-directnet
-            - giropay
-            - ideal
-            - ing-homepay
-            - kbc-online
-            - paypal
-            - paysafecard
-            - payulatam
-            - przelewy24
-            - qiwi-wallet
-            - sdd
-            - sisal
-            - sofort-uberweisung
-            - yandex
-            - aura
-            - boleto-bancario
-            - oxxo
-            - itau
-            - payshop
-            - dankort
-            - postepay
-            - ukash
-            - mercadopago
-            - webmoney-transfer
-            - diners
-            - jcb
-            - dcb-cz-tmobile
-            - dcb-cz-o2
-            - dcb-cz-vodafone
-            - dcb-at-tmobile
-            - dcb-at-a1
-            - dcb-at-orange
-            - dcb-at-drei
-            - dcb-be-mobistar
-            - dcb-it-mobilepay
-            - sct
-            - elo-card
-            - dcb-be-proximus
-            - postfinance-card
-            - postfinance-efinance
-            - carte-cadeau
-            - mybank
-            - safetypay
-            - skrill
-            - bnpp-4xcb
-            - bnpp-3xcb
-            - unionpay
-            - multi-payment
-            - discover
-            - sepa-refund-transfer
-            - banco-do-brasil
-            - bradesco
-            - carte-accord
-            - caixa
-            - edankort
-            - multibanco
-            - dcb-es-pagosmovistar
-            - cashu
-            - moneybookers
-            - afterpay
-            - cofinoga
-            - aurore
-            - 1eurocom
-            - hipercard
-            - santander-home-banking
-            - santander-cash
-            - banamex
-            - bbva-bancomer
-            - ecarte-bleue
-            - credit-long
-            - carte-titre-restaurant
-            - divido
-            - bacs
-            - tpe
-            - wechatpay
-            - sofort-lastschrift
-            - sepa-direct-debit
-            - cup
-            - bancontactqrcode
-            example: visa
-            x-sort: 20
-          browser_info:
-            description: '**This parameter is specific to the PSD2.**
-
-
-              Browser Information'
-            required:
-            - language
-            properties:
-              java_enabled:
-                description: Boolean that represents the ability of the cardholder browser to execute Java.
-                type: boolean
-                example: true
-              javascript_enabled:
-                description: Boolean that represents the ability of the cardholder browser to execute JavaScript.
-                type: boolean
-                example: true
-              ipaddr:
-                description: Customer’s IP address.
-                type: string
-                maximum: 45
-                example: 127.0.0.1
-              http_accept:
-                description: This element should contain the exact content of the HTTP Accept header as sent to the merchant from the customer’s browser.
-                type: string
-                maximum: 2048
-                example: '*\/*'
-              http_user_agent:
-                description: This element should contain the exact content of the HTTP User-Agent header as sent to the merchant from the customer’s browser.
-                type: string
-                maximum: 2048
-                example: Mozilla/4.0
-              language:
-                description: Value representing the browser language as defined in IETF BCP47.
-                type: string
-                maximum: 8
-                minimum: 1
-                example: fr-FR
-              color_depth:
-                description: 'Value representing the bit depth of the colour palette for displaying images, in bits per pixel.
-
-
-                  * `1` : 1 bit
-
-                  * `4` : 4 bits
-
-                  * `8` : 8 bits
-
-                  * `15` : 15 bits
-
-                  * `16` : 16 bits
-
-                  * `24` : 24 bits
-
-                  * `32` : 32 bits
-
-                  * `48` : 48 bits'
-                type: integer
-                maximum: 2
-                minimum: 1
-                enum:
-                - 1
-                - 4
-                - 8
-                - 15
-                - 16
-                - 24
-                - 32
-                - 48
-                example: 1
-              screen_height:
-                description: Total height of the Cardholder’s screen in pixels.
-                type: integer
-                maximum: 6
-                minimum: 1
-              screen_width:
-                description: Total width of the cardholder’s screen in pixels.
-                type: integer
-                maximum: 6
-                minimum: 1
-              timezone:
-                description: Time-zone offset in minutes between UTC and the Cardholder browser local time.
-                type: string
-                maximum: 5
-                minimum: 1
-                example: '-120'
-              device_fingerprint:
-                description: This element should contain the value of the ioBB hidden field.
-                type: string
-                example: 042q0aAXOogFCkNMNf94lis1ztsdwpJAn3AFS6wesUIr2q
-            type: object
-            x-sort: 360
-      - $ref: '#/components/schemas/Common'
-      - $ref: '#/components/schemas/Order'
-    ThreeDSecure:
-      title: ThreeDSecure
-      description: ThreeDSecure model
+    reason:
+      title: Reason
+      description: Reason model
       properties:
-        eci:
+        code:
           description: ''
           type: string
-          example: '6'
           x-sort: 1
-        enrollmentStatus:
+        message:
           description: ''
           type: string
-          example: N
           x-sort: 5
-        enrollmentMessage:
+      type: object
+    Transaction:
+      title: Transaction
+      description: Transaction model
+      properties:
+        order:
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/OrderResponse'
+          x-sort: 140
+        authorizationCode:
           description: ''
           type: string
-          example: Cardholder Not Enrolled
+          example: author
+          x-sort: 25
+        dateCreated:
+          description: ''
+          type: string
+          example: 2019-02-07T10:07:09+0000
+          x-sort: 35
+        dateAuthorized:
+          description: ''
+          type: string
+          example: 2019-02-07T10:07:09+0000
+          x-sort: 45
+        authorizedAmount:
+          description: ''
+          type: string
+          example: '125.85'
+          x-sort: 60
+        decimals:
+          description: ''
+          type: string
+          example: '2'
+          x-sort: 80
+        currency:
+          description: ''
+          type: string
+          example: EUR
+          x-sort: 85
+        ipAddress:
+          description: ''
+          type: string
+          example: 0.0.0.0
+          x-sort: 90
+        ipCountry:
+          description: ''
+          type: string
+          example: 0.0.0.0
+          x-sort: 95
+        avsResult:
+          description: ''
+          type: string
+          x-sort: 105
+        cvcResult:
+          description: ''
+          type: string
+          x-sort: 110
+        threeDSecure:
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/ThreeDSecure'
+          x-sort: 130
+        transactionReference:
+          description: Unique Transaction Identifier.
+          type: string
+          example: '800000790677'
+          x-sort: 30
+        attemptId:
+          description: Attempt identifier.
+          type: integer
+          example: '1'
+          x-sort: 20
+        dateUpdated:
+          description: 'Date of last status change.
+
+
+            This date must comply with ISO 8601.'
+          type: string
+          x-sort: 40
+        state:
+          description: Transaction state.
+          type: string
+          example: completed
+          x-sort: 1
+        mid:
+          description: 'Merchant id (MID).
+
+
+            Unique identifier assigned to the merchant.'
+          type: integer
+          x-sort: 15
+        capturedAmount:
+          description: Captured amount.
+          type: string
+          example: '125.75'
+          x-sort: 65
+        refundedAmount:
+          description: Refunded amount.
+          type: string
+          example: '00.00'
+          x-sort: 70
+        creditedAmount:
+          description: Total credited.
+          type: string
+          x-sort: 75
+        chargebackedAmount:
+          description: Chargebacked amount.
+          type: string
+          example: '125.75'
+          x-sort: 65
+        paymentProduct:
+          description: The payment product used for processing current transaction.
+          type: string
+          example: visa
+          x-sort: 120
+        paymentMethod:
+          description: The payment method used for processing current transaction.
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/paymentMethod'
+          x-sort: 125
+        status:
+          description: Transaction status.
+          type: integer
+          example: '116'
+          x-sort: 50
+        reason:
+          description: The numeric value of the error.
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/reason'
+          x-sort: 5
+        forwardUrl:
+          description: URL of the page on which to redirect the customer.
+          type: string
           x-sort: 10
-        authenticationStatus:
+        deviceId:
+          description: ''
+          type: string
+          x-sort: 100
+        fraudScreening:
+          description: Fraud screening result.
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/fraud'
+          x-sort: 135
+        eci:
+          description: 'Electronic Commerce Indicator (ECI).
+
+
+            The Electronic Commerce Indicator (ECI) is used by acquirers/issuers
+
+            to determine the type of transaction being processed. The ECI value
+
+            should represent the source of the transaction request. That is, the
+
+            environment that the cardholder used to provide the payment card details
+
+            to the merchant. It is important that merchants set the correct ECI
+
+            value during transaction processing to ensure that appropriate merchant
+
+            service rates are received.'
+          type: integer
+          example: '7'
+          x-sort: 115
+        debitAgreement:
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/debitAgreement'
+          x-sort: 145
+        message:
+          type: string
+          x-sort: 55
+      type: object
+    OrderResponse:
+      title: Order Response
+      description: Order Response model
+      properties:
+        id:
+          description: ''
+          type: string
+          example: '1549547828947'
+          x-sort: 1
+        dateCreated:
+          description: ''
+          type: string
+          example: 2019-02-07T13:57:08+0000
+          x-sort: 5
+        attempts:
+          description: ''
+          type: string
+          example: '0'
+          x-sort: 10
+        amount:
+          description: ''
+          type: string
+          example: '125.75'
+          x-sort: 15
+        shipping:
+          description: ''
+          type: string
+          example: '0'
+          x-sort: 20
+        tax:
+          description: ''
+          type: string
+          example: '1.10'
+          x-sort: 25
+        decimals:
+          description: ''
+          type: string
+          example: '2'
+          x-sort: 30
+        currency:
+          description: ''
+          type: string
+          example: EUR
+          x-sort: 35
+        customerId:
+          description: ''
+          type: string
+          example: '283749291'
+          x-sort: 40
+        language:
+          description: ''
+          type: string
+          example: en_GB
+          x-sort: 45
+        email:
+          description: ''
+          type: string
+          example: john.doe@foobar99.com
+          x-sort: 50
+        amount_to_capture:
+          description: ''
+          type: string
+          example: '125.75'
+          x-sort: 55
+        sca_preference:
+          description: "To indicate the preference for a frictionless flow during the authentication request, the merchant may send the sca_preference parameter.\n    Depending on the merchant's assessment of the risk of fraud, specific values may be sent.\n    This parameter can only be used by merchants who have a fraud risk assessment mechanism of their own and who have subscribed to the SCA Preference merchant option.\n    Please contact your account manager to request it.\n\n    `1` : No Preference.\n    If you are not sure about the transaction's risk of fraud, use this value. Using this value for all your transactions may result in a high strong customer authentication rate.\n    `2` : No Challenge\n    If you think this transaction is safe. This will tell the acquirer a frictionless flow is preferred.\n    `3` : Challenge Requested\n    If you think this transaction may be at risk, use this value. This will tell the acquirer that a strong customer authentication may be required, depending on the PSD2 specific information you sent along with the transaction."
+          type: integer
+          enum:
+          - 1
+          - 2
+          - 3
+          example: 1
+          x-sort: 346
+      type: object
+    fraud:
+      title: Fraud screening
+      description: Fraud screening model
+      properties:
+        scoring:
+          description: ''
+          type: string
+          example: '0'
+          x-sort: 1
+        result:
+          description: ''
+          type: string
+          example: ACCEPTED
+          x-sort: 5
+        review:
           description: ''
           type: string
           example: ''
           x-sort: 15
-        authenticationMessage:
-          description: ''
-          type: string
-          example: ''
-          x-sort: 20
-        authenticationToken:
-          description: ''
-          type: string
-          example: ''
-          x-sort: 25
-        xid:
-          description: ''
-          type: string
-          example: ''
-          x-sort: 30
-      type: object
-    debitAgreement:
-      title: Debit Agreement
-      description: Debit Agreement model
-      properties:
-        id:
-          type: string
-          x-sort: 1
-        status:
-          type: string
-          x-sort: 5
       type: object
     Common:
       title: Common
@@ -1811,6 +1839,23 @@ components:
           type: string
           example: STWAK4897048
           x-sort: 206
+      type: object
+    Error:
+      title: Error
+      description: Error model
+      properties:
+        code:
+          description: Code
+          type: integer
+          x-sort: 1
+        message:
+          description: Message
+          type: string
+          x-sort: 5
+        description:
+          description: Description
+          type: string
+          x-sort: 10
       type: object
     paymentMethod:
       title: Payment
@@ -2329,304 +2374,293 @@ components:
           type: object
           x-sort: 350
       type: object
-    fraud:
-      title: Fraud screening
-      description: Fraud screening model
+    debitAgreement:
+      title: Debit Agreement
+      description: Debit Agreement model
       properties:
-        scoring:
-          description: ''
+        id:
           type: string
-          example: '0'
           x-sort: 1
-        result:
+        status:
+          type: string
+          x-sort: 5
+      type: object
+    InputOrder:
+      title: InputOrder
+      description: InputOrder model
+      required:
+      - orderid
+      - payment_product
+      - description
+      - currency
+      - amount
+      - cardtoken
+      type: object
+      allOf:
+      - properties:
+          payment_product:
+            description: The payment method used to proceed checkout. Depending on the payment product, parameters specific to the payment method are required. The list of payment products to display on the payment page.
+            type: string
+            enum:
+            - visa
+            - mastercard
+            - maestro
+            - cb
+            - 3xcb
+            - 3xcb-no-fees
+            - 4xcb
+            - 4xcb-no-fees
+            - american-express
+            - bank-transfer
+            - bcmc
+            - bcmc-mobile
+            - cbc-online
+            - dexia-directnet
+            - giropay
+            - ideal
+            - ing-homepay
+            - kbc-online
+            - paypal
+            - paysafecard
+            - payulatam
+            - przelewy24
+            - qiwi-wallet
+            - sdd
+            - sisal
+            - sofort-uberweisung
+            - yandex
+            - aura
+            - boleto-bancario
+            - oxxo
+            - itau
+            - payshop
+            - dankort
+            - postepay
+            - ukash
+            - mercadopago
+            - webmoney-transfer
+            - diners
+            - jcb
+            - dcb-cz-tmobile
+            - dcb-cz-o2
+            - dcb-cz-vodafone
+            - dcb-at-tmobile
+            - dcb-at-a1
+            - dcb-at-orange
+            - dcb-at-drei
+            - dcb-be-mobistar
+            - dcb-it-mobilepay
+            - sct
+            - elo-card
+            - dcb-be-proximus
+            - postfinance-card
+            - postfinance-efinance
+            - carte-cadeau
+            - mybank
+            - safetypay
+            - skrill
+            - bnpp-4xcb
+            - bnpp-3xcb
+            - unionpay
+            - multi-payment
+            - discover
+            - sepa-refund-transfer
+            - banco-do-brasil
+            - bradesco
+            - carte-accord
+            - caixa
+            - edankort
+            - multibanco
+            - dcb-es-pagosmovistar
+            - cashu
+            - moneybookers
+            - afterpay
+            - cofinoga
+            - aurore
+            - 1eurocom
+            - hipercard
+            - santander-home-banking
+            - santander-cash
+            - banamex
+            - bbva-bancomer
+            - ecarte-bleue
+            - credit-long
+            - carte-titre-restaurant
+            - divido
+            - bacs
+            - tpe
+            - wechatpay
+            - sofort-lastschrift
+            - sepa-direct-debit
+            - cup
+            - bancontactqrcode
+            example: visa
+            x-sort: 20
+          browser_info:
+            description: '**This parameter is specific to the PSD2.**
+
+
+              Browser Information'
+            required:
+            - language
+            properties:
+              java_enabled:
+                description: Boolean that represents the ability of the cardholder browser to execute Java.
+                type: boolean
+                example: true
+              javascript_enabled:
+                description: Boolean that represents the ability of the cardholder browser to execute JavaScript.
+                type: boolean
+                example: true
+              ipaddr:
+                description: Customer’s IP address.
+                type: string
+                maximum: 45
+                example: 127.0.0.1
+              http_accept:
+                description: This element should contain the exact content of the HTTP Accept header as sent to the merchant from the customer’s browser.
+                type: string
+                maximum: 2048
+                example: '*\/*'
+              http_user_agent:
+                description: This element should contain the exact content of the HTTP User-Agent header as sent to the merchant from the customer’s browser.
+                type: string
+                maximum: 2048
+                example: Mozilla/4.0
+              language:
+                description: Value representing the browser language as defined in IETF BCP47.
+                type: string
+                maximum: 8
+                minimum: 1
+                example: fr-FR
+              color_depth:
+                description: 'Value representing the bit depth of the colour palette for displaying images, in bits per pixel.
+
+
+                  * `1` : 1 bit
+
+                  * `4` : 4 bits
+
+                  * `8` : 8 bits
+
+                  * `15` : 15 bits
+
+                  * `16` : 16 bits
+
+                  * `24` : 24 bits
+
+                  * `32` : 32 bits
+
+                  * `48` : 48 bits'
+                type: integer
+                maximum: 2
+                minimum: 1
+                enum:
+                - 1
+                - 4
+                - 8
+                - 15
+                - 16
+                - 24
+                - 32
+                - 48
+                example: 1
+              screen_height:
+                description: Total height of the Cardholder’s screen in pixels.
+                type: integer
+                maximum: 6
+                minimum: 1
+              screen_width:
+                description: Total width of the cardholder’s screen in pixels.
+                type: integer
+                maximum: 6
+                minimum: 1
+              timezone:
+                description: Time-zone offset in minutes between UTC and the Cardholder browser local time.
+                type: string
+                maximum: 5
+                minimum: 1
+                example: '-120'
+              device_fingerprint:
+                description: This element should contain the value of the ioBB hidden field.
+                type: string
+                example: 042q0aAXOogFCkNMNf94lis1ztsdwpJAn3AFS6wesUIr2q
+            type: object
+            x-sort: 360
+      - $ref: '#/components/schemas/Common'
+      - $ref: '#/components/schemas/Order'
+    ThreeDSecure:
+      title: ThreeDSecure
+      description: ThreeDSecure model
+      properties:
+        eci:
           description: ''
           type: string
-          example: ACCEPTED
+          example: '6'
+          x-sort: 1
+        enrollmentStatus:
+          description: ''
+          type: string
+          example: N
           x-sort: 5
-        review:
+        enrollmentMessage:
+          description: ''
+          type: string
+          example: Cardholder Not Enrolled
+          x-sort: 10
+        authenticationStatus:
           description: ''
           type: string
           example: ''
           x-sort: 15
-      type: object
-    Transaction:
-      title: Transaction
-      description: Transaction model
-      properties:
-        order:
-          type: object
-          allOf:
-          - $ref: '#/components/schemas/OrderResponse'
-          x-sort: 140
-        authorizationCode:
+        authenticationMessage:
           description: ''
           type: string
-          example: author
-          x-sort: 25
-        dateCreated:
-          description: ''
-          type: string
-          example: 2019-02-07T10:07:09+0000
-          x-sort: 35
-        dateAuthorized:
-          description: ''
-          type: string
-          example: 2019-02-07T10:07:09+0000
-          x-sort: 45
-        authorizedAmount:
-          description: ''
-          type: string
-          example: '125.85'
-          x-sort: 60
-        decimals:
-          description: ''
-          type: string
-          example: '2'
-          x-sort: 80
-        currency:
-          description: ''
-          type: string
-          example: EUR
-          x-sort: 85
-        ipAddress:
-          description: ''
-          type: string
-          example: 0.0.0.0
-          x-sort: 90
-        ipCountry:
-          description: ''
-          type: string
-          example: 0.0.0.0
-          x-sort: 95
-        avsResult:
-          description: ''
-          type: string
-          x-sort: 105
-        cvcResult:
-          description: ''
-          type: string
-          x-sort: 110
-        threeDSecure:
-          type: object
-          allOf:
-          - $ref: '#/components/schemas/ThreeDSecure'
-          x-sort: 130
-        transactionReference:
-          description: Unique Transaction Identifier.
-          type: string
-          example: '800000790677'
-          x-sort: 30
-        attemptId:
-          description: Attempt identifier.
-          type: integer
-          example: '1'
+          example: ''
           x-sort: 20
-        dateUpdated:
-          description: 'Date of last status change.
-
-
-            This date must comply with ISO 8601.'
-          type: string
-          x-sort: 40
-        state:
-          description: Transaction state.
-          type: string
-          example: completed
-          x-sort: 1
-        mid:
-          description: 'Merchant id (MID).
-
-
-            Unique identifier assigned to the merchant.'
-          type: integer
-          x-sort: 15
-        capturedAmount:
-          description: Captured amount.
-          type: string
-          example: '125.75'
-          x-sort: 65
-        refundedAmount:
-          description: Refunded amount.
-          type: string
-          example: '00.00'
-          x-sort: 70
-        creditedAmount:
-          description: Total credited.
-          type: string
-          x-sort: 75
-        chargebackedAmount:
-          description: Chargebacked amount.
-          type: string
-          example: '125.75'
-          x-sort: 65
-        paymentProduct:
-          description: The payment product used for processing current transaction.
-          type: string
-          example: visa
-          x-sort: 120
-        paymentMethod:
-          description: The payment method used for processing current transaction.
-          type: object
-          allOf:
-          - $ref: '#/components/schemas/paymentMethod'
-          x-sort: 125
-        status:
-          description: Transaction status.
-          type: integer
-          example: '116'
-          x-sort: 50
-        reason:
-          description: The numeric value of the error.
-          type: object
-          allOf:
-          - $ref: '#/components/schemas/reason'
-          x-sort: 5
-        forwardUrl:
-          description: URL of the page on which to redirect the customer.
-          type: string
-          x-sort: 10
-        deviceId:
+        authenticationToken:
           description: ''
           type: string
-          x-sort: 100
-        fraudScreening:
-          description: Fraud screening result.
-          type: object
-          allOf:
-          - $ref: '#/components/schemas/fraud'
-          x-sort: 135
-        eci:
-          description: 'Electronic Commerce Indicator (ECI).
-
-
-            The Electronic Commerce Indicator (ECI) is used by acquirers/issuers
-
-            to determine the type of transaction being processed. The ECI value
-
-            should represent the source of the transaction request. That is, the
-
-            environment that the cardholder used to provide the payment card details
-
-            to the merchant. It is important that merchants set the correct ECI
-
-            value during transaction processing to ensure that appropriate merchant
-
-            service rates are received.'
-          type: integer
-          example: '7'
-          x-sort: 115
-        debitAgreement:
-          type: object
-          allOf:
-          - $ref: '#/components/schemas/debitAgreement'
-          x-sort: 145
-        message:
+          example: ''
+          x-sort: 25
+        xid:
+          description: ''
           type: string
-          x-sort: 55
+          example: ''
+          x-sort: 30
       type: object
-    Error:
-      title: Error
+    HostedPage_Forward:
+      description: Forward
+      properties:
+        forwardUrl:
+          description: ''
+          example: https://stage-secure-gateway.hipay-tpp.com/payment/web/pay/df4d20da-7b6f-4fed-8603-c4ed3dca48
+          type: string
+        mid:
+          description: ''
+          example: 00001326589
+          type: string
+        order:
+          $ref: '#/components/schemas/HostedPage_OrderResponse'
+        numberRetry:
+          description: Maximum number of payment attempts
+          example: 3
+          type: integer
+      title: Forward
+      type: object
+    HostedPage_Error:
       description: Error model
       properties:
         code:
           description: Code
           type: integer
-          x-sort: 1
-        message:
-          description: Message
-          type: string
-          x-sort: 5
         description:
           description: Description
           type: string
-          x-sort: 10
-      type: object
-    OrderResponse:
-      title: Order Response
-      description: Order Response model
-      properties:
-        id:
-          description: ''
-          type: string
-          example: '1549547828947'
-          x-sort: 1
-        dateCreated:
-          description: ''
-          type: string
-          example: 2019-02-07T13:57:08+0000
-          x-sort: 5
-        attempts:
-          description: ''
-          type: string
-          example: '0'
-          x-sort: 10
-        amount:
-          description: ''
-          type: string
-          example: '125.75'
-          x-sort: 15
-        shipping:
-          description: ''
-          type: string
-          example: '0'
-          x-sort: 20
-        tax:
-          description: ''
-          type: string
-          example: '1.10'
-          x-sort: 25
-        decimals:
-          description: ''
-          type: string
-          example: '2'
-          x-sort: 30
-        currency:
-          description: ''
-          type: string
-          example: EUR
-          x-sort: 35
-        customerId:
-          description: ''
-          type: string
-          example: '283749291'
-          x-sort: 40
-        language:
-          description: ''
-          type: string
-          example: en_GB
-          x-sort: 45
-        email:
-          description: ''
-          type: string
-          example: john.doe@foobar99.com
-          x-sort: 50
-        amount_to_capture:
-          description: ''
-          type: string
-          example: '125.75'
-          x-sort: 55
-        sca_preference:
-          description: "To indicate the preference for a frictionless flow during the authentication request, the merchant may send the sca_preference parameter.\n    Depending on the merchant's assessment of the risk of fraud, specific values may be sent.\n    This parameter can only be used by merchants who have a fraud risk assessment mechanism of their own and who have subscribed to the SCA Preference merchant option.\n    Please contact your account manager to request it.\n\n    `1` : No Preference.\n    If you are not sure about the transaction's risk of fraud, use this value. Using this value for all your transactions may result in a high strong customer authentication rate.\n    `2` : No Challenge\n    If you think this transaction is safe. This will tell the acquirer a frictionless flow is preferred.\n    `3` : Challenge Requested\n    If you think this transaction may be at risk, use this value. This will tell the acquirer that a strong customer authentication may be required, depending on the PSD2 specific information you sent along with the transaction."
-          type: integer
-          enum:
-          - 1
-          - 2
-          - 3
-          example: 1
-          x-sort: 346
-      type: object
-    reason:
-      title: Reason
-      description: Reason model
-      properties:
-        code:
-          description: ''
-          type: string
-          x-sort: 1
         message:
-          description: ''
+          description: Message
           type: string
-          x-sort: 5
+      title: Error
       type: object
     HostedPage_OrderResponse:
       description: Order Response model
@@ -2677,39 +2711,6 @@ components:
           type: string
       title: Order Response
       type: object
-    HostedPage_Forward:
-      description: Forward
-      properties:
-        forwardUrl:
-          description: ''
-          example: https://stage-secure-gateway.hipay-tpp.com/payment/web/pay/df4d20da-7b6f-4fed-8603-c4ed3dca48
-          type: string
-        mid:
-          description: ''
-          example: 00001326589
-          type: string
-        order:
-          $ref: '#/components/schemas/HostedPage_OrderResponse'
-        numberRetry:
-          description: Maximum number of payment attempts
-          example: 3
-          type: integer
-      title: Forward
-      type: object
-    HostedPage_Error:
-      description: Error model
-      properties:
-        code:
-          description: Code
-          type: integer
-        description:
-          description: Description
-          type: string
-        message:
-          description: Message
-          type: string
-      title: Error
-      type: object
   securitySchemes:
     basicAuth:
       type: http
@@ -2724,4 +2725,3 @@ externalDocs:
 x-refined-from:
 - gateway.yaml
 - hpayment.yaml
-- omnichannel.yaml

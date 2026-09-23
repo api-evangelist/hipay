@@ -2,29 +2,7 @@ openapi: 3.2.0
 info:
   contact:
     email: pi-ecommerce@hipay.com
-  description: 'The Apple Pay API allows you to request a valid session from the Apple Pay server.
-
-
-    Please note: this documentation describes the Apple Pay API parameters and response fields and allows you to test the platform in real time.
-
-
-    ## Gateway API base URLs
-
-    | Environment | Base URL |
-
-    | --- | --- |
-
-    | Stage | [https://stage-api.hipay.com/](https://stage-api.hipay.com/) |
-
-    | Production | [https://api.hipay.com/](https://api.hipay.com/) |
-
-
-    ## Authentication
-
-    All requests to the HiPay Hpayment API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
-
-
-    `Authorization: Basic base64(''API login>:<API password>'')`'
+  description: The Apple Pay API allows you to request a valid session from the Apple Pay server.
   title: Apple PAY Sessions API
   version: 1.0.0
 servers:
@@ -56,7 +34,7 @@ paths:
       operationId: createPaymentSession
       tags:
       - Sessions
-      summary: Returns an opaque Apple Pay session object.
+      summary: Returns an opaque Apple Pay session object
       requestBody:
         content:
           application/json:
@@ -66,6 +44,26 @@ paths:
         required: true
 components:
   schemas:
+    ApplePayWeb_Response:
+      type: object
+      description: Apple Pay session object.
+      properties:
+        epochTimestamp:
+          type: string
+        expiresAt:
+          type: string
+        merchantSessionIdentifier:
+          type: string
+        nonce:
+          type: string
+        merchantIdentifier:
+          type: string
+        domainName:
+          type: string
+        displayName:
+          type: string
+        signature:
+          type: string
     ApplePayWeb_Request:
       required:
       - initiativeContext
@@ -122,26 +120,6 @@ components:
           - https://cn-apple-pay-gateway-tj-pod3-dr.apple.com/paymentservices/startSession
           - https://apple-pay-gateway-cert.apple.com/paymentservices/startSession
           - https://cn-apple-pay-gateway-cert.apple.com/paymentservices/startSession
-    ApplePayWeb_Response:
-      type: object
-      description: Apple Pay session object.
-      properties:
-        epochTimestamp:
-          type: string
-        expiresAt:
-          type: string
-        merchantSessionIdentifier:
-          type: string
-        nonce:
-          type: string
-        merchantIdentifier:
-          type: string
-        domainName:
-          type: string
-        displayName:
-          type: string
-        signature:
-          type: string
     ApplePayWeb_Error:
       type: object
       properties:

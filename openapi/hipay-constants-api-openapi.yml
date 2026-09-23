@@ -2,19 +2,17 @@ openapi: 3.2.0
 info:
   version: '0.3'
   title: HiPay Marketplace Constants API
-  description: "\nThe implementation of HiPay Marketplace involves establishing connections between your marketplace platform and HiPay based on a simple integration through a set of APIs.\n\n## Account creation:\n\n  1) The agent checks the e-mail availability with the [Is-available API](#/user-account/post_user-account_is-available).\n\n  2) The agent creates a HiPay account for merchants using the [User-account API](#/user-account/post_user-account).\n\n  3) The agent sends us the account number and the identification/KYC information using the [Identification API](#/identification/post_Identification). HiPay validates the identification/KYC information within three days and sends the agent a notification confirming that the merchant is fully operational.\n\n## Bank account information submission:\n\nPlease note that it is possible to submit bank account information any time between account creation and withdrawal requests.\nTo register a HiPay account bank information, use the [Bank-info API.](#/bank-info/post_user-account)\n\n## Fund allocation:\n\nFund allocation is only possible if the merchant's account is validated by HiPay.\n\nAll the funds are held in escrow before being deposited on the technical account.\n\nThe [Transfer API](#/transfer/post_transfer]) is then used to allocate funds from the technical account to the merchant's account.\nThe [Transfer API](#/transfer/post_transfer]) allows transfer requests to be made on the agent’s behalf or on the behalf of a third party.\n\nThe technical account is therefore a monitoring tool that provides a clear view of fund allocation (fund remittance, refunds, chargebacks).\n\n## Withdrawal requests:\n\nWithdrawal is only possible if the merchant's account AND banking informations are validated by HiPay.\n\nOnce funds are allocated, there are two withdrawal possibilities:\n\n  - Whenever a transaction is made – please note that this option is not recommended by HiPay,\n  - Whenever a withdrawal request is made by the merchant – for example, every ten days, depending on the agent.\n\nWhen agents want to do a withdrawal, they need to check the merchant’s account balance with the [Balance API.](#/balance/get_user-account)\n\n  - In case of a zero balance, funds must be allocated with the [Transfer API](#/transfer/post_transfer]).\n  - If the balance equals the amount of the allocated funds, a fund withdrawal request can be made with the [Withdrawal API](#/withdrawal/post_withdrawal). (The Withdrawal API allows for a withdrawal request to transfer money to the merchant’s bank account and also to the partner’s bank account.)\n  - There must be a zero balance in the end.\n\n## Marketplace live testing:\n\nThis documentation describes the Marketplace API parameters and response fields and allows you to test the platform in real time.\n\n## Marketplace API base URLs:\n\n| Environment | Base URL |\n| --- | --- |\n| Test | https://test-professional.hipay.com/api/ |\n| Production | https://professional.hipay.com/api/ |\n\n## Authentication:\n\nAll requests to the HiPay Marketplace API require you to authenticate yourself using the HTTP *Basic Authentication* to convey your identity. Your API credentials can be found in [your Test HiPay Professional back office](https://test-merchant.hipaywallet.com/login). Most HTTP clients (including web browsers) have built-in support for HTTP Basic Authentication. If not, the following header must be included in all HTTP requests.\n\n`Authorization: Basic base64(\"<API login>:<API password>\")`\n"
+  description: The implementation of HiPay Marketplace involves establishing connections between your marketplace platform and HiPay based on a simple integration through a set of APIs.
 servers:
 - url: https://test-professional.hipay.com/api
 tags:
-- name: constants
+- name: Constants
   description: Manage your account with our API tools
 paths:
   /tools/bank-info-fields/{country}/{locale}.{_format}:
     get:
       summary: Get bank details required for a HiPay account depending on its country
-      description: '
-
-        ### Information
+      description: '### Information
 
 
         Get bank details required for a HiPay account depending on its country.'
@@ -80,13 +78,13 @@ paths:
         '401':
           description: Authentication failed.
       tags:
-      - constants
+      - Constants
+      operationId: getToolsBankInfoFieldsByCountryByLocale}{Format
+      x-operation-id-source: derived
   /tools/business-lines/{locale}.{_format}:
     get:
       summary: Return business lines
-      description: '
-
-        ### Information
+      description: '### Information
 
 
         Return business lines.'
@@ -141,13 +139,13 @@ paths:
         '401':
           description: Authentication failed.
       tags:
-      - constants
+      - Constants
+      operationId: getToolsBusinessLinesByLocale}{Format
+      x-operation-id-source: derived
   /tools/locale/codes.{_format}:
     get:
       summary: Return locales codes and names
-      description: '
-
-        ### Information
+      description: '### Information
 
 
         Return locales codes and names.'
@@ -192,13 +190,13 @@ paths:
         '401':
           description: Authentication failed.
       tags:
-      - constants
+      - Constants
+      operationId: getToolsLocaleCodes{Format}
+      x-operation-id-source: derived
   /tools/locale/countries/{locale}.{_format}:
     get:
       summary: Return locales codes and names
-      description: '
-
-        ### Information
+      description: '### Information
 
 
         Return countries codes and labels by locale.'
@@ -252,13 +250,13 @@ paths:
         '401':
           description: Authentication failed.
       tags:
-      - constants
+      - Constants
+      operationId: getToolsLocaleCountriesByLocale}{Format
+      x-operation-id-source: derived
   /tools/locale/currencies/{locale}.{_format}:
     get:
       summary: Return currencies codes and labels by locale
-      description: '
-
-        ### Information
+      description: '### Information
 
 
         Return currencies codes and labels by locale.'
@@ -312,13 +310,13 @@ paths:
         '401':
           description: Authentication failed.
       tags:
-      - constants
+      - Constants
+      operationId: getToolsLocaleCurrenciesByLocale}{Format
+      x-operation-id-source: derived
   /tools/locale/timezones.{_format}:
     get:
       summary: Return timezones
-      description: '
-
-        ### Information
+      description: '### Information
 
 
         Return timezones.'
@@ -363,13 +361,13 @@ paths:
         '401':
           description: Authentication failed.
       tags:
-      - constants
+      - Constants
+      operationId: getToolsLocaleTimezones{Format}
+      x-operation-id-source: derived
   /tools/website-topics/{business_line_id}/{locale}.{_format}:
     get:
       summary: Return website topics
-      description: '
-
-        ### Information
+      description: '### Information
 
 
         Return website topics.'
@@ -434,7 +432,9 @@ paths:
         '401':
           description: Authentication failed.
       tags:
-      - constants
+      - Constants
+      operationId: getToolsWebsiteTopicsByBusinessLineIdByLocale}{Format
+      x-operation-id-source: derived
 components:
   securitySchemes:
     basicAuth:

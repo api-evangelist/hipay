@@ -4,33 +4,7 @@ info:
   description: '## Version 1.6.1 - June 11, 2025
 
 
-    The Gateway API allows you to get paid and manage orders and transactions.
-
-
-    Please note: this documentation describes the Gateway API parameters and response fields and allows you to test the platform in real time.
-
-
-    This page is to be used alongside the **[HiPay Enterprise Platform Overview documentation](https://developer.hipay.com/api-explorer/api-online-payments)**, which gives you more information and details on the HiPay Enterprise workflow. You may use both documents in parallel when integrating HiPay Enterprise.
-
-    # Web service information
-
-    ## Gateway API base URLs
-
-    | Environment | Base URL |
-
-    | --- | --- |
-
-    | Stage | [https://stage-api-gateway.hipay.com](https://stage-api-gateway.hipay.com) |
-
-    | Production |  [https://api-gateway.hipay.com](https://api-gateway.hipay.com) |
-
-    ## Authentication
-
-    All requests to the HiPay Enterprise API require identification through *HTTP Basic Authentication*. Your API credentials can be found in the Integration section of your HiPay Enterprise back office. Most HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.
-
-    `Authorization: Basic base64(''API login>:<API password>'')`
-
-    '
+    The Gateway API allows you to get paid and manage orders and transactions.'
   version: 1.6.1
 servers:
 - url: https://stage-api-gateway.hipay.com
@@ -182,21 +156,10 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
       - BasicAuth: []
+      summary: Get api routing available payment products public
+      x-summary-source: derived
 components:
   schemas:
-    AvailablePaymentProduct:
-      required:
-      - code
-      - description
-      - tokenizable
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-        tokenizable:
-          type: integer
-      type: object
     Error:
       required:
       - message
@@ -216,6 +179,19 @@ components:
           type:
           - string
           - 'null'
+      type: object
+    AvailablePaymentProduct:
+      required:
+      - code
+      - description
+      - tokenizable
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        tokenizable:
+          type: integer
       type: object
     RoutingSearchDto2:
       properties:

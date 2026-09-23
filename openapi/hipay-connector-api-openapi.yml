@@ -1,6 +1,12 @@
 openapi: 3.2.0
 info:
-  description: "## Description\nThe HiPay POS API allows you to trigger in-store payments by:\n- waking a point-of-sale (POS) payment terminal with the payment information (amount, currency, etc.)\n- creating the related transaction in HiPay Console, your dedicated management interface.\n\n*Please note: this documentation describes the POS API parameters and response fields and allows you to test the platform in real time.  \nIf you are looking for information about its integration, please check the [dedicated documentation](/point-of-sale/smart-terminal/pos-api).*\n## Prerequisites\n- Internet connection:\n  - a working and stable Wi-Fi connection is needed to join the payment terminal\n  - a fixed public IP address for the network router is needed to join the payment terminal. In case your public IP address changes over time, it is usually possible to fix it by contacting your Internet access provider (please notice additional costs may be applied).\n## Base URLs\n| Environment | Base URL |\n| --- | --- |\n| Stage | [https://cloudrun-api-yugcnet4yq-ew.a.run.app/](https://cloudrun-api-yugcnet4yq-ew.a.run.app/) |\n| Production | [https://cloudrun-api-n3l7nqotca-ew.a.run.app/](https://cloudrun-api-n3l7nqotca-ew.a.run.app/) |\n## Authentication\nThe HiPay POS API relies on *HTTP Basic Authentication*: for every request, API credentials must be provided in the request headers.\n\nMost HTTP clients (including web browsers) have built-in support for HTTP basic authentication. If not, the following header must be included in all HTTP requests.\n`Authorization: Basic base64('<API login>:<API password>')`\n\n*Note #1: API credentials can be found in the Integration section of your HiPay Enterprise back office.*  \n*Note #2: Only **private credentials** can be used to authenticate (\"Accessibility\" value = \"Private\").*\n## Security\nFor security reasons, it is highly recommended to filter access to your electronic POS payment terminals, based on the request origins.\nTo make sure only requests coming from HiPay will be able to join your terminals, you can set up an IP packet filtering rule on your firewall based on the following IPs:\n| Environment | IP |\n| --- | --- |\n| Stage | 35.241.177.31 |\n| Production | 35.205.91.234 |\n"
+  description: '## Description
+
+    The HiPay POS API allows you to trigger in-store payments by:
+
+    - waking a point-of-sale (POS) payment terminal with the payment information (amount, currency, etc.)
+
+    - creating the related transaction in HiPay Console, your dedicated management interface.'
   title: POS Connector API
   version: 1.2.0
 servers:
@@ -18,6 +24,8 @@ paths:
       operationId: healthcheck
       tags:
       - Connector
+      summary: Healthcheck
+      x-summary-source: derived
 components:
   securitySchemes:
     BasicAuth:

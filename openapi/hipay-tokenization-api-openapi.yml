@@ -2,56 +2,19 @@ openapi: 3.2.0
 info:
   version: ''
   title: HiPay Enterprise Tokenization API
-  description: 'We strongly recommend to use the JS SDK to tokenize a card, instead of the Tokenization API.
-
-
-    The Tokenization (Secure Vault) API allows merchants to retrieve and update data associated with their customers'' payment information stored in the HiPay Enterprise Secure Vault. Using Tokenization API, merchants eliminate the risk, liability and cost of storing sensitive data on their local servers and storage devices.
-
-
-    The Tokenization API aims to be used **alongside the HiPay Enterprise Gateway API**. In particular, with the Request New Order (`POST /order`) service of the Gateway API. In fact, when you need to make payments with credit or debit cards using the Gateway API, you first need to tokenize card numbers thanks to the Tokenization API.
-
-
-    This API integrates a BIN lookup tool. Every submitted card number is automatically searched in the BIN database to determine its issuing bank. When the BIN lookup succeeds, the response includes the card brand, the 2-letter country code where card was issued and when applicable the issuing bank name.
-
-
-    Note: this documentation describes the Tokenization API parameters and response fields and allows you to test the platform in real time.
-
-
-    ## Tokenization API base URLs
-
-
-    | Environment | Base URL |
-
-    | --- | --- |
-
-    | Stage | https://stage-secure2-vault.hipay-tpp.com/rest/v2/token |
-
-    | Production | https://secure2-vault.hipay-tpp.com/rest/v2/token |
-
-
-    ## Authentication
-
-
-    All requests to HiPay Enterprise API require you to authenticate using the HTTP *Basic Authentication* to convey your identity. Your API credentials can be found in your HiPay Enterprise back office in the Integration section. Most HTTP clients (including web-browsers) have built-in support for HTTP Basic Authentication. If not, the following header must be included in all HTTP requests.
-
-
-    `Authorization: Basic base64("<API login>:<API password>")`
-
-    '
+  description: We strongly recommend to use the JS SDK to tokenize a card, instead of the Tokenization API.
 servers:
 - url: https://stage-secure2-vault.hipay-tpp.com/rest/v2/token/
 tags:
-- name: tokenization
+- name: Tokenization
   description: Everything you need to tokenize payment cards
 paths:
   /create:
     post:
       tags:
-      - tokenization
+      - Tokenization
       summary: Performs credit or debit card tokenization
-      description: 'Performs credit or debit card tokenization. Once the card is tokenized, you can use the generated token to make payments thanks to the HiPay Enterprise Gateway API.
-
-        '
+      description: Performs credit or debit card tokenization. Once the card is tokenized, you can use the generated token to make payments thanks to the HiPay Enterprise Gateway API.
       operationId: createToken
       responses:
         '201':
@@ -175,7 +138,7 @@ paths:
   /{token}:
     get:
       tags:
-      - tokenization
+      - Tokenization
       summary: Gets the details of a credit card that you have previously tokenized
       description: Gets the details of a credit card that you have previously tokenized.
       operationId: lookupToken
@@ -276,9 +239,8 @@ paths:
   /:
     delete:
       tags:
-      - tokenization
+      - Tokenization
       summary: Delete a previously created token
-      description: Delete a previously created token
       operationId: deleteToken
       responses:
         '204':
@@ -381,7 +343,7 @@ paths:
   /update:
     post:
       tags:
-      - tokenization
+      - Tokenization
       summary: Updates the details of a previsouly tokenized credit or debit card
       description: Updates the details of a previsouly tokenized credit or debit card.
       operationId: updateToken

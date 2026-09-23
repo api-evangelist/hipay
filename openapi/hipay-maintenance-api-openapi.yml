@@ -1,22 +1,23 @@
 openapi: 3.2.0
 info:
-  title: Hipay Maintenance API
-  version: '1.0'
-  description: 'Operations tagged maintenance across 2 of this provider''s published API definitions: gateway.yaml, omnichannel.yaml. Each path carries the servers of the definition it was published in.'
+  title: HiPay Enterprise Gateway Maintenance API
+  description: The Gateway API allows you to get paid and manage orders and transactions.
+  contact:
+    email: pi-commerce@hipay.com
+  version: 1.2.3
 servers:
 - url: https://stage-secure-gateway.hipay-tpp.com/rest
   description: Stage
 - url: https://secure-gateway.hipay-tpp.com/rest
   description: Production
-- url: https://stage-secure-gateway.hipay-tpp.com/rest/
 tags:
-- name: maintenance
+- name: Maintenance
   description: Perform operations (capture, refund) on transactions
 paths:
   /v1/maintenance/transaction/{transaction_reference}:
     post:
       tags:
-      - maintenance
+      - Maintenance
       summary: Performs a maintenance operation on a given transaction
       description: Performs a maintenance operation on a given transaction.
       operationId: performMaintenanceOperation
@@ -69,13 +70,25 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
       - basicAuth: []
-    servers:
-    - url: https://stage-secure-gateway.hipay-tpp.com/rest
-      description: Stage
-    - url: https://secure-gateway.hipay-tpp.com/rest
-      description: Production
 components:
   schemas:
+    Error:
+      title: Error
+      description: Error model
+      properties:
+        code:
+          description: Code
+          type: integer
+          x-sort: 1
+        message:
+          description: Message
+          type: string
+          x-sort: 5
+        description:
+          description: Description
+          type: string
+          x-sort: 10
+      type: object
     Operation:
       title: Operation
       description: Operation model
@@ -156,23 +169,6 @@ components:
           type: string
           example: EUR
           x-sort: 65
-      type: object
-    Error:
-      title: Error
-      description: Error model
-      properties:
-        code:
-          description: Code
-          type: integer
-          x-sort: 1
-        message:
-          description: Message
-          type: string
-          x-sort: 5
-        description:
-          description: Description
-          type: string
-          x-sort: 10
       type: object
     Maintenance:
       title: Maintenance
@@ -398,6 +394,3 @@ components:
 externalDocs:
   description: Find out more about HiPay
   url: https://developer.hipay.com/
-x-refined-from:
-- gateway.yaml
-- omnichannel.yaml

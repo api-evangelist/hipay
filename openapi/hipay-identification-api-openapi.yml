@@ -2,23 +2,21 @@ openapi: 3.2.0
 info:
   version: '0.3'
   title: HiPay Marketplace Identification API
-  description: "\nThe implementation of HiPay Marketplace involves establishing connections between your marketplace platform and HiPay based on a simple integration through a set of APIs.\n\n## Account creation:\n\n  1) The agent checks the e-mail availability with the [Is-available API](#/user-account/post_user-account_is-available).\n\n  2) The agent creates a HiPay account for merchants using the [User-account API](#/user-account/post_user-account).\n\n  3) The agent sends us the account number and the identification/KYC information using the [Identification API](#/identification/post_Identification). HiPay validates the identification/KYC information within three days and sends the agent a notification confirming that the merchant is fully operational.\n\n## Bank account information submission:\n\nPlease note that it is possible to submit bank account information any time between account creation and withdrawal requests.\nTo register a HiPay account bank information, use the [Bank-info API.](#/bank-info/post_user-account)\n\n## Fund allocation:\n\nFund allocation is only possible if the merchant's account is validated by HiPay.\n\nAll the funds are held in escrow before being deposited on the technical account.\n\nThe [Transfer API](#/transfer/post_transfer]) is then used to allocate funds from the technical account to the merchant's account.\nThe [Transfer API](#/transfer/post_transfer]) allows transfer requests to be made on the agent’s behalf or on the behalf of a third party.\n\nThe technical account is therefore a monitoring tool that provides a clear view of fund allocation (fund remittance, refunds, chargebacks).\n\n## Withdrawal requests:\n\nWithdrawal is only possible if the merchant's account AND banking informations are validated by HiPay.\n\nOnce funds are allocated, there are two withdrawal possibilities:\n\n  - Whenever a transaction is made – please note that this option is not recommended by HiPay,\n  - Whenever a withdrawal request is made by the merchant – for example, every ten days, depending on the agent.\n\nWhen agents want to do a withdrawal, they need to check the merchant’s account balance with the [Balance API.](#/balance/get_user-account)\n\n  - In case of a zero balance, funds must be allocated with the [Transfer API](#/transfer/post_transfer]).\n  - If the balance equals the amount of the allocated funds, a fund withdrawal request can be made with the [Withdrawal API](#/withdrawal/post_withdrawal). (The Withdrawal API allows for a withdrawal request to transfer money to the merchant’s bank account and also to the partner’s bank account.)\n  - There must be a zero balance in the end.\n\n## Marketplace live testing:\n\nThis documentation describes the Marketplace API parameters and response fields and allows you to test the platform in real time.\n\n## Marketplace API base URLs:\n\n| Environment | Base URL |\n| --- | --- |\n| Test | https://test-professional.hipay.com/api/ |\n| Production | https://professional.hipay.com/api/ |\n\n## Authentication:\n\nAll requests to the HiPay Marketplace API require you to authenticate yourself using the HTTP *Basic Authentication* to convey your identity. Your API credentials can be found in [your Test HiPay Professional back office](https://test-merchant.hipaywallet.com/login). Most HTTP clients (including web browsers) have built-in support for HTTP Basic Authentication. If not, the following header must be included in all HTTP requests.\n\n`Authorization: Basic base64(\"<API login>:<API password>\")`\n"
+  description: The implementation of HiPay Marketplace involves establishing connections between your marketplace platform and HiPay based on a simple integration through a set of APIs.
 servers:
 - url: https://test-professional.hipay.com/api
 tags:
-- name: identification
+- name: Identification
   description: Manage your identification documents
 paths:
   /identification.{_format}:
     get:
-      description: '
-
-        ### Information
+      description: '### Information
 
         Get the list of all identification documents for a user-space
 
 
-        For more information, please read the [HiPay Marketplace Account creation section.](/marketplace/api-integration/vendors#account-creation)'
+        For more information, please read the HiPay Marketplace Account creation section.'
       operationId: get_Identification
       parameters:
       - in: path
@@ -90,11 +88,83 @@ paths:
           description: Authentication failed.
       summary: Get the list of all identification documents for a user-space
       tags:
-      - identification
+      - Identification
       security:
       - basicAuth: []
     post:
-      description: "\n### Information\n\nUpload identification documents. Uploaded documents can't exceed 15MB.\n\n__Type of document for a customer account__\n  - `1`: Copy of a valid identification document\n\n\n__Type of document for a merchant account (corporation)__\n  - `1`: Copy of a valid identification document of the legal representative. *Deprecated, please use type 1 for all ID documents*\n  \n  - `4`: Document certifying Company registration\n\n  - `5`: Signed Articles of Association with the division of powers (featuring the address of the head office, the name of the company and the name of the legal representative)\n\n__Type of document for a merchant account (corporation) with a gambling licence__\n  - `1`: Copy of a valid identification document of the legal representative. *Deprecated, please use type 1 for all ID documents*\n  \n  - `4`: Document certifying Company registration\n\n  - `5`: Signed Articles of Association with the division of powers (featuring the address of the head office, the name of the company and the name of the legal representative)\n\n  - `14`:  Gambling licence document\n\n__Type of document for a merchant account (person)__\n  - `1`: Copy of a valid identification document of the legal representative. *Deprecated, please use type 1 for all ID documents*\n\n  - `8`: Document certifying registration\n\n  - `9`: Document certifying tax status\n\n__In test environment__\n\nYou can choose if the document will be accepted or not by changing the 3 first characters of the uploaded file name.\n  - Filename starts with `01_`: document will be refused because unrecognized\n\n  - Filename starts with `02_`: document will be refused because falsified\n\n  - Filename starts with `03_`: document will be refused because unreadable\n\n  - Filename starts with `06_`: document will be refused because inconsistent\n\n  - Filename starts with `07_`: document will be refused because expired\n\n  - Any other name : document will be automatically accepted\n\n### Account creation step 3/3\nThe agent sends us the account number and the identification/KYC information with this API. HiPay validates the identification/KYC information within three days and sends the agent a notification confirming that the merchant is fully operational."
+      description: '### Information
+
+
+        Upload identification documents. Uploaded documents can''t exceed 15MB.
+
+
+        __Type of document for a customer account__
+
+        - `1`: Copy of a valid identification document
+
+
+        __Type of document for a merchant account (corporation)__
+
+        - `1`: Copy of a valid identification document of the legal representative. *Deprecated, please use type 1 for all ID documents*
+
+
+        - `4`: Document certifying Company registration
+
+
+        - `5`: Signed Articles of Association with the division of powers (featuring the address of the head office, the name of the company and the name of the legal representative)
+
+
+        __Type of document for a merchant account (corporation) with a gambling licence__
+
+        - `1`: Copy of a valid identification document of the legal representative. *Deprecated, please use type 1 for all ID documents*
+
+
+        - `4`: Document certifying Company registration
+
+
+        - `5`: Signed Articles of Association with the division of powers (featuring the address of the head office, the name of the company and the name of the legal representative)
+
+
+        - `14`: Gambling licence document
+
+
+        __Type of document for a merchant account (person)__
+
+        - `1`: Copy of a valid identification document of the legal representative. *Deprecated, please use type 1 for all ID documents*
+
+
+        - `8`: Document certifying registration
+
+
+        - `9`: Document certifying tax status
+
+
+        __In test environment__
+
+
+        You can choose if the document will be accepted or not by changing the 3 first characters of the uploaded file name.
+
+        - Filename starts with `01_`: document will be refused because unrecognized
+
+
+        - Filename starts with `02_`: document will be refused because falsified
+
+
+        - Filename starts with `03_`: document will be refused because unreadable
+
+
+        - Filename starts with `06_`: document will be refused because inconsistent
+
+
+        - Filename starts with `07_`: document will be refused because expired
+
+
+        - Any other name : document will be automatically accepted
+
+
+        ### Account creation step 3/3
+
+        The agent sends us the account number and the identification/KYC information with this API. HiPay validates the identification/KYC information within three days and sends the agent a notification confirming that the merchant is fully operational.'
       operationId: post_Identification
       parameters:
       - in: path
@@ -148,7 +218,7 @@ paths:
           description: Authentication failed.
       summary: Upload identification documents
       tags:
-      - identification
+      - Identification
       security:
       - basicAuth: []
       requestBody:

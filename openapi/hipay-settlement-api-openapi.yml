@@ -2,53 +2,11 @@ openapi: 3.2.0
 info:
   version: 1.0.0
   title: HiPay Enterprise Finance Settlement API
-  description: '
-
-    When using HiPay Enterprise, all your sales are consolidated and settled (transferred to your bank account).
-
-    The Finance API allows you to get all the details about settlements executed for your merchant account.
-
-
-    # Integration
-
-    The `settlement` endpoint allows you to either consult the whole list of settlements or search for particular settlements by amount or date.
-
-    You can get the total amount which has been transferred to your bank account as well as the total sales amount, refunds, fees and chargebacks for each settlement by using the `/settlement/{id}` endpoint.
-
-    You may also download settlement files in spreadsheet formats (xls, csv) or plain text by leveraging the `/settlement/{id}/raw{ext}` endpoint.
-
-
-    Note: this documentation describes the Finance API parameters and response fields and allows you to test the platform in real time.
-
-
-    # Web service information
-
-
-    ## Finance API base URLs
-
-
-    | Environment | Base URL |
-
-    | --- | --- |
-
-    | Stage | https://stage-api.hipay-tpp.com/v1 |
-
-    | Production | https://api.hipay-tpp.com/v1 |
-
-
-    ## Authentication
-
-
-    All requests to HiPay Enterprise API require you to authenticate using the HTTP *Basic Authentication* to convey your identity. Your API credentials can be found in your HiPay Enterprise back office in the Integration section. Most HTTP clients (including web-browsers) have built-in support for HTTP Basic Authentication. If not, the following header must be included in all HTTP requests.
-
-
-    `Authorization: Basic base64("<API login>:<API password>")`
-
-    '
+  description: When using HiPay Enterprise, all your sales are consolidated and settled (transferred to your bank account).
 servers:
 - url: https://stage-api.hipay-tpp.com/v1
 tags:
-- name: settlement
+- name: Settlement
   description: Everything you need to get all settlement details
 paths:
   /settlement:
@@ -60,12 +18,10 @@ paths:
 
         You may need to search for particular settlements. To this end, this endpoint also offers filtering parameters which allow you to get settlements for a specific amount and currency or in a specific date range.
 
-        Check out the `amount`, `currency`, `date_from` and `date_to` parameters for more information about filtering capabilities.
-
-        '
+        Check out the `amount`, `currency`, `date_from` and `date_to` parameters for more information about filtering capabilities.'
       summary: Lists settlements for your merchant account
       tags:
-      - settlement
+      - Settlement
       operationId: getSettlements
       parameters:
       - in: query
@@ -270,11 +226,9 @@ paths:
         - Total amount transferred to the bank account
 
 
-        - Detailed amounts (sales, refunds, chargebacks, fees, etc.)
-
-        '
+        - Detailed amounts (sales, refunds, chargebacks, fees, etc.)'
       tags:
-      - settlement
+      - Settlement
       operationId: getSettlementItem
       parameters:
       - in: path
@@ -448,11 +402,9 @@ paths:
       summary: Returns the content of a settlement file in a given format
       description: 'This endpoint allows you to download a settlement file in raw format given a specific settlement ID.
 
-        Available formats for download are: `.txt`, `.xls` and `.csv`.
-
-        '
+        Available formats for download are: `.txt`, `.xls` and `.csv`.'
       tags:
-      - settlement
+      - Settlement
       operationId: getSettlementRaw
       parameters:
       - in: path
