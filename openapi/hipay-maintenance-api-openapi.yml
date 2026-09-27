@@ -72,104 +72,6 @@ paths:
       - basicAuth: []
 components:
   schemas:
-    Error:
-      title: Error
-      description: Error model
-      properties:
-        code:
-          description: Code
-          type: integer
-          x-sort: 1
-        message:
-          description: Message
-          type: string
-          x-sort: 5
-        description:
-          description: Description
-          type: string
-          x-sort: 10
-      type: object
-    Operation:
-      title: Operation
-      description: Operation model
-      properties:
-        operation:
-          description: The operation to perform on the transaction.
-          type: string
-          enum:
-          - capture
-          - refund
-          - cancel
-          - acceptChallenge
-          - denyChallenge
-          example: capture
-          x-sort: 1
-        mid:
-          description: ''
-          type: string
-          example: 00001326589
-          x-sort: 5
-        authorizationCode:
-          description: ''
-          type: string
-          example: author
-          x-sort: 10
-        transactionReference:
-          description: ''
-          type: string
-          example: '800000968431'
-          x-sort: 15
-        status:
-          description: ''
-          type: string
-          example: '118'
-          x-sort: 35
-        message:
-          description: ''
-          type: string
-          example: Captured
-          x-sort: 40
-        dateCreated:
-          description: ''
-          type: string
-          example: 2019-02-07T10:07:09+0000
-          x-sort: 20
-        dateUpdated:
-          description: ''
-          type: string
-          example: 2019-02-07T10:07:09+0000
-          x-sort: 25
-        dateAuthorized:
-          description: ''
-          type: string
-          example: 2019-02-07T10:07:09+0000
-          x-sort: 30
-        authorizedAmount:
-          description: ''
-          type: string
-          example: '125.85'
-          x-sort: 45
-        capturedAmount:
-          description: ''
-          type: string
-          example: '125.85'
-          x-sort: 50
-        refundedAmount:
-          description: ''
-          type: string
-          example: '0.00'
-          x-sort: 55
-        decimals:
-          description: ''
-          type: string
-          example: '2'
-          x-sort: 60
-        currency:
-          description: ''
-          type: string
-          example: EUR
-          x-sort: 65
-      type: object
     Maintenance:
       title: Maintenance
       description: Maintenance model
@@ -382,6 +284,104 @@ components:
           type: string
           example: '{"integration_version":"1.9.0","brand":"DEVPORTAL","source":"CSDK","brand_version":"12.2.0"}'
           x-sort: 30
+      type: object
+    Operation:
+      title: Operation
+      description: Operation model
+      properties:
+        operation:
+          description: The operation to perform on the transaction.
+          type: string
+          enum:
+          - capture
+          - refund
+          - cancel
+          - acceptChallenge
+          - denyChallenge
+          example: capture
+          x-sort: 1
+        mid:
+          description: ''
+          type: string
+          example: 00001326589
+          x-sort: 5
+        authorizationCode:
+          description: ''
+          type: string
+          example: author
+          x-sort: 10
+        transactionReference:
+          description: ''
+          type: string
+          example: '800000968431'
+          x-sort: 15
+        status:
+          description: ''
+          type: string
+          example: '118'
+          x-sort: 35
+        message:
+          description: ''
+          type: string
+          example: Captured
+          x-sort: 40
+        dateCreated:
+          description: ''
+          type: string
+          example: 2019-02-07T10:07:09+0000
+          x-sort: 20
+        dateUpdated:
+          description: ''
+          type: string
+          example: 2019-02-07T10:07:09+0000
+          x-sort: 25
+        dateAuthorized:
+          description: ''
+          type: string
+          example: 2019-02-07T10:07:09+0000
+          x-sort: 30
+        authorizedAmount:
+          description: ''
+          type: string
+          example: '125.85'
+          x-sort: 45
+        capturedAmount:
+          description: ''
+          type: string
+          example: '125.85'
+          x-sort: 50
+        refundedAmount:
+          description: ''
+          type: string
+          example: '0.00'
+          x-sort: 55
+        decimals:
+          description: ''
+          type: string
+          example: '2'
+          x-sort: 60
+        currency:
+          description: ''
+          type: string
+          example: EUR
+          x-sort: 65
+      type: object
+    Error:
+      title: Error
+      description: Error model
+      properties:
+        code:
+          description: Code
+          type: integer
+          x-sort: 1
+        message:
+          description: Message
+          type: string
+          x-sort: 5
+        description:
+          description: Description
+          type: string
+          x-sort: 10
       type: object
   securitySchemes:
     basicAuth:

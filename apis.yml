@@ -50,7 +50,7 @@ tags_raw:
   - Marketplace
 apis:
 - aid: hipay:hipay-balance-api
-  name: HiPay balance API
+  name: HiPay Balance API
   description: Manage the balance of a HiPay account
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
@@ -70,7 +70,7 @@ apis:
   - type: Documentation
     url: https://developer.hipay.com
 - aid: hipay:hipay-bank-info-api
-  name: HiPay bank-info API
+  name: HiPay Bank Info API
   description: Manage bank informations of a HiPay account
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
@@ -90,7 +90,7 @@ apis:
   - type: Documentation
     url: https://developer.hipay.com
 - aid: hipay:hipay-captcha-generation-api
-  name: HiPay captcha-generation API
+  name: HiPay Captcha Generation API
   description: Generate captcha
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
@@ -126,7 +126,7 @@ apis:
   - type: Documentation
     url: https://developer.hipay.com
 - aid: hipay:hipay-constants-api
-  name: HiPay constants API
+  name: HiPay Constants API
   description: Manage your account with our API tools
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
@@ -146,7 +146,7 @@ apis:
   - type: Documentation
     url: https://developer.hipay.com
 - aid: hipay:hipay-identification-api
-  name: HiPay identification API
+  name: HiPay Identification API
   description: Manage your identification documents
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
@@ -166,7 +166,7 @@ apis:
   - type: Documentation
     url: https://developer.hipay.com
 - aid: hipay:hipay-invoice-api
-  name: HiPay invoice API
+  name: HiPay Invoice API
   description: Manage marketplace invoices
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
@@ -186,7 +186,7 @@ apis:
   - type: Documentation
     url: https://developer.hipay.com
 - aid: hipay:hipay-maintenance-api
-  name: HiPay maintenance API
+  name: HiPay Maintenance API
   description: Perform operations (capture, refund) on transactions
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
@@ -206,7 +206,7 @@ apis:
   - type: Documentation
     url: https://developer.hipay.com
 - aid: hipay:hipay-merchant-group-api
-  name: HiPay merchant-group API
+  name: HiPay Merchant Group API
   description: Manage merchant groups
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
@@ -242,7 +242,7 @@ apis:
   - type: Documentation
     url: https://developer.hipay.com
 - aid: hipay:hipay-payments-api
-  name: HiPay payments API
+  name: HiPay Payments API
   description: Everything you need to create orders and transactions
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
@@ -298,7 +298,7 @@ apis:
   - type: Documentation
     url: https://developer.hipay.com
 - aid: hipay:hipay-settlement-api
-  name: HiPay settlement API
+  name: HiPay Settlement API
   description: Everything you need to get all settlement details
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
@@ -318,7 +318,7 @@ apis:
   - type: Documentation
     url: https://developer.hipay.com
 - aid: hipay:hipay-tokenization-api
-  name: HiPay tokenization API
+  name: HiPay Tokenization API
   description: Everything you need to tokenize payment cards
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
@@ -356,7 +356,7 @@ apis:
   - type: Documentation
     url: https://developer.hipay.com
 - aid: hipay:hipay-transfer-api
-  name: HiPay transfer API
+  name: HiPay Transfer API
   description: Transfer funds between HiPay accounts
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
@@ -376,7 +376,7 @@ apis:
   - type: Documentation
     url: https://developer.hipay.com
 - aid: hipay:hipay-ubo-api
-  name: HiPay ubo API
+  name: HiPay Ubo API
   description: Manage your Ultimate Beneficial Ownerships (UBO)
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
@@ -396,7 +396,7 @@ apis:
   - type: Documentation
     url: https://developer.hipay.com
 - aid: hipay:hipay-user-account-api
-  name: HiPay user-account API
+  name: HiPay User Account API
   description: Manage your HiPay account
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
@@ -416,7 +416,7 @@ apis:
   - type: Documentation
     url: https://developer.hipay.com
 - aid: hipay:hipay-withdrawal-api
-  name: HiPay withdrawal API
+  name: HiPay Withdrawal API
   description: Request a withdrawal from a HiPay account
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
