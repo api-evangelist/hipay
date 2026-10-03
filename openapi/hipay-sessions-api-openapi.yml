@@ -44,6 +44,26 @@ paths:
         required: true
 components:
   schemas:
+    ApplePayWeb_Response:
+      type: object
+      description: Apple Pay session object.
+      properties:
+        epochTimestamp:
+          type: string
+        expiresAt:
+          type: string
+        merchantSessionIdentifier:
+          type: string
+        nonce:
+          type: string
+        merchantIdentifier:
+          type: string
+        domainName:
+          type: string
+        displayName:
+          type: string
+        signature:
+          type: string
     ApplePayWeb_Error:
       type: object
       properties:
@@ -119,23 +139,3 @@ components:
           - https://cn-apple-pay-gateway-tj-pod3-dr.apple.com/paymentservices/startSession
           - https://apple-pay-gateway-cert.apple.com/paymentservices/startSession
           - https://cn-apple-pay-gateway-cert.apple.com/paymentservices/startSession
-    ApplePayWeb_Response:
-      type: object
-      description: Apple Pay session object.
-      properties:
-        epochTimestamp:
-          type: string
-        expiresAt:
-          type: string
-        merchantSessionIdentifier:
-          type: string
-        nonce:
-          type: string
-        merchantIdentifier:
-          type: string
-        domainName:
-          type: string
-        displayName:
-          type: string
-        signature:
-          type: string
