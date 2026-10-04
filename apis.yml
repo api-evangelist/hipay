@@ -421,6 +421,8 @@ apis:
   humanURL: https://developer.hipay.com/api-explorer/api-gateway
   baseURL: https://api-gateway.hipay.com
   tags:
+  - Withdrawal
+  tags_raw:
   - withdrawal
   properties:
   - type: OpenAPI
