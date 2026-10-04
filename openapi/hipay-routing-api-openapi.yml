@@ -160,6 +160,19 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    AvailablePaymentProduct:
+      required:
+      - code
+      - description
+      - tokenizable
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        tokenizable:
+          type: integer
+      type: object
     Error:
       required:
       - message
@@ -179,19 +192,6 @@ components:
           type:
           - string
           - 'null'
-      type: object
-    AvailablePaymentProduct:
-      required:
-      - code
-      - description
-      - tokenizable
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-        tokenizable:
-          type: integer
       type: object
     RoutingSearchDto2:
       properties:

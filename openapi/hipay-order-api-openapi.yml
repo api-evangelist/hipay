@@ -105,183 +105,6 @@ paths:
       description: Stage
 components:
   schemas:
-    Cvc2:
-      type: string
-      enum:
-      - Match
-      - No Match
-      - Not Processed
-      - Missing
-      - Not Supported
-    ThreeDSAuthenticationLiability2:
-      type: string
-      enum:
-      - issuer
-      - merchant
-      - not applicable
-    Transaction2:
-      required:
-      - id
-      - attemptid
-      - state
-      - status
-      - eci
-      - amount
-      - captured_amount
-      - refunded_amount
-      - credited_amount
-      - chargebacked_amount
-      - acquirer
-      - issuer
-      - device
-      - forward_url
-      - customer_country
-      - date_created
-      - date_updated
-      - mid
-      - operations
-      - authorized_amount
-      - currency
-      - decimals
-      properties:
-        id:
-          description: Unique transaction ID.
-          type: integer
-          example: '2456731565945'
-        attemptid:
-          type: integer
-        state:
-          $ref: '#/components/schemas/TransactionState2'
-        status:
-          $ref: '#/components/schemas/Status2'
-        computed_authentication_status:
-          description: Transaction computed authentication status.
-          example: Successful authentication
-          oneOf:
-          - $ref: '#/components/schemas/ComputedAuthenticationStatus2'
-        reason:
-          oneOf:
-          - $ref: '#/components/schemas/ReasonCode2'
-        eci:
-          description: 'Electronic Commerce Indicator (ECI).
-
-
-            The Electronic Commerce Indicator (ECI) is used by acquirers/issuers
-
-
-            to determine the type of transaction being processed. The ECI value
-
-
-            should represent the source of the transaction request. That is, the
-
-
-            environment that the cardholder used to provide the payment card details
-
-
-            to the merchant. It is important that merchants set the correct ECI
-
-
-            value during transaction processing to ensure that appropriate merchant
-
-
-            service rates are received.'
-          type: integer
-          example: 7
-        amount:
-          description: Transaction amount.
-          type: string
-          example: '125.75'
-        captured_amount:
-          description: Captured amount.
-          type: string
-          example: '125.75'
-        refunded_amount:
-          description: Refunded amount.
-          type: string
-          example: '0.00'
-        credited_amount:
-          description: Total credited.
-          type: string
-          example: '125.75'
-        chargebacked_amount:
-          description: Chargebacked amount.
-          type: string
-          example: '125.75'
-        payment_product:
-          description: The payment product used for processing current transaction.
-          example: visa
-          oneOf:
-          - $ref: '#/components/schemas/PaymentProduct2'
-        acquirer:
-          $ref: '#/components/schemas/Acquirer2'
-        acquirer_tra:
-          oneOf:
-          - $ref: '#/components/schemas/AcquirerTraContext2'
-        issuer:
-          $ref: '#/components/schemas/Issuer2'
-        card:
-          oneOf:
-          - $ref: '#/components/schemas/Card2'
-        debit_agreement:
-          oneOf:
-          - $ref: '#/components/schemas/DebitAgreement2'
-        device:
-          $ref: '#/components/schemas/Device2'
-        authentication:
-          oneOf:
-          - $ref: '#/components/schemas/Authentication2'
-        authorization_code:
-          type:
-          - string
-          - 'null'
-        forward_url:
-          description: URL of the page on which to redirect the customer.
-          type: string
-          example: ''
-        fraud_screening:
-          oneOf:
-          - $ref: '#/components/schemas/FraudResult2'
-        cvc_result:
-          oneOf:
-          - $ref: '#/components/schemas/Cvc2'
-        customer_country:
-          type: string
-          example: FR
-        date_created:
-          type: string
-          format: date-time
-        date_updated:
-          description: 'Date of last status change.
-
-
-            This date must comply with ISO 8601.'
-          type: string
-          format: date-time
-        date_authorized:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        mid:
-          description: 'Merchant id (MID).
-
-
-            Unique identifier assigned to the merchant.'
-          type: integer
-        operations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Operation2'
-        authorized_amount:
-          description: Authorized amount.
-          type: string
-          example: '125.75'
-        currency:
-          $ref: '#/components/schemas/Currency'
-        decimals:
-          type: integer
-          example: '2'
-      type: object
     Currency:
       type: string
       enum:
@@ -447,15 +270,393 @@ components:
       - ZAR
       - ZMK
       - ZWL
-    OperationType2:
+    DebitAgreement2:
+      required:
+      - id
+      - status
+      properties:
+        id:
+          type: integer
+        scheme_reference_data:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/Status5'
+        recurring_payment_end_date:
+          type:
+          - string
+          - 'null'
+      type: object
+    Preference2:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 7
+    ReasonCode2:
+      properties:
+        code:
+          type:
+          - integer
+          - 'null'
+        reason:
+          type:
+          - string
+          - 'null'
+      type: object
+    ThreeDSAuthenticationMethod2:
       type: string
       enum:
-      - CAPTURE
-      - CREDIT
-      - REFUND
-      - CHGBCK
-      - CHGBCK_REFUND
-      - RDR
+      - challenge
+      - frictionless
+      - ''
+    Acquirer2:
+      properties:
+        transaction_reference:
+          description: Unique Transaction Identifier.
+          type:
+          - string
+          - 'null'
+          example: '800000790677'
+      type: object
+    PaymentProduct2:
+      required:
+      - name
+      - description
+      properties:
+        payment_method:
+          oneOf:
+          - $ref: '#/components/schemas/PaymentMethod2'
+        name:
+          type: string
+        description:
+          type: string
+      type: object
+    Authentication5:
+      type: string
+      enum:
+      - Authentication Successful
+      - Authentication Attempt Performed
+      - Authentication Failed
+      - Authentication Could Not Be Performed
+      - Error
+      - Not applicable
+      - Cardholder challenge required
+      - Not authenticated because the issuer is rejecting authentication
+      - Challenge required; decoupled authentication confirmed
+      - Informational only; 3DS Requestor challenge preference acknowledged
+      - Mastercard Delegated Authentication
+    Order:
+      required:
+      - id
+      - merchant_order_id
+      - attempts
+      - amount
+      - shipping
+      - tax
+      - customer
+      - shipping_to
+      - date_created
+      - transactions
+      - currency
+      - decimals
+      properties:
+        id:
+          description: Unique order ID.
+          type: integer
+          example: '1537532589263'
+        merchant_order_id:
+          type: string
+        attempts:
+          description: Attempt identifier
+          type: integer
+          example: 1
+        amount:
+          description: Total order amount, calculated as the sum of purchased items, plus shipping fees (if present), plus tax fees (if present).
+          type: string
+          example: '8.99'
+        shipping:
+          description: The order shipping fee. It can be omitted if the shipping fee value is zero.
+          type: string
+          example: '1.30'
+        tax:
+          description: The order tax fee. It can be omitted if the order tax value is zero...
+          type: string
+          example: '1.10'
+        customer:
+          $ref: '#/components/schemas/Customer'
+        shipping_to:
+          $ref: '#/components/schemas/ShippingAddress'
+        terminal_information:
+          description: The customer terminal informations used for the order.
+          oneOf:
+          - $ref: '#/components/schemas/TerminalInformation'
+        date_created:
+          type: string
+          format: date-time
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction2'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        decimals:
+          type: integer
+          example: '2'
+        billing_to:
+          oneOf:
+          - $ref: '#/components/schemas/Address'
+        custom_data:
+          type:
+          - string
+          - 'null'
+      type: object
+    TransactionState2:
+      type: string
+      enum:
+      - completed
+      - waiting
+      - pending
+      - declined
+      - forwarding
+      - error
+    Operation2:
+      required:
+      - type
+      - status
+      - amount
+      - arn
+      - date_created
+      - id
+      - currency
+      - decimals
+      properties:
+        type:
+          $ref: '#/components/schemas/OperationType2'
+        status:
+          $ref: '#/components/schemas/OperationStatus2'
+        amount:
+          description: Operation Amount.
+          type: string
+          example: '10.00'
+        arn:
+          description: Acquirer Reference Number.
+          type: string
+          example: '75064953264000221624949'
+        merchant_reference:
+          type:
+          - string
+          - 'null'
+        date_created:
+          type: string
+          format: date-time
+        date_updated:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        date_remitted:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        date_processed:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        date_reconciled:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        id:
+          type: integer
+        currency:
+          $ref: '#/components/schemas/Currency'
+        decimals:
+          type: integer
+          example: '2'
+        caseid:
+          type:
+          - string
+          - 'null'
+      type: object
+    Transaction2:
+      required:
+      - id
+      - attemptid
+      - state
+      - status
+      - eci
+      - amount
+      - captured_amount
+      - refunded_amount
+      - credited_amount
+      - chargebacked_amount
+      - acquirer
+      - issuer
+      - device
+      - forward_url
+      - customer_country
+      - date_created
+      - date_updated
+      - mid
+      - operations
+      - authorized_amount
+      - currency
+      - decimals
+      properties:
+        id:
+          description: Unique transaction ID.
+          type: integer
+          example: '2456731565945'
+        attemptid:
+          type: integer
+        state:
+          $ref: '#/components/schemas/TransactionState2'
+        status:
+          $ref: '#/components/schemas/Status2'
+        computed_authentication_status:
+          description: Transaction computed authentication status.
+          example: Successful authentication
+          oneOf:
+          - $ref: '#/components/schemas/ComputedAuthenticationStatus2'
+        reason:
+          oneOf:
+          - $ref: '#/components/schemas/ReasonCode2'
+        eci:
+          description: 'Electronic Commerce Indicator (ECI).
+
+
+            The Electronic Commerce Indicator (ECI) is used by acquirers/issuers
+
+
+            to determine the type of transaction being processed. The ECI value
+
+
+            should represent the source of the transaction request. That is, the
+
+
+            environment that the cardholder used to provide the payment card details
+
+
+            to the merchant. It is important that merchants set the correct ECI
+
+
+            value during transaction processing to ensure that appropriate merchant
+
+
+            service rates are received.'
+          type: integer
+          example: 7
+        amount:
+          description: Transaction amount.
+          type: string
+          example: '125.75'
+        captured_amount:
+          description: Captured amount.
+          type: string
+          example: '125.75'
+        refunded_amount:
+          description: Refunded amount.
+          type: string
+          example: '0.00'
+        credited_amount:
+          description: Total credited.
+          type: string
+          example: '125.75'
+        chargebacked_amount:
+          description: Chargebacked amount.
+          type: string
+          example: '125.75'
+        payment_product:
+          description: The payment product used for processing current transaction.
+          example: visa
+          oneOf:
+          - $ref: '#/components/schemas/PaymentProduct2'
+        acquirer:
+          $ref: '#/components/schemas/Acquirer2'
+        acquirer_tra:
+          oneOf:
+          - $ref: '#/components/schemas/AcquirerTraContext2'
+        issuer:
+          $ref: '#/components/schemas/Issuer2'
+        card:
+          oneOf:
+          - $ref: '#/components/schemas/Card2'
+        debit_agreement:
+          oneOf:
+          - $ref: '#/components/schemas/DebitAgreement2'
+        device:
+          $ref: '#/components/schemas/Device2'
+        authentication:
+          oneOf:
+          - $ref: '#/components/schemas/Authentication2'
+        authorization_code:
+          type:
+          - string
+          - 'null'
+        forward_url:
+          description: URL of the page on which to redirect the customer.
+          type: string
+          example: ''
+        fraud_screening:
+          oneOf:
+          - $ref: '#/components/schemas/FraudResult2'
+        cvc_result:
+          oneOf:
+          - $ref: '#/components/schemas/Cvc2'
+        customer_country:
+          type: string
+          example: FR
+        date_created:
+          type: string
+          format: date-time
+        date_updated:
+          description: 'Date of last status change.
+
+
+            This date must comply with ISO 8601.'
+          type: string
+          format: date-time
+        date_authorized:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        mid:
+          description: 'Merchant id (MID).
+
+
+            Unique identifier assigned to the merchant.'
+          type: integer
+        operations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Operation2'
+        authorized_amount:
+          description: Authorized amount.
+          type: string
+          example: '125.75'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        decimals:
+          type: integer
+          example: '2'
+      type: object
+    Cvc2:
+      type: string
+      enum:
+      - Match
+      - No Match
+      - Not Processed
+      - Missing
+      - Not Supported
     Issuer2:
       properties:
         fullname:
@@ -470,119 +671,6 @@ components:
           type:
           - string
           - 'null'
-      type: object
-    ComputedAuthenticationStatus2:
-      type: string
-      enum:
-      - No authentication
-      - Abandoned strong authentication
-      - Unsuccessful authentication attempted
-      - Challenge authentication
-      - Frictionless authentication
-      - Successful authentication
-      - Failed authentication
-      - Unknown authentication
-    ShippingAddress:
-      properties:
-        house_number:
-          description: House number.
-          type:
-          - string
-          - 'null'
-          example: '101'
-        house_extension:
-          description: House extension.
-          type:
-          - string
-          - 'null'
-          example: B
-        street:
-          description: Street address.
-          type:
-          - string
-          - 'null'
-          example: Rue de Rivoli
-        street_additional:
-          description: Additional address information of the customer (e.g., building, floor, flat, etc.).
-          type:
-          - string
-          - 'null'
-          example: Immeuble B
-        locality:
-          description: City.
-          type:
-          - string
-          - 'null'
-          example: Paris
-        locality_additional:
-          description: The USA state or the Canada state of the customer making the purchase. Send this information only if the address country of the customer is US (USA) or CA (Canada)
-          type:
-          - string
-          - 'null'
-          example: ''
-        postal_code:
-          description: The zip or postal code of the customer.
-          type:
-          - string
-          - 'null'
-          example: '75001'
-        country:
-          description: Country code to which the order is being shipped. This two-letter country code complies with ISO 3166-1 (alpha 2).
-          type:
-          - string
-          - 'null'
-          example: FR
-      type: object
-    Address:
-      properties:
-        house_number:
-          description: House number.
-          type:
-          - string
-          - 'null'
-          example: '101'
-        house_extension:
-          description: House extension.
-          type:
-          - string
-          - 'null'
-          example: B
-        street:
-          description: Street address.
-          type:
-          - string
-          - 'null'
-          example: Rue de Rivoli
-        street_additional:
-          description: Additional address information of the customer (e.g., building, floor, flat, etc.).
-          type:
-          - string
-          - 'null'
-          example: Immeuble B
-        locality:
-          description: City.
-          type:
-          - string
-          - 'null'
-          example: Paris
-        locality_additional:
-          description: The USA state or the Canada state of the customer making the purchase. Send this information only if the address country of the customer is US (USA) or CA (Canada)
-          type:
-          - string
-          - 'null'
-          example: ''
-        postal_code:
-          description: The zip or postal code of the customer.
-          type:
-          - string
-          - 'null'
-          example: '75001'
-        country:
-          description: Country code to which the order is being shipped. This two-letter country code complies with ISO 3166-1 (alpha 2).
-          type:
-          - string
-          - 'null'
-          example: FR
       type: object
     TerminalInformation:
       properties:
@@ -659,23 +747,82 @@ components:
           - string
           - 'null'
       type: object
-    ReasonCode2:
+    Customer:
+      required:
+      - email
+      - phone
       properties:
-        code:
+        id:
           type:
-          - integer
+          - string
           - 'null'
-        reason:
+          example: '283749291'
+        firstname:
+          description: The customer’s first name. This value will be use to pre-fill cardholder name on credit card payment form.
+          type:
+          - string
+          - 'null'
+          example: Rose
+        lastname:
+          description: The customer’s last name. This value will be use to pre-fill cardholder name on credit card payment form.
+          type:
+          - string
+          - 'null'
+          example: Dévent
+        email:
+          description: The customer’s e-mail address.
+          type: string
+          example: otto.graph@foobar.email
+        phone:
+          description: The customer’s phone.
+          type: string
+          example: 01234567890
+        language:
+          type:
+          - string
+          - 'null'
+          example: en_GB
+      type: object
+    ThreeDSAuthenticationLiability2:
+      type: string
+      enum:
+      - issuer
+      - merchant
+      - not applicable
+    FraudResult2:
+      required:
+      - result
+      - review
+      - score
+      properties:
+        result:
+          $ref: '#/components/schemas/Result2'
+        review:
+          $ref: '#/components/schemas/Review2'
+        score:
+          type: integer
+          example: 200
+      type: object
+    Error:
+      required:
+      - message
+      - code
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+        details:
+          type:
+          - array
+          - 'null'
+          items: {}
+          default: null
+        description:
           type:
           - string
           - 'null'
       type: object
-    ThreeDSAuthenticationMethod2:
-      type: string
-      enum:
-      - challenge
-      - frictionless
-      - ''
     Authentication2:
       required:
       - eci
@@ -752,6 +899,42 @@ components:
           oneOf:
           - $ref: '#/components/schemas/ThreeDSAuthenticationLiability2'
       type: object
+    ComputedAuthenticationStatus2:
+      type: string
+      enum:
+      - No authentication
+      - Abandoned strong authentication
+      - Unsuccessful authentication attempted
+      - Challenge authentication
+      - Frictionless authentication
+      - Successful authentication
+      - Failed authentication
+      - Unknown authentication
+    Result2:
+      type: string
+      enum:
+      - NOT_LAUNCHED
+      - PENDING
+      - ACCEPTED
+      - REQUEST EXEMPTION
+      - BLOCKED
+      - CHALLENGED
+      - AUTHENTICATE
+      - FORCE_AUTHENTICATE
+      - OVERRIDE
+      - ACCEPT WITH NO PREFERENCE
+      - DENIED
+      - ALLOWED
+    Status5:
+      type: string
+      enum:
+      - available
+      - created
+      - error
+      - incomplete
+      - pending
+      - suspended
+      - terminated
     Card2:
       properties:
         pan:
@@ -783,21 +966,160 @@ components:
           - string
           - 'null'
       type: object
-    Result2:
+    CardEntryMode:
       type: string
       enum:
-      - NOT_LAUNCHED
-      - PENDING
-      - ACCEPTED
-      - REQUEST EXEMPTION
-      - BLOCKED
-      - CHALLENGED
-      - AUTHENTICATE
-      - FORCE_AUTHENTICATE
-      - OVERRIDE
-      - ACCEPT WITH NO PREFERENCE
-      - DENIED
+      - Not specified
+      - Magstripe
+      - Contactless chip transaction using EMV chip data
+      - Contactless chip transaction using magstripe data
+      - ICC
+      - Manual entry
+      - Magstripe, after attempt to read chip
+      - Provided by a server
+      - Card-on-File
+    Review2:
+      type: string
+      enum:
       - ALLOWED
+      - PENDING
+      - DENIED
+    OperationType2:
+      type: string
+      enum:
+      - CAPTURE
+      - CREDIT
+      - REFUND
+      - CHGBCK
+      - CHGBCK_REFUND
+      - RDR
+    PaymentMethod2:
+      required:
+      - name
+      - description
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      type: object
+    Address:
+      properties:
+        house_number:
+          description: House number.
+          type:
+          - string
+          - 'null'
+          example: '101'
+        house_extension:
+          description: House extension.
+          type:
+          - string
+          - 'null'
+          example: B
+        street:
+          description: Street address.
+          type:
+          - string
+          - 'null'
+          example: Rue de Rivoli
+        street_additional:
+          description: Additional address information of the customer (e.g., building, floor, flat, etc.).
+          type:
+          - string
+          - 'null'
+          example: Immeuble B
+        locality:
+          description: City.
+          type:
+          - string
+          - 'null'
+          example: Paris
+        locality_additional:
+          description: The USA state or the Canada state of the customer making the purchase. Send this information only if the address country of the customer is US (USA) or CA (Canada)
+          type:
+          - string
+          - 'null'
+          example: ''
+        postal_code:
+          description: The zip or postal code of the customer.
+          type:
+          - string
+          - 'null'
+          example: '75001'
+        country:
+          description: Country code to which the order is being shipped. This two-letter country code complies with ISO 3166-1 (alpha 2).
+          type:
+          - string
+          - 'null'
+          example: FR
+      type: object
+    ShippingAddress:
+      properties:
+        house_number:
+          description: House number.
+          type:
+          - string
+          - 'null'
+          example: '101'
+        house_extension:
+          description: House extension.
+          type:
+          - string
+          - 'null'
+          example: B
+        street:
+          description: Street address.
+          type:
+          - string
+          - 'null'
+          example: Rue de Rivoli
+        street_additional:
+          description: Additional address information of the customer (e.g., building, floor, flat, etc.).
+          type:
+          - string
+          - 'null'
+          example: Immeuble B
+        locality:
+          description: City.
+          type:
+          - string
+          - 'null'
+          example: Paris
+        locality_additional:
+          description: The USA state or the Canada state of the customer making the purchase. Send this information only if the address country of the customer is US (USA) or CA (Canada)
+          type:
+          - string
+          - 'null'
+          example: ''
+        postal_code:
+          description: The zip or postal code of the customer.
+          type:
+          - string
+          - 'null'
+          example: '75001'
+        country:
+          description: Country code to which the order is being shipped. This two-letter country code complies with ISO 3166-1 (alpha 2).
+          type:
+          - string
+          - 'null'
+          example: FR
+      type: object
+    Device2:
+      required:
+      - ip_address
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        ip_address:
+          description: The IP address of the Device
+          type: string
+          example: 127.0.0.1
+      type: object
+    AcquirerTraContext2:
+      type: object
     Status2:
       type: integer
       enum:
@@ -857,282 +1179,6 @@ components:
       - 74
       - 77
       - 78
-    Acquirer2:
-      properties:
-        transaction_reference:
-          description: Unique Transaction Identifier.
-          type:
-          - string
-          - 'null'
-          example: '800000790677'
-      type: object
-    FraudResult2:
-      required:
-      - result
-      - review
-      - score
-      properties:
-        result:
-          $ref: '#/components/schemas/Result2'
-        review:
-          $ref: '#/components/schemas/Review2'
-        score:
-          type: integer
-          example: 200
-      type: object
-    Preference2:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 7
-    CardEntryMode:
-      type: string
-      enum:
-      - Not specified
-      - Magstripe
-      - Contactless chip transaction using EMV chip data
-      - Contactless chip transaction using magstripe data
-      - ICC
-      - Manual entry
-      - Magstripe, after attempt to read chip
-      - Provided by a server
-      - Card-on-File
-    AcquirerTraContext2:
-      type: object
-    PaymentMethod2:
-      required:
-      - name
-      - description
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-      type: object
-    Operation2:
-      required:
-      - type
-      - status
-      - amount
-      - arn
-      - date_created
-      - id
-      - currency
-      - decimals
-      properties:
-        type:
-          $ref: '#/components/schemas/OperationType2'
-        status:
-          $ref: '#/components/schemas/OperationStatus2'
-        amount:
-          description: Operation Amount.
-          type: string
-          example: '10.00'
-        arn:
-          description: Acquirer Reference Number.
-          type: string
-          example: '75064953264000221624949'
-        merchant_reference:
-          type:
-          - string
-          - 'null'
-        date_created:
-          type: string
-          format: date-time
-        date_updated:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        date_remitted:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        date_processed:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        date_reconciled:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        id:
-          type: integer
-        currency:
-          $ref: '#/components/schemas/Currency'
-        decimals:
-          type: integer
-          example: '2'
-        caseid:
-          type:
-          - string
-          - 'null'
-      type: object
-    DebitAgreement2:
-      required:
-      - id
-      - status
-      properties:
-        id:
-          type: integer
-        scheme_reference_data:
-          type:
-          - string
-          - 'null'
-        status:
-          $ref: '#/components/schemas/Status5'
-        recurring_payment_end_date:
-          type:
-          - string
-          - 'null'
-      type: object
-    Order:
-      required:
-      - id
-      - merchant_order_id
-      - attempts
-      - amount
-      - shipping
-      - tax
-      - customer
-      - shipping_to
-      - date_created
-      - transactions
-      - currency
-      - decimals
-      properties:
-        id:
-          description: Unique order ID.
-          type: integer
-          example: '1537532589263'
-        merchant_order_id:
-          type: string
-        attempts:
-          description: Attempt identifier
-          type: integer
-          example: 1
-        amount:
-          description: Total order amount, calculated as the sum of purchased items, plus shipping fees (if present), plus tax fees (if present).
-          type: string
-          example: '8.99'
-        shipping:
-          description: The order shipping fee. It can be omitted if the shipping fee value is zero.
-          type: string
-          example: '1.30'
-        tax:
-          description: The order tax fee. It can be omitted if the order tax value is zero...
-          type: string
-          example: '1.10'
-        customer:
-          $ref: '#/components/schemas/Customer'
-        shipping_to:
-          $ref: '#/components/schemas/ShippingAddress'
-        terminal_information:
-          description: The customer terminal informations used for the order.
-          oneOf:
-          - $ref: '#/components/schemas/TerminalInformation'
-        date_created:
-          type: string
-          format: date-time
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction2'
-        currency:
-          $ref: '#/components/schemas/Currency'
-        decimals:
-          type: integer
-          example: '2'
-        billing_to:
-          oneOf:
-          - $ref: '#/components/schemas/Address'
-        custom_data:
-          type:
-          - string
-          - 'null'
-      type: object
-    Review2:
-      type: string
-      enum:
-      - ALLOWED
-      - PENDING
-      - DENIED
-    TransactionState2:
-      type: string
-      enum:
-      - completed
-      - waiting
-      - pending
-      - declined
-      - forwarding
-      - error
-    Device2:
-      required:
-      - ip_address
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        ip_address:
-          description: The IP address of the Device
-          type: string
-          example: 127.0.0.1
-      type: object
-    PaymentProduct2:
-      required:
-      - name
-      - description
-      properties:
-        payment_method:
-          oneOf:
-          - $ref: '#/components/schemas/PaymentMethod2'
-        name:
-          type: string
-        description:
-          type: string
-      type: object
-    Error:
-      required:
-      - message
-      - code
-      properties:
-        message:
-          type: string
-        code:
-          type: integer
-        details:
-          type:
-          - array
-          - 'null'
-          items: {}
-          default: null
-        description:
-          type:
-          - string
-          - 'null'
-      type: object
-    Authentication5:
-      type: string
-      enum:
-      - Authentication Successful
-      - Authentication Attempt Performed
-      - Authentication Failed
-      - Authentication Could Not Be Performed
-      - Error
-      - Not applicable
-      - Cardholder challenge required
-      - Not authenticated because the issuer is rejecting authentication
-      - Challenge required; decoupled authentication confirmed
-      - Informational only; 3DS Requestor challenge preference acknowledged
-      - Mastercard Delegated Authentication
     OperationStatus2:
       type: string
       enum:
@@ -1149,52 +1195,37 @@ components:
       - SPLIT
       - CHGBCK
       - CHGBCK_REFUND
-    Customer:
-      required:
-      - email
-      - phone
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: '283749291'
-        firstname:
-          description: The customer’s first name. This value will be use to pre-fill cardholder name on credit card payment form.
-          type:
-          - string
-          - 'null'
-          example: Rose
-        lastname:
-          description: The customer’s last name. This value will be use to pre-fill cardholder name on credit card payment form.
-          type:
-          - string
-          - 'null'
-          example: Dévent
-        email:
-          description: The customer’s e-mail address.
-          type: string
-          example: otto.graph@foobar.email
-        phone:
-          description: The customer’s phone.
-          type: string
-          example: 01234567890
-        language:
-          type:
-          - string
-          - 'null'
-          example: en_GB
+    Address_2:
       type: object
-    Status5:
-      type: string
-      enum:
-      - available
-      - created
-      - error
-      - incomplete
-      - pending
-      - suspended
-      - terminated
+      description: Address format
+      properties:
+        country:
+          description: "Country code.  \nThis two-letter country code complies with ISO 3166-1 (alpha 2).\n"
+          type: string
+          example: FR
+        state:
+          description: State.
+          type: string
+        city:
+          description: The city.
+          type: string
+          example: Paris
+        zip_code:
+          description: The zip or postal code.
+          type: string
+          example: '75001'
+        street_address:
+          description: Street address.
+          type: string
+          example: 101 Rue de Rivoli
+        street_additional_details:
+          description: Any additional information about the address where te order will be shipped (e.g., building, floor, flat, etc.).
+          type: string
+          example: Immeuble B
+        house_number:
+          description: House number.
+          type: string
+          example: '101'
     BasketItem:
       type: object
       description: Representation of one product line in a customer basket
@@ -1272,27 +1303,6 @@ components:
           type: string
           description: "Product Image.  \nThis image will be displayed in the transaction notice page on HiPay Console.\n"
           example: https://image.example.com/image_180x180.jpg
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          required:
-          - code
-          properties:
-            status:
-              type: integer
-            code:
-              type: string
-            message:
-              type: string
-            description:
-              type: string
-            details:
-              type: object
-              properties:
-                path:
-                  type: string
     Shipping:
       description: To get additional insights and to be more efficient in fighting against fraud, it is recommended to send any relevant shipping information.
       type: object
@@ -1376,87 +1386,6 @@ components:
               example: '33112345678'
         delivery_address:
           $ref: '#/components/schemas/Address_2'
-    Address_2:
-      type: object
-      description: Address format
-      properties:
-        country:
-          description: "Country code.  \nThis two-letter country code complies with ISO 3166-1 (alpha 2).\n"
-          type: string
-          example: FR
-        state:
-          description: State.
-          type: string
-        city:
-          description: The city.
-          type: string
-          example: Paris
-        zip_code:
-          description: The zip or postal code.
-          type: string
-          example: '75001'
-        street_address:
-          description: Street address.
-          type: string
-          example: 101 Rue de Rivoli
-        street_additional_details:
-          description: Any additional information about the address where te order will be shipped (e.g., building, floor, flat, etc.).
-          type: string
-          example: Immeuble B
-        house_number:
-          description: House number.
-          type: string
-          example: '101'
-    RootOrder:
-      type: object
-      description: Definition of the order's api call body
-      required:
-      - order
-      - pos_technical_info
-      properties:
-        order:
-          $ref: '#/components/schemas/Order_2'
-        customer:
-          $ref: '#/components/schemas/Customer_2'
-        shipping:
-          $ref: '#/components/schemas/Shipping'
-        pos_technical_info:
-          $ref: '#/components/schemas/TechnicalInformation'
-    OrderResponse:
-      type: object
-      properties:
-        paymentStatus:
-          type: string
-          description: Status received from the TPE regarding the payment.
-          enum:
-          - Success
-          - Failure
-          example: success
-        receipt:
-          type: string
-          description: Receipt encoded in Base64
-          example: UkVDRUlQVCA5OSBFVVI==
-        error:
-          type: object
-          required:
-          - errorCode
-          properties:
-            errorCode:
-              type: string
-              description: Error code
-              example: 1003
-            errorDescription:
-              type: string
-              description: Error description
-              example: The network is unavailable
-        order:
-          $ref: '#/components/schemas/Order_2'
-        customer:
-          $ref: '#/components/schemas/Customer_2'
-        shipping:
-          $ref: '#/components/schemas/Shipping'
-        pos_technical_info:
-          $ref: '#/components/schemas/TechnicalInformation'
     Customer_2:
       description: To get additional insights and to be more efficient in fighting against fraud, it is recommended to send any relevant information about the customer.
       type: object
@@ -1507,6 +1436,41 @@ components:
           example: Dr.
         customer_location:
           $ref: '#/components/schemas/Address_2'
+    OrderResponse:
+      type: object
+      properties:
+        paymentStatus:
+          type: string
+          description: Status received from the TPE regarding the payment.
+          enum:
+          - Success
+          - Failure
+          example: success
+        receipt:
+          type: string
+          description: Receipt encoded in Base64
+          example: UkVDRUlQVCA5OSBFVVI==
+        error:
+          type: object
+          required:
+          - errorCode
+          properties:
+            errorCode:
+              type: string
+              description: Error code
+              example: 1003
+            errorDescription:
+              type: string
+              description: Error description
+              example: The network is unavailable
+        order:
+          $ref: '#/components/schemas/Order_2'
+        customer:
+          $ref: '#/components/schemas/Customer_2'
+        shipping:
+          $ref: '#/components/schemas/Shipping'
+        pos_technical_info:
+          $ref: '#/components/schemas/TechnicalInformation'
     TechnicalInformation:
       title: Technical Information
       description: Object that contains technical parameters that are required to process the order.
@@ -1641,6 +1605,27 @@ components:
               type: boolean
               default: false
               example: true
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          required:
+          - code
+          properties:
+            status:
+              type: integer
+            code:
+              type: string
+            message:
+              type: string
+            description:
+              type: string
+            details:
+              type: object
+              properties:
+                path:
+                  type: string
     Order_2:
       description: Object containing all the basic information of a given transaction.
       type: object
@@ -1897,6 +1882,21 @@ components:
             '
           type: object
           example: '{"internal_reference":"ORD_987465","customer_first_order":true,"other_sample_parameter":"Other sample value"}'
+    RootOrder:
+      type: object
+      description: Definition of the order's api call body
+      required:
+      - order
+      - pos_technical_info
+      properties:
+        order:
+          $ref: '#/components/schemas/Order_2'
+        customer:
+          $ref: '#/components/schemas/Customer_2'
+        shipping:
+          $ref: '#/components/schemas/Shipping'
+        pos_technical_info:
+          $ref: '#/components/schemas/TechnicalInformation'
   securitySchemes:
     BasicAuth:
       type: http

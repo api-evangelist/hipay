@@ -285,6 +285,23 @@ components:
           example: '{"integration_version":"1.9.0","brand":"DEVPORTAL","source":"CSDK","brand_version":"12.2.0"}'
           x-sort: 30
       type: object
+    Error:
+      title: Error
+      description: Error model
+      properties:
+        code:
+          description: Code
+          type: integer
+          x-sort: 1
+        message:
+          description: Message
+          type: string
+          x-sort: 5
+        description:
+          description: Description
+          type: string
+          x-sort: 10
+      type: object
     Operation:
       title: Operation
       description: Operation model
@@ -365,23 +382,6 @@ components:
           type: string
           example: EUR
           x-sort: 65
-      type: object
-    Error:
-      title: Error
-      description: Error model
-      properties:
-        code:
-          description: Code
-          type: integer
-          x-sort: 1
-        message:
-          description: Message
-          type: string
-          x-sort: 5
-        description:
-          description: Description
-          type: string
-          x-sort: 10
       type: object
   securitySchemes:
     basicAuth:
