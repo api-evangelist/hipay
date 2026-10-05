@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/hipay/openapi-hipay/master/enterprise/hpayment.yaml",
+ "requested_url": "https://raw.githubusercontent.com/hipay/openapi-hipay/master/enterprise/hpayment.yaml",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 49091,
+ "sha256": "19062525529905a4f70a9aad7901345b03baff856d443aad3be3bb19a802d215",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}

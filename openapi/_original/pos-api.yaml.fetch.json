@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/hipay/openapi-hipay/HEAD/omnichannel/pos_api.yaml",
+ "requested_url": "https://raw.githubusercontent.com/hipay/openapi-hipay/HEAD/omnichannel/pos_api.yaml",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 29105,
+ "sha256": "852d9a8b2b3cd71d4d261346be0b76c77e119bcf75f537d0af27f150b687387f",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
