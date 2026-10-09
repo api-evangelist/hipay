@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: HiPay API Plans
 description: HiPay does not publish standardized self-service pricing tiers. Access to the HiPay Enterprise and Professional APIs is granted after commercial onboarding with the HiPay sales team. Pricing is negotiated based on transaction volume, payment methods, and geographic coverage. The information below reflects publicly known details.
 url: https://hipay.com/en/pricing
@@ -38,3 +42,22 @@ plans:
     pricing:
       model: negotiated
       notes: Marketplace pricing is volume-based and negotiated during commercial onboarding. No published rate. Contact HiPay sales for details.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - negotiated
+  units: []
+  plans:
+  - name: Enterprise
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Marketplace
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
