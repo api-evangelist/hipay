@@ -1172,48 +1172,16 @@ paths:
     - url: https://stage-api.hipay.com
 components:
   schemas:
-    paymentMethod:
-      title: Payment
-      description: Payment model
+    debitAgreement:
+      title: Debit Agreement
+      description: Debit Agreement model
       properties:
-        token:
-          description: ''
+        id:
           type: string
           x-sort: 1
-        brand:
-          description: ''
+        status:
           type: string
           x-sort: 5
-        pan:
-          description: ''
-          type: string
-          x-sort: 10
-        cardExpiryMonth:
-          description: ''
-          type: string
-          example: '03'
-          x-sort: 20
-        cardExpiryYear:
-          description: ''
-          type: string
-          example: '2020'
-          x-sort: 25
-        issuer:
-          description: 'Name of the financial institution that
-
-            issued the payment method.'
-          type: string
-          x-sort: 30
-        country:
-          description: The country code where payment method was issued.
-          type: string
-          example: US
-          x-sort: 35
-        cardHolder:
-          description: ''
-          type: string
-          example: JOHN DOE
-          x-sort: 15
       type: object
     Transaction:
       title: Transaction
@@ -1389,6 +1357,200 @@ components:
         message:
           type: string
           x-sort: 55
+      type: object
+    fraud:
+      title: Fraud screening
+      description: Fraud screening model
+      properties:
+        scoring:
+          description: ''
+          type: string
+          example: '0'
+          x-sort: 1
+        result:
+          description: ''
+          type: string
+          example: ACCEPTED
+          x-sort: 5
+        review:
+          description: ''
+          type: string
+          example: ''
+          x-sort: 15
+      type: object
+    Error:
+      title: Error
+      description: Error model
+      properties:
+        code:
+          description: Code
+          type: integer
+          x-sort: 1
+        message:
+          description: Message
+          type: string
+          x-sort: 5
+        description:
+          description: Description
+          type: string
+          x-sort: 10
+      type: object
+    OrderResponse:
+      title: Order Response
+      description: Order Response model
+      properties:
+        id:
+          description: ''
+          type: string
+          example: '1549547828947'
+          x-sort: 1
+        dateCreated:
+          description: ''
+          type: string
+          example: 2019-02-07T13:57:08+0000
+          x-sort: 5
+        attempts:
+          description: ''
+          type: string
+          example: '0'
+          x-sort: 10
+        amount:
+          description: ''
+          type: string
+          example: '125.75'
+          x-sort: 15
+        shipping:
+          description: ''
+          type: string
+          example: '0'
+          x-sort: 20
+        tax:
+          description: ''
+          type: string
+          example: '1.10'
+          x-sort: 25
+        decimals:
+          description: ''
+          type: string
+          example: '2'
+          x-sort: 30
+        currency:
+          description: ''
+          type: string
+          example: EUR
+          x-sort: 35
+        customerId:
+          description: ''
+          type: string
+          example: '283749291'
+          x-sort: 40
+        language:
+          description: ''
+          type: string
+          example: en_GB
+          x-sort: 45
+        email:
+          description: ''
+          type: string
+          example: john.doe@foobar99.com
+          x-sort: 50
+        amount_to_capture:
+          description: ''
+          type: string
+          example: '125.75'
+          x-sort: 55
+        sca_preference:
+          description: "To indicate the preference for a frictionless flow during the authentication request, the merchant may send the sca_preference parameter.\n    Depending on the merchant's assessment of the risk of fraud, specific values may be sent.\n    This parameter can only be used by merchants who have a fraud risk assessment mechanism of their own and who have subscribed to the SCA Preference merchant option.\n    Please contact your account manager to request it.\n\n    `1` : No Preference.\n    If you are not sure about the transaction's risk of fraud, use this value. Using this value for all your transactions may result in a high strong customer authentication rate.\n    `2` : No Challenge\n    If you think this transaction is safe. This will tell the acquirer a frictionless flow is preferred.\n    `3` : Challenge Requested\n    If you think this transaction may be at risk, use this value. This will tell the acquirer that a strong customer authentication may be required, depending on the PSD2 specific information you sent along with the transaction."
+          type: integer
+          enum:
+          - 1
+          - 2
+          - 3
+          example: 1
+          x-sort: 346
+      type: object
+    ThreeDSecure:
+      title: ThreeDSecure
+      description: ThreeDSecure model
+      properties:
+        eci:
+          description: ''
+          type: string
+          example: '6'
+          x-sort: 1
+        enrollmentStatus:
+          description: ''
+          type: string
+          example: N
+          x-sort: 5
+        enrollmentMessage:
+          description: ''
+          type: string
+          example: Cardholder Not Enrolled
+          x-sort: 10
+        authenticationStatus:
+          description: ''
+          type: string
+          example: ''
+          x-sort: 15
+        authenticationMessage:
+          description: ''
+          type: string
+          example: ''
+          x-sort: 20
+        authenticationToken:
+          description: ''
+          type: string
+          example: ''
+          x-sort: 25
+        xid:
+          description: ''
+          type: string
+          example: ''
+          x-sort: 30
+      type: object
+    paymentMethod:
+      title: Payment
+      description: Payment model
+      properties:
+        token:
+          description: ''
+          type: string
+          x-sort: 1
+        brand:
+          description: ''
+          type: string
+          x-sort: 5
+        pan:
+          description: ''
+          type: string
+          x-sort: 10
+        cardExpiryMonth:
+          description: ''
+          type: string
+          example: '03'
+          x-sort: 20
+        cardExpiryYear:
+          description: ''
+          type: string
+          example: '2020'
+          x-sort: 25
+        issuer:
+          description: 'Name of the financial institution that
+
+            issued the payment method.'
+          type: string
+          x-sort: 30
+        country:
+          description: The country code where payment method was issued.
+          type: string
+          example: US
+          x-sort: 35
+        cardHolder:
+          description: ''
+          type: string
+          example: JOHN DOE
+          x-sort: 15
       type: object
     InputOrder:
       title: InputOrder
@@ -1594,120 +1756,6 @@ components:
             x-sort: 360
       - $ref: '#/components/schemas/Common'
       - $ref: '#/components/schemas/Order'
-    OrderResponse:
-      title: Order Response
-      description: Order Response model
-      properties:
-        id:
-          description: ''
-          type: string
-          example: '1549547828947'
-          x-sort: 1
-        dateCreated:
-          description: ''
-          type: string
-          example: 2019-02-07T13:57:08+0000
-          x-sort: 5
-        attempts:
-          description: ''
-          type: string
-          example: '0'
-          x-sort: 10
-        amount:
-          description: ''
-          type: string
-          example: '125.75'
-          x-sort: 15
-        shipping:
-          description: ''
-          type: string
-          example: '0'
-          x-sort: 20
-        tax:
-          description: ''
-          type: string
-          example: '1.10'
-          x-sort: 25
-        decimals:
-          description: ''
-          type: string
-          example: '2'
-          x-sort: 30
-        currency:
-          description: ''
-          type: string
-          example: EUR
-          x-sort: 35
-        customerId:
-          description: ''
-          type: string
-          example: '283749291'
-          x-sort: 40
-        language:
-          description: ''
-          type: string
-          example: en_GB
-          x-sort: 45
-        email:
-          description: ''
-          type: string
-          example: john.doe@foobar99.com
-          x-sort: 50
-        amount_to_capture:
-          description: ''
-          type: string
-          example: '125.75'
-          x-sort: 55
-        sca_preference:
-          description: "To indicate the preference for a frictionless flow during the authentication request, the merchant may send the sca_preference parameter.\n    Depending on the merchant's assessment of the risk of fraud, specific values may be sent.\n    This parameter can only be used by merchants who have a fraud risk assessment mechanism of their own and who have subscribed to the SCA Preference merchant option.\n    Please contact your account manager to request it.\n\n    `1` : No Preference.\n    If you are not sure about the transaction's risk of fraud, use this value. Using this value for all your transactions may result in a high strong customer authentication rate.\n    `2` : No Challenge\n    If you think this transaction is safe. This will tell the acquirer a frictionless flow is preferred.\n    `3` : Challenge Requested\n    If you think this transaction may be at risk, use this value. This will tell the acquirer that a strong customer authentication may be required, depending on the PSD2 specific information you sent along with the transaction."
-          type: integer
-          enum:
-          - 1
-          - 2
-          - 3
-          example: 1
-          x-sort: 346
-      type: object
-    ThreeDSecure:
-      title: ThreeDSecure
-      description: ThreeDSecure model
-      properties:
-        eci:
-          description: ''
-          type: string
-          example: '6'
-          x-sort: 1
-        enrollmentStatus:
-          description: ''
-          type: string
-          example: N
-          x-sort: 5
-        enrollmentMessage:
-          description: ''
-          type: string
-          example: Cardholder Not Enrolled
-          x-sort: 10
-        authenticationStatus:
-          description: ''
-          type: string
-          example: ''
-          x-sort: 15
-        authenticationMessage:
-          description: ''
-          type: string
-          example: ''
-          x-sort: 20
-        authenticationToken:
-          description: ''
-          type: string
-          example: ''
-          x-sort: 25
-        xid:
-          description: ''
-          type: string
-          example: ''
-          x-sort: 30
-      type: object
     Order:
       title: Order
       description: Order model
@@ -2580,54 +2628,6 @@ components:
           type: string
           example: STWAK4897048
           x-sort: 206
-      type: object
-    debitAgreement:
-      title: Debit Agreement
-      description: Debit Agreement model
-      properties:
-        id:
-          type: string
-          x-sort: 1
-        status:
-          type: string
-          x-sort: 5
-      type: object
-    Error:
-      title: Error
-      description: Error model
-      properties:
-        code:
-          description: Code
-          type: integer
-          x-sort: 1
-        message:
-          description: Message
-          type: string
-          x-sort: 5
-        description:
-          description: Description
-          type: string
-          x-sort: 10
-      type: object
-    fraud:
-      title: Fraud screening
-      description: Fraud screening model
-      properties:
-        scoring:
-          description: ''
-          type: string
-          example: '0'
-          x-sort: 1
-        result:
-          description: ''
-          type: string
-          example: ACCEPTED
-          x-sort: 5
-        review:
-          description: ''
-          type: string
-          example: ''
-          x-sort: 15
       type: object
     HostedPage_Forward:
       description: Forward
