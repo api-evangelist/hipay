@@ -257,3 +257,9 @@ components:
 externalDocs:
   description: Find out more about HiPay
   url: https://developer.hipay.com/
+x-provenance:
+  method: harvested
+  publisher: HiPay
+  source: https://raw.githubusercontent.com/hipay/openapi-hipay/master/enterprise/api-gateway.yml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
